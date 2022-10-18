@@ -12,9 +12,10 @@ output:
 
 # Introducción
 
-En este seminario vamos a comprobar si la salud mental y los suicidios pueden estar relacionados con la desigualdad económica de la población, y poder ver si hay un patrón entre estos tres conceptos.
+El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
+Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
 
-Primero de todo vamos a definir cuales son estos conceptos claves:
+En primer lugar, vamos a definir los siguientes conceptos claves:
 
 * **Salud mental:**
 *«Estado de bienestar en el cual cada individuo desarrolla su potencial, puede afrontar las tensiones de la vida, puede trabajar de forma productiva y fructífera, y puede aportar algo a su comunidad».[@OMS]*
@@ -58,7 +59,7 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 
 
-# Metodología
+# Materiales y Métodos
 
 
 # Resultados
@@ -68,3 +69,4 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 
 # Referencias
+* https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
