@@ -2,12 +2,15 @@
 title: "Seminario Fuentes: Suicidios dependientes de salud mental frente a desigualdades económicas"
 author: "Malena Pérez Sevilla, Fátima Ezzahra Makroudi Ouennas"
 date: "2022-10-18"
-output: html_document
-csl: apa.csl
-toc: TRUE
-toc_float: TRUE
+output: 
+  html_document:
+    csl: apa.csl
+    toc: TRUE
+    toc_float: TRUE
 ---
-# INTRODUCCIÓN
+# Resumen
+
+# Introducción
 
 En este seminario vamos a comprobar si la salud mental y los suicidios pueden estar relacionados con la desigualdad económica de la población, y poder ver si hay un patrón entre estos tres conceptos.
 
@@ -26,7 +29,7 @@ Este acto es previamente meditado y realizado por una persona, que es totalemnte
 Es la circustancia en la que hay presente una diferencia, ya sea vinculada con la renta, el capital o bienestar económico entre los diferentes individuos de población en una concreta zona geográfica.
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
-# CARGA DE DATOS
+# Carga de datos
 ```{r cargaDatos, }
 library(readr)
 
@@ -40,3 +43,28 @@ sui <- read_delim("INPUT/DATA/02001bsc.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"))
 print(sui)
 ```
+
+# Objetivos
+* **Objetivo principal:**
+Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el nivel económico, basándonos en el cociente S80/S20, y según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
+
+
+* **Objetivos secundarios:**
+  *
+  *
+  *
+
+
+
+
+
+# Metodología
+
+
+# Resultados
+
+
+# Conclusiones
+
+
+# Referencias
