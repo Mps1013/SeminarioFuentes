@@ -60,3 +60,5 @@ sude <- rename(.data = sude, c(s80s20= "value"))
 
 sude
 
+relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
+
