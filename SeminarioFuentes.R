@@ -58,4 +58,12 @@ View(sude)
 
 str(sude)
 sude <- select(.data = sude, Total, ComunidadAutonoma, value)
+
+sude <- rename(.data = sude, c(TotalSuicidios = "Total"))
+
+sude <- rename(.data = sude, c(s80s20= "value"))
+
 sude
+
+relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
+
