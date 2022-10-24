@@ -52,3 +52,10 @@ sui<-
   droplevels()
 
 levels(sui$ComunidadAutonoma)
+
+sude <- left_join(x = sui, y = desi, by = c("ComunidadAutonoma"))
+View(sude)
+
+str(sude)
+sude <- select(.data = sude, Total, ComunidadAutonoma, value)
+sude
