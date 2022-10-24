@@ -8,6 +8,10 @@ output:
     toc: TRUE
     toc_float: TRUE
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 # Resumen
 
 # Introducción
