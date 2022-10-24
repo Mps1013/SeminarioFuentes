@@ -58,16 +58,20 @@ sude <- rename(.data = sude, c(TotalSuicidios = "Total"))
 
 sude <- rename(.data = sude, c(s80s20= "value"))
 
-relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
+sude <- relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
 
 #Tabla suicidios e innacesibilidad.
 
 suina <- left_join(x = sui, y = ina, by = c("ComunidadAutonoma"))
 
-View(suina)
-
 suina <- rename(.data = suina, c(TotalSuicidios = "Total.x"))
 
 suina <- rename(.data = suina, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
 
-suina <- select(.data = suina, Total.x, ComunidadAutonoma, `Tipos atención sanitaria´, `Sí o no´, Total.y)
+suina <- rename(.data = suina, c(AsistenciaSanitaria = "Sí o no"))
+
+suina <- rename(.data = suina, c(TotalInaccesibilidad = "Total.y"))
+
+suina <- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+
+suina <- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
