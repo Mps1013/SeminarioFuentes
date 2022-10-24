@@ -7,6 +7,6 @@ ina <- read_delim("INPUT/DATA/47444.csv",
 sui <- read_delim("INPUT/DATA/02001bsc.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"))
 
-print(desi)
-print(ina)
-print(sui)
+View(desi)
+View(ina)
+View(sui)

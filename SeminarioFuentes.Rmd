@@ -35,7 +35,8 @@ Es la circustancia en la que hay presente una diferencia, ya sea vinculada con l
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
 # Carga de datos
-```{r cargaDatos, }
+```{r cargaDatos }
+library(tidyverse)
 library(readr)
 
 desi <- read_delim("INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv",
