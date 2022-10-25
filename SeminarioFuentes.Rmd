@@ -1,12 +1,21 @@
 ---
-title: "Seminario Fuentes: Suicidios dependientes de salud mental frente a desigualdades económicas"
-author: "Malena Pérez Sevilla, Fátima Ezzahra Makroudi Ouennas"
+title:    |
+  |Seminario Fuentes: 
+  Suicidios dependientes de salud mental frente a desigualdades económicas
+  
+author:   |
+  **Malena Pérez Sevilla, Fátima Ezzahra Makroudi Ouennas**
+  
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 output: 
   html_document:
     csl: apa.csl
-    toc: TRUE
-    toc_float: TRUE
+    df_print: paged
+    toc: yes
+    toc_float: yes
+  pdf_document: 
+    toc: yes
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
