@@ -84,3 +84,5 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 # Referencias
 * https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
+
+https://cran.r-project.org/doc/contrib/grafi3.pdf
