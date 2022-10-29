@@ -52,6 +52,8 @@ levels(sui$ComunidadAutonoma)
 
 sude <- left_join(x = sui, y = desi, by = c("ComunidadAutonoma"))
 
+View (sude)
+
 sude <- select(.data = sude, Total, ComunidadAutonoma, value)
 
 sude <- rename(.data = sude, c(TotalSuicidios = "Total"))
@@ -60,9 +62,12 @@ sude <- rename(.data = sude, c(s80s20= "value"))
 
 sude <- relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
 
+
 #Tabla suicidios e innacesibilidad.
 
 suina <- left_join(x = sui, y = ina, by = c("ComunidadAutonoma"))
+
+View(suina)
 
 suina <- rename(.data = suina, c(TotalSuicidios = "Total.x"))
 
@@ -72,6 +77,30 @@ suina <- rename(.data = suina, c(AsistenciaSanitaria = "Sí o no"))
 
 suina <- rename(.data = suina, c(TotalInaccesibilidad = "Total.y"))
 
-suina <- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+suina <- select(.data = suina, TotalSuicidios, ComunidadAutonoma,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+
+suina <- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+
+#Escoge solo "Atención salud mental (psicólogo, psiquiatra...)"
+
+table(suina$TipoAtencionSanitaria)
+print(suina$TipoAtencionSanitaria)
+
+suina <- filter(suina, TipoAtencionSanitaria == "Atención salud mental (psicólogo, psiquiatra...)")
+
+#Escoge Sí, los que no hay recibido atención médica
+
+table(suina$AsistenciaSanitaria)
+print(suina$AsistenciaSanitaria)
+
+suina <- filter(suina, AsistenciaSanitaria == "Sí")
+
+#Escoge ambos sexos
+
+suina <- filter(suina, Sexo.y == "Ambos sexos")
+
+#Tabla suina
+
+suina <- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TotalInaccesibilidad)
 
 suina <- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
