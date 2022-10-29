@@ -104,3 +104,38 @@ suina <- filter(suina, Sexo.y == "Ambos sexos")
 suina <- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TotalInaccesibilidad)
 
 suina <- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+
+#Tabla desigualdad e inaccesibilidad
+
+desina <- left_join(x = desi, y = ina, by = c("ComunidadAutonoma"))
+View(desina)
+
+desina <- rename(.data = desina, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
+
+desina <- rename(.data = desina, c(AsistenciaSanitaria = "Sí o no"))
+
+desina <- rename(.data = desina, c(TotalInaccesibilidad = "Total"))
+
+desina <- rename(.data = desina, c(s80s20= "value"))
+
+#Escoge solo "Atención salud mental (psicólogo, psiquiatra...)"
+
+print(desina$TipoAtencionSanitaria)
+
+desina <- filter(desina, TipoAtencionSanitaria == "Atención salud mental (psicólogo, psiquiatra...)")
+
+#Escoge Sí, los que no hay recibido atención médica
+
+print(desina$AsistenciaSanitaria)
+
+desina <- filter(desina, AsistenciaSanitaria == "Sí")
+
+#Escoge ambos sexos
+
+desina <- filter(desina, Sexo == "Ambos sexos")
+
+#Tabla desina
+
+desina <- select(.data = desina, s80s20, ComunidadAutonoma, TotalInaccesibilidad)
+
+desina <- relocate(.data = desina, ComunidadAutonoma, .before = s80s20)
