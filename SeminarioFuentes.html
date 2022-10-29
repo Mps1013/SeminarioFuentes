@@ -2776,7 +2776,7 @@ div.tocify {
 dependientes de salud mental frente a desigualdades económicas</p></h1>
 <h4 class="author"><p><strong>Malena Pérez Sevilla, Fátima Ezzahra
 Makroudi Ouennas</strong></p></h4>
-<h4 class="date">25 octubre, 2022</h4>
+<h4 class="date">29 octubre, 2022</h4>
 
 </div>
 
@@ -2822,47 +2822,40 @@ población en una concreta zona geográfica. Esto es debido a que los
 recursos económicos no se distribuyen de manera equitativa.</p></li>
 </ul>
 </div>
-<div id="carga-de-datos" class="section level1">
-<h1>Carga de datos</h1>
-<pre class="r"><code>library(tidyverse)</code></pre>
+<div id="tablas" class="section level1">
+<h1>Tablas</h1>
+<pre class="r"><code>library(readr)
+library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ purrr   0.3.5 
-## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
-## ✔ tidyr   1.2.1      ✔ stringr 1.4.1 
-## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ✔ ggplot2 3.3.6      ✔ dplyr   1.0.10
+## ✔ tibble  3.1.8      ✔ stringr 1.4.1 
+## ✔ tidyr   1.2.1      ✔ forcats 0.5.2 
+## ✔ purrr   0.3.5      
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>library(readr)
+<pre class="r"><code>desi &lt;- read_delim(&quot;INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv&quot;,
+                   delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,
+                   col_types = cols(
+                     `﻿Territorio`= readr::col_factor(levels = NULL)))
 
-desi &lt;- read_delim(&quot;INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv&quot;,
-                   delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE)</code></pre>
-<pre><code>## Rows: 260 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;;&quot;
-## chr (1): ﻿Territorio
-## dbl (1): Año/curso académico
-## num (1): value
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>print(desi)</code></pre>
-<pre><code>## # A tibble: 260 × 3
-##    `﻿Territorio`         `Año/curso académico` value
-##    &lt;chr&gt;                                &lt;dbl&gt; &lt;dbl&gt;
-##  1 Castilla y León                       2009    51
-##  2 Comunidad Valenciana                  2017    66
-##  3 Melilla                               2012    54
-##  4 Melilla                               2009    99
-##  5 Melilla                               2011   107
-##  6 Navarra                               2019    39
-##  7 Rioja, La                             2012    59
-##  8 Cataluña                              2012    62
-##  9 Cantabria                             2018    53
-## 10 Castilla y León                       2012    50
-## # … with 250 more rows</code></pre>
-<pre class="r"><code>ina &lt;- read_delim(&quot;INPUT/DATA/47444.csv&quot;,
-                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE)</code></pre>
+desi&lt;-
+  desi %&gt;% 
+    mutate(ComunidadAutonoma = factor(`﻿Territorio`, levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;España&quot;)))
+
+desi&lt;-
+desi %&gt;% 
+  filter(ComunidadAutonoma != &quot;España&quot;) %&gt;% 
+  droplevels()
+
+#levels(desi$ComunidadAutonoma)
+
+desi&lt;-
+  desi %&gt;% 
+  filter(`Año/curso académico` == 2019)
+
+ina &lt;- read_delim(&quot;INPUT/DATA/47444.csv&quot;,
+                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE) </code></pre>
 <pre><code>## Rows: 1200 Columns: 6
 ## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
@@ -2870,48 +2863,163 @@ desi &lt;- read_delim(&quot;INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv&quot;,
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>print(ina)</code></pre>
-<pre><code>## # A tibble: 1,200 × 6
-##    Sexo        `Total Nacional` Comunidades y Ciudades A…¹ Tipos…² Sí o …³ Total
-##    &lt;chr&gt;       &lt;chr&gt;            &lt;chr&gt;                      &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;
-##  1 Ambos sexos Total            &lt;NA&gt;                       Atenci… TOTAL   39.9…
-##  2 Ambos sexos Total            &lt;NA&gt;                       Atenci… Sí      739,2
-##  3 Ambos sexos Total            &lt;NA&gt;                       Atenci… No      37.9…
-##  4 Ambos sexos Total            &lt;NA&gt;                       Atenci… No nec… 1.31…
-##  5 Ambos sexos Total            &lt;NA&gt;                       Atenci… No con… 11,5 
-##  6 Ambos sexos Total            &lt;NA&gt;                       Atenci… TOTAL   39.9…
-##  7 Ambos sexos Total            &lt;NA&gt;                       Atenci… Sí      3.69…
-##  8 Ambos sexos Total            &lt;NA&gt;                       Atenci… No      32.5…
-##  9 Ambos sexos Total            &lt;NA&gt;                       Atenci… No nec… 3.70…
-## 10 Ambos sexos Total            &lt;NA&gt;                       Atenci… No con… 24,8 
-## # … with 1,190 more rows, and abbreviated variable names
-## #   ¹​`Comunidades y Ciudades Autónomas`, ²​`Tipos atención sanitaria`,
-## #   ³​`Sí o no`</code></pre>
-<pre class="r"><code>sui &lt;- read_delim(&quot;INPUT/DATA/02001bsc.csv&quot;,
-                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding=&quot;latin1&quot;))</code></pre>
-<pre><code>## Rows: 21 Columns: 5
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;;&quot;
-## chr (4): Comunidad y ciudad autónoma de residencia, Causas (lista reducida),...
-## dbl (1): Total
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>print(sui)</code></pre>
-<pre><code>## # A tibble: 21 × 5
-##    `Comunidad y ciudad autónoma de residencia` Causas (list…¹ Sexo  Edad   Total
-##    &lt;chr&gt;                                       &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt;
-##  1 Total                                       098 Suicidio … Ambo… Toda…   3.14
-##  2 Andalucía                                   098 Suicidio … Ambo… Toda… 685   
-##  3 Aragón                                      098 Suicidio … Ambo… Toda…  95   
-##  4 Asturias, Principado de                     098 Suicidio … Ambo… Toda… 149   
-##  5 Balears, Illes                              098 Suicidio … Ambo… Toda…  96   
-##  6 Canarias                                    098 Suicidio … Ambo… Toda… 156   
-##  7 Cantabria                                   098 Suicidio … Ambo… Toda…  20   
-##  8 Castilla y León                             098 Suicidio … Ambo… Toda… 216   
-##  9 Castilla-La Mancha                          098 Suicidio … Ambo… Toda… 141   
-## 10 Cataluña                                    098 Suicidio … Ambo… Toda… 411   
-## # … with 11 more rows, and abbreviated variable name ¹​`Causas (lista reducida)`</code></pre>
+<pre class="r"><code>col_types = cols(
+                    `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL))
+
+ina&lt;-
+  ina %&gt;% 
+  mutate(ComunidadAutonoma = factor(`Comunidades y Ciudades Autónomas`,levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias (Principado de)&quot;, &quot;Balears (Illes)&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunitat Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid (Comunidad de)&quot;, &quot;Murcia (Región de)&quot;, &quot;Navarra (Comunidad Foral de)&quot;, &quot;País Vasco&quot;, &quot;Rioja (La)&quot;, &quot;Ceuta (Ciudad Autónoma de)&quot;, &quot;Melilla (Ciudad Autónoma de)&quot;), labels = c( &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;)))
+
+#levels(ina$ComunidadAutonoma)
+
+sui &lt;- read_delim(&quot;INPUT/DATA/02001bsc.csv&quot;,
+                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding=&quot;latin1&quot;), col_types = cols(
+                    `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
+
+sui&lt;-
+  sui %&gt;% 
+  mutate(ComunidadAutonoma = factor(`Comunidad y ciudad autónoma de residencia`, labels = c( &quot;Total&quot;, &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;Extranjero&quot;)))
+
+sui&lt;-
+  sui %&gt;% 
+  filter(ComunidadAutonoma != &quot;Total&quot;) %&gt;% 
+  filter(ComunidadAutonoma != &quot;Extranjero&quot;) %&gt;% 
+  droplevels()
+
+#levels(sui$ComunidadAutonoma)
+
+#Tabla suicidios y desigualdad.
+
+sude &lt;- left_join(x = sui, y = desi, by = c(&quot;ComunidadAutonoma&quot;))
+
+sude &lt;- select(.data = sude, Total, ComunidadAutonoma, value)
+
+sude &lt;- rename(.data = sude, c(TotalSuicidios = &quot;Total&quot;))
+
+sude &lt;- rename(.data = sude, c(s80s20= &quot;value&quot;))
+
+sude &lt;- relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
+
+#Tabla suicidios e innacesibilidad.
+
+suina &lt;- left_join(x = sui, y = ina, by = c(&quot;ComunidadAutonoma&quot;))
+
+suina &lt;- rename(.data = suina, c(TotalSuicidios = &quot;Total.x&quot;))
+
+suina &lt;- rename(.data = suina, c(TipoAtencionSanitaria = &quot;Tipos atención sanitaria&quot;))
+
+suina &lt;- rename(.data = suina, c(AsistenciaSanitaria = &quot;Sí o no&quot;))
+
+suina &lt;- rename(.data = suina, c(TotalInaccesibilidad = &quot;Total.y&quot;))
+
+suina &lt;- select(.data = suina, TotalSuicidios, ComunidadAutonoma,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+
+suina &lt;- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+
+#Escoge solo &quot;Atención salud mental (psicólogo, psiquiatra...)&quot;
+
+#table(suina$TipoAtencionSanitaria)
+
+suina &lt;- filter(suina, TipoAtencionSanitaria == &quot;Atención salud mental (psicólogo, psiquiatra...)&quot;)
+
+#Escoge Sí, los que no hay recibido atención médica
+
+#table(suina$AsistenciaSanitaria)
+
+suina &lt;- filter(suina, AsistenciaSanitaria == &quot;Sí&quot;)
+
+#Escoge ambos sexos
+
+suina &lt;- filter(suina, Sexo.y == &quot;Ambos sexos&quot;)
+
+#Tabla suina
+
+suina &lt;- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TotalInaccesibilidad)
+
+suina &lt;- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+
+#Tabla desigualdad e inaccesibilidad
+
+desina &lt;- left_join(x = desi, y = ina, by = c(&quot;ComunidadAutonoma&quot;))
+View(desina)
+
+desina &lt;- rename(.data = desina, c(TipoAtencionSanitaria = &quot;Tipos atención sanitaria&quot;))
+
+desina &lt;- rename(.data = desina, c(AsistenciaSanitaria = &quot;Sí o no&quot;))
+
+desina &lt;- rename(.data = desina, c(TotalInaccesibilidad = &quot;Total&quot;))
+
+desina &lt;- rename(.data = desina, c(s80s20= &quot;value&quot;))
+
+#Escoge solo &quot;Atención salud mental (psicólogo, psiquiatra...)&quot;
+
+#table(desina$TipoAtencionSanitaria)
+
+desina &lt;- filter(desina, TipoAtencionSanitaria == &quot;Atención salud mental (psicólogo, psiquiatra...)&quot;)
+
+#Escoge Sí, los que no hay recibido atención médica
+
+#table(desina$AsistenciaSanitaria)
+
+desina &lt;- filter(desina, AsistenciaSanitaria == &quot;Sí&quot;)
+
+#Escoge ambos sexos
+
+desina &lt;- filter(desina, Sexo == &quot;Ambos sexos&quot;)
+
+#Tabla desina
+
+desina &lt;- select(.data = desina, s80s20, ComunidadAutonoma, TotalInaccesibilidad)
+
+desina &lt;- relocate(.data = desina, ComunidadAutonoma, .before = s80s20)
+
+View(sude)
+print(suina)</code></pre>
+<pre><code>## # A tibble: 19 × 3
+##    ComunidadAutonoma    TotalSuicidios TotalInaccesibilidad
+##    &lt;fct&gt;                         &lt;dbl&gt; &lt;chr&gt;               
+##  1 Andalucía                       685 56,0                
+##  2 Aragón                           95 0,0                 
+##  3 Asturias                        149 1,7                 
+##  4 Baleares, Islas                  96 11,1                
+##  5 Canarias                        156 27,4                
+##  6 Cantabria                        20 0,3                 
+##  7 Castilla y León                 216 20,6                
+##  8 Castilla-La Mancha              141 7,4                 
+##  9 Cataluña                        411 39,6                
+## 10 Comunidad Valenciana            397 38,6                
+## 11 Extremadura                      79 1,0                 
+## 12 Galicia                         275 27,8                
+## 13 Madrid, Comunidad de            122 13,0                
+## 14 Murcia, Región de                89 36,0                
+## 15 Navarra                          39 6,9                 
+## 16 País Vasco                      126 12,5                
+## 17 Rioja, La                        17 1,6                 
+## 18 Ceuta                             4 0,0                 
+## 19 Melilla                           1 0,0</code></pre>
+<pre class="r"><code>print(desina)</code></pre>
+<pre><code>## # A tibble: 19 × 3
+##    ComunidadAutonoma    s80s20 TotalInaccesibilidad
+##    &lt;fct&gt;                 &lt;dbl&gt; &lt;chr&gt;               
+##  1 Navarra                  39 6,9                 
+##  2 Castilla-La Mancha       55 7,4                 
+##  3 País Vasco               53 12,5                
+##  4 Extremadura              48 1,0                 
+##  5 Ceuta                   115 0,0                 
+##  6 Castilla y León          45 20,6                
+##  7 Cantabria                52 0,3                 
+##  8 Cataluña                 56 39,6                
+##  9 Melilla                 139 0,0                 
+## 10 Madrid, Comunidad de     65 13,0                
+## 11 Murcia, Región de        47 36,0                
+## 12 Baleares, Islas          48 11,1                
+## 13 Canarias                 53 27,4                
+## 14 Galicia                  52 27,8                
+## 15 Comunidad Valenciana     56 38,6                
+## 16 Rioja, La                50 1,6                 
+## 17 Asturias                 78 1,7                 
+## 18 Aragón                   47 0,0                 
+## 19 Andalucía                61 56,0</code></pre>
 </div>
 <div id="objetivos" class="section level1">
 <h1>Objetivos</h1>
@@ -2943,6 +3051,7 @@ a la atención sanitaria en el ámbito de salud mental.</p></li>
 <li><a href="https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084" class="uri">https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084</a>
 (introducc segun INe ..)</li>
 </ul>
+<p><a href="https://cran.r-project.org/doc/contrib/grafi3.pdf" class="uri">https://cran.r-project.org/doc/contrib/grafi3.pdf</a></p>
 </div>
 
 
