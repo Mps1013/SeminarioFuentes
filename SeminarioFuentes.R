@@ -145,3 +145,34 @@ sude
 suina
 desina
 
+
+#SUDE
+#Se preparan los datos para graficar
+sudeG <- pivot_longer(sude,-CA , names_to="variable", values_to="value")
+
+#Gráfica sude
+ggplot(sudeG,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  theme(axis.text = element_text(angle = 90))+
+  scale_y_continuous()
+
+
+#SUINA
+#Se preparan los datos para graficar
+suinaG <- pivot_longer(suina,-CA , names_to="variable", values_to="value")
+
+#Gráfica suina
+ggplot(suinaG,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  theme(axis.text = element_text(angle = 90))+
+  scale_y_continuous()
+
+#DESINA
+#Se preparan los datos para graficar
+desinaG <- pivot_longer(desina,-CA , names_to="variable", values_to="value")
+
+#Gráfica desina
+ggplot(desinaG,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  theme(axis.text = element_text(angle = 90))+
+  scale_y_continuous()
