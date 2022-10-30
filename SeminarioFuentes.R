@@ -128,13 +128,18 @@ suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad
 #Tabla desigualdad e inaccesibilidad
 
 desina <- left_join(x = desi, y = ina, by = c("CA"))
+
+desina <- left_join(x = desina, y = pob, by = c("CA"))
+
 View(desina)
+
+desina <- rename(.data = desina, c(TotalPoblacion = "Total.y"))
 
 desina <- rename(.data = desina, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
 
 desina <- rename(.data = desina, c(AsistenciaSanitaria = "Sí o no"))
 
-desina <- rename(.data = desina, c(TotalInaccesibilidad = "Total"))
+desina <- rename(.data = desina, c(TotalInaccesibilidad = "Total.x"))
 
 desina <- rename(.data = desina, c(s80s20= "value"))
 
@@ -152,11 +157,11 @@ desina <- filter(desina, AsistenciaSanitaria == "Sí")
 
 #Escoge ambos sexos
 
-desina <- filter(desina, Sexo == "Ambos sexos")
+desina <- filter(desina, Sexo.x == "Ambos sexos")
 
 #Tabla desina
 
-desina <- select(.data = desina, s80s20, CA, TotalInaccesibilidad)
+desina <- select(.data = desina, s80s20, CA, TotalInaccesibilidad, TotalPoblacion)
 
 desina <- relocate(.data = desina, CA, .before = s80s20)
 
