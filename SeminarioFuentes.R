@@ -78,6 +78,10 @@ sude <- relocate(.data = sude, CA, .before = TotalSuicidios)
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
 
+suina <- left_join(x = suina, y = pob, by = c("CA"))
+
+View(suina)
+
 suina <- rename(.data = suina, c(TotalSuicidios = "Total.x"))
 
 suina <- rename(.data = suina, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
@@ -86,15 +90,11 @@ suina <- rename(.data = suina, c(AsistenciaSanitaria = "Sí o no"))
 
 suina <- rename(.data = suina, c(TotalInaccesibilidad = "Total.y"))
 
-suina <- select(.data = suina, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+suina <- rename(.data = suina, c(TotalPoblacion = "Total"))
+
+suina <- select(.data = suina, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)
 
 suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
-
-suina <- left_join(x = pob, y = ina, by = c("CA"))
-
-suina <- rename(.data = suina, c(TotalPob = "Total.x"))
-
-  
 
 
 #Escoge solo "Atención salud mental (psicólogo, psiquiatra...)"
@@ -115,7 +115,7 @@ suina <- filter(suina, Sexo.y == "Ambos sexos")
 
 #Tabla suina
 
-suina <- select(.data = suina, TotalSuicidios, CA, TotalInaccesibilidad)
+suina <- select(.data = suina, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)
 
 suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
