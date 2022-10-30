@@ -74,6 +74,12 @@ sude <- rename(.data = sude, c(s80s20= "value"))
 
 sude <- relocate(.data = sude, CA, .before = TotalSuicidios)
 
+#Creo nueva columna
+
+sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
+
+sude$porPob <- (sude$TotalPoblacion*100) / (47026208)
+
 #Tabla suicidios e innacesibilidad.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
