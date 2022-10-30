@@ -169,6 +169,7 @@ desina <- relocate(.data = desina, CA, .before = s80s20)
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
 
+#Todas las tablas
 sude
 suina
 desina
