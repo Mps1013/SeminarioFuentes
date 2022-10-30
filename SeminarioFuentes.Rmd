@@ -147,7 +147,7 @@ suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
-suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
+suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.', desina$TotalInaccesibilidad))
 
 #Tabla desigualdad e inaccesibilidad
 

@@ -52,17 +52,23 @@ pob <- read_delim("INPUT/DATA/2853bsc.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
 pob<-
-pob %>% 
+  pob %>% 
   mutate(CA = factor(`Comunidades y Ciudades Autónomas`, labels = c("Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla")))
 levels(pob$CA)
-pob
-#Tabla suicidios y desigualdad.
+View(pob)
+#Tabla suicidios y desigualdad, población.
 
 sude <- left_join(x = sui, y = desi, by = c("CA"))
 
-sude <- select(.data = sude, Total, CA, value)
+sude <- left_join(x = sude, y = pob, by = c("CA"))
 
-sude <- rename(.data = sude, c(TotalSuicidios = "Total"))
+View(sude)
+
+sude <- select(.data = sude, Total.x, CA, value, Total.y)
+
+sude <- rename(.data = sude, c(TotalSuicidios = "Total.x"))
+
+sude <- rename(.data = sude, c(TotalPoblacion = "Total.y"))
 
 sude <- rename(.data = sude, c(s80s20= "value"))
 
