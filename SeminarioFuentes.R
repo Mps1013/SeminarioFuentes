@@ -48,6 +48,14 @@ sui<-
 
 #levels(sui$CA)
 
+pob <- read_delim("INPUT/DATA/2853bsc.csv",
+                  delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
+                    `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
+pob<-
+pob %>% 
+  mutate(CA = factor(`Comunidades y Ciudades Autónomas`, labels = c("Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla")))
+levels(pob$CA)
+pob
 #Tabla suicidios y desigualdad.
 
 sude <- left_join(x = sui, y = desi, by = c("CA"))
@@ -76,6 +84,13 @@ suina <- select(.data = suina, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria,
 
 suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
+suina <- left_join(x = pob, y = ina, by = c("CA"))
+
+suina <- rename(.data = suina, c(TotalPob = "Total.x"))
+
+  
+
+
 #Escoge solo "Atención salud mental (psicólogo, psiquiatra...)"
 
 #table(suina$TipoAtencionSanitaria)
@@ -98,6 +113,8 @@ suina <- select(.data = suina, TotalSuicidios, CA, TotalInaccesibilidad)
 
 suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
+
+view(suina)
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
@@ -144,6 +161,7 @@ desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilida
 sude
 suina
 desina
+
 
 
 #SUDE
