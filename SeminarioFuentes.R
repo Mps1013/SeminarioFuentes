@@ -87,7 +87,7 @@ suina <- left_join(x = sui, y = ina, by = c("CA"))
 
 suina <- left_join(x = suina, y = pob, by = c("CA"))
 
-View(suina)
+#View(suina)
 
 suina <- rename(.data = suina, c(TotalSuicidios = "Total.x"))
 
@@ -127,11 +127,11 @@ suina <- select(.data = suina, TotalSuicidios, CA, TotalInaccesibilidad, TotalPo
 suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
 
-view(suina)
+#view(suina)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
-suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
+suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina$TotalInaccesibilidad))
 suina$porPobSui <- (suina$TotalSuicidios*100) / suina$TotalPoblacion
 suina$porPobIna <- (suina$TotalInaccesibilidad*100) / suina$TotalPoblacion
 
@@ -182,7 +182,7 @@ desina <- relocate(.data = desina, CA, .before = s80s20)
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
-desina$porPobSui <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
+desina$porPobIna <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
 #desina$CA<-sort(desina$CA)
 
 
@@ -198,7 +198,7 @@ desina
 #Se preparan los datos para graficar
 sudeG<-select(.data=sude,"CA","s80s20","porPobSui")
 sudeG
-sudeG <- pivot_longer(sude,-CA , names_to="variable", values_to="value")
+sudeG <- pivot_longer(sudeG,-CA , names_to="variable", values_to="value")
 sude
 #Gráfica sude
 ggplot(sudeG,aes(x = CA, y=value)) + 
@@ -206,11 +206,13 @@ ggplot(sudeG,aes(x = CA, y=value)) +
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
 
+suina
 
 #SUINA
 #Se preparan los datos para graficar
-suinaG <- pivot_longer(suina,-CA , names_to="variable", values_to="value")
-
+suinaG<-select(.data=suina, "CA","porPobIna","porPobSui") 
+suinaG
+suinaG <- pivot_longer(suinaG,-CA , names_to="variable", values_to="value")
 #Gráfica suina
 ggplot(suinaG,aes(x = CA, y=value)) + 
   geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
@@ -219,7 +221,9 @@ ggplot(suinaG,aes(x = CA, y=value)) +
 
 #DESINA
 #Se preparan los datos para graficar
-desinaG <- pivot_longer(desina,-CA , names_to="variable", values_to="value")
+desina
+desinaG<-select(.data=desina,"CA","s80s20","porPobIna")
+desinaG <- pivot_longer(desinaG,-CA , names_to="variable", values_to="value")
 
 #Gráfica desina
 ggplot(desinaG,aes(x = CA, y=value)) + 
