@@ -78,7 +78,8 @@ sude <- relocate(.data = sude, CA, .before = TotalSuicidios)
 
 sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
 
-sude$porPob <- (sude$TotalPoblacion*100) / (47026208)
+sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
+sude
 
 #Tabla suicidios e innacesibilidad.
 
@@ -127,10 +128,17 @@ suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 
 
 view(suina)
+
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
+suina$porPobSui <- (suina$TotalSuicidios*100) / suina$TotalPoblacion
+suina$porPobIna <- (suina$TotalInaccesibilidad*100) / suina$TotalPoblacion
 
+
+
+
+suina
 #Tabla desigualdad e inaccesibilidad
 
 desina <- left_join(x = desi, y = ina, by = c("CA"))
@@ -174,6 +182,10 @@ desina <- relocate(.data = desina, CA, .before = s80s20)
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
+desina$porPobSui <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
+#desina$CA<-sort(desina$CA)
+
+
 
 #Todas las tablas
 sude
@@ -184,8 +196,10 @@ desina
 
 #SUDE
 #Se preparan los datos para graficar
+sudeG<-select(.data=sude,"CA","s80s20","porPobSui")
+sudeG
 sudeG <- pivot_longer(sude,-CA , names_to="variable", values_to="value")
-
+sude
 #Gráfica sude
 ggplot(sudeG,aes(x = CA, y=value)) + 
   geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 

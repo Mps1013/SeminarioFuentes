@@ -2973,8 +2973,30 @@ desina &lt;- select(.data = desina, s80s20, ComunidadAutonoma, TotalInaccesibili
 
 desina &lt;- relocate(.data = desina, ComunidadAutonoma, .before = s80s20)
 
-View(sude)
-print(suina)</code></pre>
+print(sude)</code></pre>
+<pre><code>## # A tibble: 19 × 3
+##    ComunidadAutonoma    TotalSuicidios s80s20
+##    &lt;fct&gt;                         &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Andalucía                       685     61
+##  2 Aragón                           95     47
+##  3 Asturias                        149     78
+##  4 Baleares, Islas                  96     48
+##  5 Canarias                        156     53
+##  6 Cantabria                        20     52
+##  7 Castilla y León                 216     45
+##  8 Castilla-La Mancha              141     55
+##  9 Cataluña                        411     56
+## 10 Comunidad Valenciana            397     56
+## 11 Extremadura                      79     48
+## 12 Galicia                         275     52
+## 13 Madrid, Comunidad de            122     65
+## 14 Murcia, Región de                89     47
+## 15 Navarra                          39     39
+## 16 País Vasco                      126     53
+## 17 Rioja, La                        17     50
+## 18 Ceuta                             4    115
+## 19 Melilla                           1    139</code></pre>
+<pre class="r"><code>print(suina)</code></pre>
 <pre><code>## # A tibble: 19 × 3
 ##    ComunidadAutonoma    TotalSuicidios TotalInaccesibilidad
 ##    &lt;fct&gt;                         &lt;dbl&gt; &lt;chr&gt;               
