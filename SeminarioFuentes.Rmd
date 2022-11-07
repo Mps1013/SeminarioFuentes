@@ -19,8 +19,7 @@ always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(message = FALSE,warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) 
 ```
 # Resumen
 
@@ -60,6 +59,9 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 
 # Materiales y Métodos
+
+Se han obtenido set de datos de la página del INE (Instituto Nacional de Estadística), en el caso de los referentes al índice s80s20 (1)y población por CCAAA (4) y de los datos abiertos ofrecidos por el gobierno de España para obtener los set de datos de suicidios (2) y inaccesibilidad (3).
+
 ```{r CargaDatos}
 library(readr)
 library(tidyverse)
@@ -231,6 +233,14 @@ desina
 
 
 # Referencias
+*(1) Desigualdad INE/ https://www.ine.es/jaxi/Tabla.htm?path=/t00/ICV/dim1/l0/&file=11401_2.px&L=0 , Recuperado el 07/11/22.
+
+*(2) Inaccesibilidad Gov/ https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px , Recuperado el 07/11/22.
+
+*(3) Suicidios Gov /https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px , Recuperado el 07/11/22.
+
+*(4)Población INE/ https://www.ine.es/jaxiT3/Tabla.htm?t=2853&L=0 , Recuperado el 07/11/22
+
 * https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
 
 https://cran.r-project.org/doc/contrib/grafi3.pdf
