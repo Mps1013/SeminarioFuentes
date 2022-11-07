@@ -1,7 +1,7 @@
 library(readr)
 library(tidyverse)
 
-desi <- read_delim("INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv",
+desi <- read_delim("INPUT/DATA/desigualdad.csv",
                    delim = ";", escape_double = FALSE, trim_ws = TRUE,
                    col_types = cols(
                      `﻿Territorio`= readr::col_factor(levels = NULL)))
@@ -21,7 +21,7 @@ desi<-
   desi %>% 
   filter(`Año/curso académico` == 2019)
 
-ina <- read_delim("INPUT/DATA/47444.csv",
+ina <- read_delim("INPUT/DATA/inaccesibilidad.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE) 
 col_types = cols(
   `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL))
@@ -32,7 +32,7 @@ ina<-
 
 #levels(ina$CA)
 
-sui <- read_delim("INPUT/DATA/02001bsc.csv",
+sui <- read_delim("INPUT/DATA/suicidios.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
 
@@ -48,7 +48,7 @@ sui<-
 
 #levels(sui$CA)
 
-pob <- read_delim("INPUT/DATA/2853bsc.csv",
+pob <- read_delim("INPUT/DATA/poblacion.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
 pob<-
