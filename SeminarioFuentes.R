@@ -230,3 +230,16 @@ ggplot(desinaG,aes(x = CA, y=value)) +
   geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
+
+plot(desina$s80s20, desina$porPobIna, xlab='s20s80', ylab='Inaccesibilidad')
+abline(regresion)
+
+
+ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+  geom_point(aes(colour = factor(CA))) 
+
+
+ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+  geom_point() +
+  geom_smooth(method = "lm", colour = "red")
+
