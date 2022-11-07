@@ -328,3 +328,73 @@ ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
   geom_point(aes(colour = factor(CA)))+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
        Regresión Lineal')
+
+#Suina 3
+
+#Tabla suicidios e innacesibilidad por (Medicamento recetado).
+
+suina3 <- left_join(x = sui, y = ina, by = c("CA"))
+
+suina3 <- left_join(x = suina3, y = pob, by = c("CA"))
+
+suina3 <- rename(.data = suina3, c(TotalSuicidios = "Total.x"))
+
+suina3 <- rename(.data = suina3, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
+
+suina3 <- rename(.data = suina3, c(AsistenciaSanitaria = "Sí o no"))
+
+suina3 <- rename(.data = suina3, c(TotalInaccesibilidad = "Total.y"))
+
+suina3 <- rename(.data = suina3, c(TotalPoblacion = "Total"))
+
+suina3 <- select(.data = suina3, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)
+
+suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
+
+View(suina3)
+#Escoge solo "Atención médica"
+
+#table(suina3$TipoAtencionSanitaria)
+
+suina3 <- filter(suina3, TipoAtencionSanitaria == "Medicamento recetado")
+
+#Escoge Sí, los que no hay recibido atención médica
+
+#table(suina$AsistenciaSanitaria)
+
+suina3 <- filter(suina3, AsistenciaSanitaria == "Sí")
+
+#Escoge ambos sexos
+
+suina3 <- filter(suina3, Sexo.y == "Ambos sexos")
+
+#Tabla suina3
+
+suina3 <- select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)
+
+suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
+
+#Se pasan los chr a dbl para poder hacer los gráficos
+#Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
+suina3$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina3$TotalInaccesibilidad))
+suina3$porPobSui <- (suina3$TotalSuicidios*100) / suina3$TotalPoblacion
+suina3$porPobIna <- (suina3$TotalInaccesibilidad*100) / suina3$TotalPoblacion
+
+suina3
+
+#SUINA3
+#Se preparan los datos para graficar
+suina3G<-select(.data=suina3, "CA","porPobIna","porPobSui") 
+suina3G
+suina3G <- pivot_longer(suina3G,-CA , names_to="variable", values_to="value")
+#Gráfica suina2
+ggplot(suina3G,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  theme(axis.text = element_text(angle = 90))+
+  scale_y_continuous()
+
+#Regresión lineal suina
+ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
+  geom_point(aes(colour = factor(CA)))+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
+       Regresión Lineal')
