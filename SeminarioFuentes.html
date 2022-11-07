@@ -2776,7 +2776,7 @@ div.tocify {
 dependientes de salud mental frente a desigualdades económicas</p></h1>
 <h4 class="author"><p><strong>Malena Pérez Sevilla, Fátima Ezzahra
 Makroudi Ouennas</strong></p></h4>
-<h4 class="date">29 octubre, 2022</h4>
+<h4 class="date">07 noviembre, 2022</h4>
 
 </div>
 
@@ -2822,55 +2822,61 @@ población en una concreta zona geográfica. Esto es debido a que los
 recursos económicos no se distribuyen de manera equitativa.</p></li>
 </ul>
 </div>
-<div id="tablas" class="section level1">
-<h1>Tablas</h1>
+<div id="objetivos" class="section level1">
+<h1>Objetivos</h1>
+<ul>
+<li><p><strong>Objetivo principal:</strong> Comparar el nivel de
+suicidios que hay por cada comunidad autónoma en España según el nivel
+económico, basándonos en el cociente S80/S20, y según la inaccesibilidad
+a la atención sanitaria en el ámbito de salud mental.</p></li>
+<li><p><strong>Objetivos secundarios:</strong></p>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+</ul></li>
+</ul>
+</div>
+<div id="materiales-y-métodos" class="section level1">
+<h1>Materiales y Métodos</h1>
+<p>Se han obtenido set de datos de la página del INE (Instituto Nacional
+de Estadística), en el caso de los referentes al índice s80s20 (1)y
+población por CCAAA (4) y de los datos abiertos ofrecidos por el
+gobierno de España para obtener los set de datos de suicidios (2) y
+inaccesibilidad (3).</p>
 <pre class="r"><code>library(readr)
-library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6      ✔ dplyr   1.0.10
-## ✔ tibble  3.1.8      ✔ stringr 1.4.1 
-## ✔ tidyr   1.2.1      ✔ forcats 0.5.2 
-## ✔ purrr   0.3.5      
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::filter() masks stats::filter()
-## ✖ dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>desi &lt;- read_delim(&quot;INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv&quot;,
+library(tidyverse)
+
+desi &lt;- read_delim(&quot;INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv&quot;,
                    delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,
                    col_types = cols(
                      `﻿Territorio`= readr::col_factor(levels = NULL)))
 
 desi&lt;-
   desi %&gt;% 
-    mutate(ComunidadAutonoma = factor(`﻿Territorio`, levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;España&quot;)))
+  mutate(CA = factor(`﻿Territorio`, levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;España&quot;)))
 
 desi&lt;-
-desi %&gt;% 
-  filter(ComunidadAutonoma != &quot;España&quot;) %&gt;% 
+  desi %&gt;% 
+  filter(CA != &quot;España&quot;) %&gt;% 
   droplevels()
 
-#levels(desi$ComunidadAutonoma)
+#levels(desi$CA)
 
 desi&lt;-
   desi %&gt;% 
   filter(`Año/curso académico` == 2019)
 
 ina &lt;- read_delim(&quot;INPUT/DATA/47444.csv&quot;,
-                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE) </code></pre>
-<pre><code>## Rows: 1200 Columns: 6
-## ── Column specification ────────────────────────────────────────────────────────
-## Delimiter: &quot;;&quot;
-## chr (6): Sexo, Total Nacional, Comunidades y Ciudades Autónomas, Tipos atenc...
-## 
-## ℹ Use `spec()` to retrieve the full column specification for this data.
-## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>col_types = cols(
-                    `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL))
+                  delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE) 
+col_types = cols(
+  `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL))
 
 ina&lt;-
   ina %&gt;% 
-  mutate(ComunidadAutonoma = factor(`Comunidades y Ciudades Autónomas`,levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias (Principado de)&quot;, &quot;Balears (Illes)&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunitat Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid (Comunidad de)&quot;, &quot;Murcia (Región de)&quot;, &quot;Navarra (Comunidad Foral de)&quot;, &quot;País Vasco&quot;, &quot;Rioja (La)&quot;, &quot;Ceuta (Ciudad Autónoma de)&quot;, &quot;Melilla (Ciudad Autónoma de)&quot;), labels = c( &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;)))
+  mutate(CA = factor(`Comunidades y Ciudades Autónomas`,levels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias (Principado de)&quot;, &quot;Balears (Illes)&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunitat Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid (Comunidad de)&quot;, &quot;Murcia (Región de)&quot;, &quot;Navarra (Comunidad Foral de)&quot;, &quot;País Vasco&quot;, &quot;Rioja (La)&quot;, &quot;Ceuta (Ciudad Autónoma de)&quot;, &quot;Melilla (Ciudad Autónoma de)&quot;), labels = c( &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;)))
 
-#levels(ina$ComunidadAutonoma)
+#levels(ina$CA)
 
 sui &lt;- read_delim(&quot;INPUT/DATA/02001bsc.csv&quot;,
                   delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding=&quot;latin1&quot;), col_types = cols(
@@ -2878,31 +2884,37 @@ sui &lt;- read_delim(&quot;INPUT/DATA/02001bsc.csv&quot;,
 
 sui&lt;-
   sui %&gt;% 
-  mutate(ComunidadAutonoma = factor(`Comunidad y ciudad autónoma de residencia`, labels = c( &quot;Total&quot;, &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;Extranjero&quot;)))
+  mutate(CA = factor(`Comunidad y ciudad autónoma de residencia`, labels = c( &quot;Total&quot;, &quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;, &quot;Extranjero&quot;)))
 
 sui&lt;-
   sui %&gt;% 
-  filter(ComunidadAutonoma != &quot;Total&quot;) %&gt;% 
-  filter(ComunidadAutonoma != &quot;Extranjero&quot;) %&gt;% 
-  droplevels()
+  filter(CA != &quot;Total&quot;) %&gt;% 
+  filter(CA != &quot;Extranjero&quot;) %&gt;% 
+  droplevels()</code></pre>
+</div>
+<div id="resultados" class="section level1">
+<h1>Resultados</h1>
+<pre class="r"><code>#Tabla suicidios y desigualdad.
 
-#levels(sui$ComunidadAutonoma)
+sude &lt;- left_join(x = sui, y = desi, by = c(&quot;CA&quot;))
 
-#Tabla suicidios y desigualdad.
-
-sude &lt;- left_join(x = sui, y = desi, by = c(&quot;ComunidadAutonoma&quot;))
-
-sude &lt;- select(.data = sude, Total, ComunidadAutonoma, value)
+sude &lt;- select(.data = sude, Total, CA, value)
 
 sude &lt;- rename(.data = sude, c(TotalSuicidios = &quot;Total&quot;))
 
 sude &lt;- rename(.data = sude, c(s80s20= &quot;value&quot;))
 
-sude &lt;- relocate(.data = sude, ComunidadAutonoma, .before = TotalSuicidios)
+sude &lt;- relocate(.data = sude, CA, .before = TotalSuicidios)
 
-#Tabla suicidios e innacesibilidad.
+sude</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["CA"],"name":[1],"type":["fct"],"align":["left"]},{"label":["TotalSuicidios"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["s80s20"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Andalucía","2":"685","3":"61"},{"1":"Aragón","2":"95","3":"47"},{"1":"Asturias","2":"149","3":"78"},{"1":"Baleares, Islas","2":"96","3":"48"},{"1":"Canarias","2":"156","3":"53"},{"1":"Cantabria","2":"20","3":"52"},{"1":"Castilla y León","2":"216","3":"45"},{"1":"Castilla-La Mancha","2":"141","3":"55"},{"1":"Cataluña","2":"411","3":"56"},{"1":"Comunidad Valenciana","2":"397","3":"56"},{"1":"Extremadura","2":"79","3":"48"},{"1":"Galicia","2":"275","3":"52"},{"1":"Madrid, Comunidad de","2":"122","3":"65"},{"1":"Murcia, Región de","2":"89","3":"47"},{"1":"Navarra","2":"39","3":"39"},{"1":"País Vasco","2":"126","3":"53"},{"1":"Rioja, La","2":"17","3":"50"},{"1":"Ceuta","2":"4","3":"115"},{"1":"Melilla","2":"1","3":"139"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>#Tabla suicidios e innacesibilidad.
 
-suina &lt;- left_join(x = sui, y = ina, by = c(&quot;ComunidadAutonoma&quot;))
+suina &lt;- left_join(x = sui, y = ina, by = c(&quot;CA&quot;))
 
 suina &lt;- rename(.data = suina, c(TotalSuicidios = &quot;Total.x&quot;))
 
@@ -2912,9 +2924,9 @@ suina &lt;- rename(.data = suina, c(AsistenciaSanitaria = &quot;Sí o no&quot;))
 
 suina &lt;- rename(.data = suina, c(TotalInaccesibilidad = &quot;Total.y&quot;))
 
-suina &lt;- select(.data = suina, TotalSuicidios, ComunidadAutonoma,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
+suina &lt;- select(.data = suina, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad)
 
-suina &lt;- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+suina &lt;- relocate(.data = suina, CA, .before = TotalSuicidios)
 
 #Escoge solo &quot;Atención salud mental (psicólogo, psiquiatra...)&quot;
 
@@ -2934,13 +2946,23 @@ suina &lt;- filter(suina, Sexo.y == &quot;Ambos sexos&quot;)
 
 #Tabla suina
 
-suina &lt;- select(.data = suina, TotalSuicidios, ComunidadAutonoma, TotalInaccesibilidad)
+suina &lt;- select(.data = suina, TotalSuicidios, CA, TotalInaccesibilidad)
 
-suina &lt;- relocate(.data = suina, ComunidadAutonoma, .before = TotalSuicidios)
+suina &lt;- relocate(.data = suina, CA, .before = TotalSuicidios)
 
-#Tabla desigualdad e inaccesibilidad
+#Se pasan los chr a dbl para poder hacer los gráficos
+#Se cambia el separador decimal &quot;,&quot; por &quot;.&quot; para poder hacer el cambio de tipo
+suina$TotalInaccesibilidad&lt;-as.numeric(gsub(&#39;,&#39;, &#39;.&#39;, suina$TotalInaccesibilidad))
 
-desina &lt;- left_join(x = desi, y = ina, by = c(&quot;ComunidadAutonoma&quot;))
+suina</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["CA"],"name":[1],"type":["fct"],"align":["left"]},{"label":["TotalSuicidios"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["TotalInaccesibilidad"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Andalucía","2":"685","3":"56.0"},{"1":"Aragón","2":"95","3":"0.0"},{"1":"Asturias","2":"149","3":"1.7"},{"1":"Baleares, Islas","2":"96","3":"11.1"},{"1":"Canarias","2":"156","3":"27.4"},{"1":"Cantabria","2":"20","3":"0.3"},{"1":"Castilla y León","2":"216","3":"20.6"},{"1":"Castilla-La Mancha","2":"141","3":"7.4"},{"1":"Cataluña","2":"411","3":"39.6"},{"1":"Comunidad Valenciana","2":"397","3":"38.6"},{"1":"Extremadura","2":"79","3":"1.0"},{"1":"Galicia","2":"275","3":"27.8"},{"1":"Madrid, Comunidad de","2":"122","3":"13.0"},{"1":"Murcia, Región de","2":"89","3":"36.0"},{"1":"Navarra","2":"39","3":"6.9"},{"1":"País Vasco","2":"126","3":"12.5"},{"1":"Rioja, La","2":"17","3":"1.6"},{"1":"Ceuta","2":"4","3":"0.0"},{"1":"Melilla","2":"1","3":"0.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>#Tabla desigualdad e inaccesibilidad
+
+desina &lt;- left_join(x = desi, y = ina, by = c(&quot;CA&quot;))
 View(desina)
 
 desina &lt;- rename(.data = desina, c(TipoAtencionSanitaria = &quot;Tipos atención sanitaria&quot;))
@@ -2969,106 +2991,36 @@ desina &lt;- filter(desina, Sexo == &quot;Ambos sexos&quot;)
 
 #Tabla desina
 
-desina &lt;- select(.data = desina, s80s20, ComunidadAutonoma, TotalInaccesibilidad)
+desina &lt;- select(.data = desina, s80s20, CA, TotalInaccesibilidad)
 
-desina &lt;- relocate(.data = desina, ComunidadAutonoma, .before = s80s20)
+desina &lt;- relocate(.data = desina, CA, .before = s80s20)
 
-print(sude)</code></pre>
-<pre><code>## # A tibble: 19 × 3
-##    ComunidadAutonoma    TotalSuicidios s80s20
-##    &lt;fct&gt;                         &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Andalucía                       685     61
-##  2 Aragón                           95     47
-##  3 Asturias                        149     78
-##  4 Baleares, Islas                  96     48
-##  5 Canarias                        156     53
-##  6 Cantabria                        20     52
-##  7 Castilla y León                 216     45
-##  8 Castilla-La Mancha              141     55
-##  9 Cataluña                        411     56
-## 10 Comunidad Valenciana            397     56
-## 11 Extremadura                      79     48
-## 12 Galicia                         275     52
-## 13 Madrid, Comunidad de            122     65
-## 14 Murcia, Región de                89     47
-## 15 Navarra                          39     39
-## 16 País Vasco                      126     53
-## 17 Rioja, La                        17     50
-## 18 Ceuta                             4    115
-## 19 Melilla                           1    139</code></pre>
-<pre class="r"><code>print(suina)</code></pre>
-<pre><code>## # A tibble: 19 × 3
-##    ComunidadAutonoma    TotalSuicidios TotalInaccesibilidad
-##    &lt;fct&gt;                         &lt;dbl&gt; &lt;chr&gt;               
-##  1 Andalucía                       685 56,0                
-##  2 Aragón                           95 0,0                 
-##  3 Asturias                        149 1,7                 
-##  4 Baleares, Islas                  96 11,1                
-##  5 Canarias                        156 27,4                
-##  6 Cantabria                        20 0,3                 
-##  7 Castilla y León                 216 20,6                
-##  8 Castilla-La Mancha              141 7,4                 
-##  9 Cataluña                        411 39,6                
-## 10 Comunidad Valenciana            397 38,6                
-## 11 Extremadura                      79 1,0                 
-## 12 Galicia                         275 27,8                
-## 13 Madrid, Comunidad de            122 13,0                
-## 14 Murcia, Región de                89 36,0                
-## 15 Navarra                          39 6,9                 
-## 16 País Vasco                      126 12,5                
-## 17 Rioja, La                        17 1,6                 
-## 18 Ceuta                             4 0,0                 
-## 19 Melilla                           1 0,0</code></pre>
-<pre class="r"><code>print(desina)</code></pre>
-<pre><code>## # A tibble: 19 × 3
-##    ComunidadAutonoma    s80s20 TotalInaccesibilidad
-##    &lt;fct&gt;                 &lt;dbl&gt; &lt;chr&gt;               
-##  1 Navarra                  39 6,9                 
-##  2 Castilla-La Mancha       55 7,4                 
-##  3 País Vasco               53 12,5                
-##  4 Extremadura              48 1,0                 
-##  5 Ceuta                   115 0,0                 
-##  6 Castilla y León          45 20,6                
-##  7 Cantabria                52 0,3                 
-##  8 Cataluña                 56 39,6                
-##  9 Melilla                 139 0,0                 
-## 10 Madrid, Comunidad de     65 13,0                
-## 11 Murcia, Región de        47 36,0                
-## 12 Baleares, Islas          48 11,1                
-## 13 Canarias                 53 27,4                
-## 14 Galicia                  52 27,8                
-## 15 Comunidad Valenciana     56 38,6                
-## 16 Rioja, La                50 1,6                 
-## 17 Asturias                 78 1,7                 
-## 18 Aragón                   47 0,0                 
-## 19 Andalucía                61 56,0</code></pre>
+#Se pasan los chr a dbl para poder hacer los gráficos
+#Se cambia el separador decimal &quot;,&quot; por &quot;.&quot; para poder hacer el cambio de tipo
+desina$TotalInaccesibilidad&lt;-as.numeric(gsub(&#39;,&#39;, &#39;.&#39;,desina$TotalInaccesibilidad))
+
+desina</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["CA"],"name":[1],"type":["fct"],"align":["left"]},{"label":["s80s20"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["TotalInaccesibilidad"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Navarra","2":"39","3":"6.9"},{"1":"Castilla-La Mancha","2":"55","3":"7.4"},{"1":"País Vasco","2":"53","3":"12.5"},{"1":"Extremadura","2":"48","3":"1.0"},{"1":"Ceuta","2":"115","3":"0.0"},{"1":"Castilla y León","2":"45","3":"20.6"},{"1":"Cantabria","2":"52","3":"0.3"},{"1":"Cataluña","2":"56","3":"39.6"},{"1":"Melilla","2":"139","3":"0.0"},{"1":"Madrid, Comunidad de","2":"65","3":"13.0"},{"1":"Murcia, Región de","2":"47","3":"36.0"},{"1":"Baleares, Islas","2":"48","3":"11.1"},{"1":"Canarias","2":"53","3":"27.4"},{"1":"Galicia","2":"52","3":"27.8"},{"1":"Comunidad Valenciana","2":"56","3":"38.6"},{"1":"Rioja, La","2":"50","3":"1.6"},{"1":"Asturias","2":"78","3":"1.7"},{"1":"Aragón","2":"47","3":"0.0"},{"1":"Andalucía","2":"61","3":"56.0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="objetivos" class="section level1">
-<h1>Objetivos</h1>
-<ul>
-<li><p><strong>Objetivo principal:</strong> Comparar el nivel de
-suicidios que hay por cada comunidad autónoma en España según el nivel
-económico, basándonos en el cociente S80/S20, y según la inaccesibilidad
-a la atención sanitaria en el ámbito de salud mental.</p></li>
-<li><p><strong>Objetivos secundarios:</strong></p>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-</ul></li>
-</ul>
-</div>
-<div id="materiales-y-métodos" class="section level1">
-<h1>Materiales y Métodos</h1>
-</div>
-<div id="resultados" class="section level1">
-<h1>Resultados</h1>
 </div>
 <div id="conclusiones" class="section level1">
 <h1>Conclusiones</h1>
 </div>
 <div id="referencias" class="section level1">
 <h1>Referencias</h1>
+<ol style="list-style-type: decimal">
+<li><p>Desigualdad INE/ <a href="https://www.ine.es/jaxi/Tabla.htm?path=/t00/ICV/dim1/l0/&amp;file=11401_2.px&amp;L=0" class="uri">https://www.ine.es/jaxi/Tabla.htm?path=/t00/ICV/dim1/l0/&amp;file=11401_2.px&amp;L=0</a>
+, Recuperado el 07/11/22.</p></li>
+<li><p>Inaccesibilidad Gov/ <a href="https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px" class="uri">https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px</a>
+, Recuperado el 07/11/22.</p></li>
+<li><p>Suicidios Gov /<a href="https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px" class="uri">https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px</a>
+, Recuperado el 07/11/22.</p></li>
+<li><p>Población INE/ <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=2853&amp;L=0" class="uri">https://www.ine.es/jaxiT3/Tabla.htm?t=2853&amp;L=0</a> ,
+Recuperado el 07/11/22</p></li>
+</ol>
 <ul>
 <li><a href="https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084" class="uri">https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084</a>
 (introducc segun INe ..)</li>
