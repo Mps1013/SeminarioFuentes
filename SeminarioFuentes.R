@@ -206,7 +206,9 @@ ggplot(sudeG,aes(x = CA, y=value)) +
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
 
-suina
+#Regresión lineal sude
+ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
+  geom_point(aes(colour = factor(CA))) 
 
 #SUINA
 #Se preparan los datos para graficar
@@ -218,6 +220,11 @@ ggplot(suinaG,aes(x = CA, y=value)) +
   geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
+
+#Regresión lineal suina
+ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+  geom_point(aes(colour = factor(CA))) 
+
 
 #DESINA
 #Se preparan los datos para graficar
@@ -231,6 +238,8 @@ ggplot(desinaG,aes(x = CA, y=value)) +
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
 
+
+#Regresión lineal desina
 plot(desina$s80s20, desina$porPobIna, xlab='s20s80', ylab='Inaccesibilidad')
 abline(regresion)
 
