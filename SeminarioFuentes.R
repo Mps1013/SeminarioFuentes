@@ -208,7 +208,8 @@ ggplot(sudeG,aes(x = CA, y=value)) +
 
 #Regresión lineal sude
 ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
-  geom_point(aes(colour = factor(CA))) 
+  geom_point(aes(colour = factor(CA))) +
+  labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal')
 
 #SUINA
 #Se preparan los datos para graficar
@@ -223,7 +224,8 @@ ggplot(suinaG,aes(x = CA, y=value)) +
 
 #Regresión lineal suina
 ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA))) 
+  geom_point(aes(colour = factor(CA)))+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Regresión Lineal')
 
 
 #DESINA
@@ -239,13 +241,14 @@ ggplot(desinaG,aes(x = CA, y=value)) +
   scale_y_continuous()
 
 
-#Regresión lineal desina
+
 plot(desina$s80s20, desina$porPobIna, xlab='s20s80', ylab='Inaccesibilidad')
 abline(regresion)
 
-
+#Regresión lineal desina
 ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA))) 
+  geom_point(aes(colour = factor(CA))) +
+  labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal')
 
 
 ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
