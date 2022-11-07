@@ -43,8 +43,23 @@ Este acto es previamente meditado y realizado por una persona, que es totalemnte
 Es la circustancia en la que hay presente una diferencia, ya sea vinculada con la renta, el capital o bienestar económico entre los diferentes individuos de población en una concreta zona geográfica.
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
-# Tablas
-```{r Tablas}
+
+# Objetivos
+* **Objetivo principal:**
+Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el nivel económico, basándonos en el cociente S80/S20, y según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
+
+
+* **Objetivos secundarios:**
+  *
+  *
+  *
+
+
+
+
+
+# Materiales y Métodos
+```{r CargaDatos}
 library(readr)
 library(tidyverse)
 
@@ -93,8 +108,14 @@ sui<-
   filter(CA != "Extranjero") %>% 
   droplevels()
 
-#levels(sui$CA)
 
+```
+
+
+# Resultados
+
+
+```{r tablasude}
 #Tabla suicidios y desigualdad.
 
 sude <- left_join(x = sui, y = desi, by = c("CA"))
@@ -107,6 +128,12 @@ sude <- rename(.data = sude, c(s80s20= "value"))
 
 sude <- relocate(.data = sude, CA, .before = TotalSuicidios)
 
+sude
+
+```
+
+
+```{r tablasuina}
 #Tabla suicidios e innacesibilidad.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
@@ -149,6 +176,12 @@ suina <- relocate(.data = suina, CA, .before = TotalSuicidios)
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 suina$TotalInaccesibilidad<-as.numeric(gsub(',', '.', desina$TotalInaccesibilidad))
 
+suina
+
+```
+
+```{r tabladesina}
+
 #Tabla desigualdad e inaccesibilidad
 
 desina <- left_join(x = desi, y = ina, by = c("CA"))
@@ -188,29 +221,9 @@ desina <- relocate(.data = desina, CA, .before = s80s20)
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
 
-sude
-suina
 desina
+
 ```
-
-# Objetivos
-* **Objetivo principal:**
-Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el nivel económico, basándonos en el cociente S80/S20, y según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
-
-
-* **Objetivos secundarios:**
-  *
-  *
-  *
-
-
-
-
-
-# Materiales y Métodos
-
-
-# Resultados
 
 
 # Conclusiones
