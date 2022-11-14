@@ -249,7 +249,7 @@ abline(regresion)
 
 ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
   geom_point(aes(colour = factor(CA))) +
-  labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal')
+  labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")
 
 
 ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
