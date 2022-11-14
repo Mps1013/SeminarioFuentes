@@ -397,4 +397,4 @@ ggplot(suina3G,aes(x = CA, y=value)) +
 ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
   geom_point(aes(colour = factor(CA)))+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
-       Regresión Lineal')
+       Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")
