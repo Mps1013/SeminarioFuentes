@@ -201,17 +201,19 @@ sudeG
 sudeG <- pivot_longer(sudeG,-CA , names_to="variable", values_to="value")
 sude
 #Gráfica sude
-ggplot(sudeG,aes(x = CA, y=value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-  theme(axis.text = element_text(angle = 90))+
-  scale_y_continuous()+
-  theme_light()
+sude_plot1 <-
+  ggplot(sudeG,aes(x = CA, y=value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+    theme(axis.text = element_text(angle = 90))+
+    scale_y_continuous()+
+    theme_light()
 
 #Regresión lineal sude
-ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
-  geom_point(aes(colour = factor(CA))) +
-  labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
-  theme_light()
+sude_plot2 <-
+  ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
+    geom_point(aes(colour = factor(CA))) +
+    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
+    theme_light()
 
 #SUINA
 #Se preparan los datos para graficar
@@ -219,18 +221,20 @@ suinaG<-select(.data=suina, "CA","porPobIna","porPobSui")
 suinaG
 suinaG <- pivot_longer(suinaG,-CA , names_to="variable", values_to="value")
 #Gráfica suina
-ggplot(suinaG,aes(x = CA, y=value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-  theme(axis.text = element_text(angle = 90))+
-  scale_y_continuous()+
-  theme_light()
+suina_plot1 <-
+  ggplot(suinaG,aes(x = CA, y=value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+    theme(axis.text = element_text(angle = 90))+
+    scale_y_continuous()+
+    theme_light()
 
 #Regresión lineal suina
-ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA)))+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
-       Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-  theme_light()
+suina_plot2 <-
+  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA)))+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
 
 
 #DESINA
@@ -240,29 +244,30 @@ desinaG<-select(.data=desina,"CA","s80s20","porPobIna")
 desinaG <- pivot_longer(desinaG,-CA , names_to="variable", values_to="value")
 
 #Gráfica desina
-ggplot(desinaG,aes(x = CA, y=value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-  theme(axis.text = element_text(angle = 90))+
-  scale_y_continuous()+
-  theme_light()
+desina_plot <-
+  ggplot(desinaG,aes(x = CA, y=value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+    theme(axis.text = element_text(angle = 90))+
+    scale_y_continuous()+
+    theme_light()
 
 
+desina_plot1 <-
+  plot(desina$s80s20, desina$porPobIna, xlab='s20s80', ylab='Inaccesibilidad')
+  abline(regresion)+
+    theme_light()
 
-plot(desina$s80s20, desina$porPobIna, xlab='s20s80', ylab='Inaccesibilidad')
-abline(regresion)+
-  theme_light()
+desina_plot2 <-
+  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA))) +
+    labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
 
-
-ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA))) +
-  labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-  theme_light()
-
-
-ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-  geom_point() +
-  geom_smooth(method = "lm", colour = "red")+
-  theme_light()
+desina_plot3 <-
+  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+    geom_point() +
+    geom_smooth(method = "lm", colour = "red")+
+    theme_light()
 
 
 #Suina 2
@@ -326,17 +331,19 @@ suina2G<-select(.data=suina2, "CA","porPobIna","porPobSui")
 suina2G
 suina2G <- pivot_longer(suina2G,-CA , names_to="variable", values_to="value")
 #Gráfica suina2
-ggplot(suina2G,aes(x = CA, y=value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-  theme(axis.text = element_text(angle = 90))+
-  scale_y_continuous()
+suina2_plot1 <-
+  ggplot(suina2G,aes(x = CA, y=value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+    theme(axis.text = element_text(angle = 90))+
+    scale_y_continuous()
 
-#Regresión lineal suina
-ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA)))+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
-       Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-  theme_light()
+#Regresión lineal suina2
+suina2_plot2 <-
+  ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA)))+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
+         Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
 
 #Suina 3
 
@@ -396,15 +403,17 @@ suina3
 suina3G<-select(.data=suina3, "CA","porPobIna","porPobSui") 
 suina3G
 suina3G <- pivot_longer(suina3G,-CA , names_to="variable", values_to="value")
-#Gráfica suina2
-ggplot(suina3G,aes(x = CA, y=value)) + 
-  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-  theme(axis.text = element_text(angle = 90))+
-  scale_y_continuous()
+#Gráfica suina3
+suina3_plot1 <-
+  ggplot(suina3G,aes(x = CA, y=value)) + 
+    geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+    theme(axis.text = element_text(angle = 90))+
+    scale_y_continuous()
 
-#Regresión lineal suina
-ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
-  geom_point(aes(colour = factor(CA)))+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
-       Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-  theme_light()
+#Regresión lineal suina3
+suina3_plot2 <-
+  ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA)))+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
