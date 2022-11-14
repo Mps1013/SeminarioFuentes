@@ -438,6 +438,14 @@ suina2_plot2.1 <-
          Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
 
+#Gráfica suina3_2 sin leyenda
 
-plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2, labels = c('A', 'B', 'C'), label_size = 10)
+suina3_plot2.1 <-
+  ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
+  geom_point()+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
+  theme_light()
+
+plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 ?plot_grid
