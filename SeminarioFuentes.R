@@ -417,3 +417,8 @@ suina3_plot2 <-
     labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
+
+#Juntar las 3 gráficas de suina.
+library(cowplot)
+
+plot_grid(suina_plot2, suina2_plot2, suina3_plot2, labels = c('A', 'B', 'C'), label_size = 10)
