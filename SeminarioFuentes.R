@@ -452,3 +452,16 @@ suina3_plot2.1 <-
 
 plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 
+
+#Correlaciones 
+#desina_plot2 / inacc-renta
+cor(desina$s80s20,desina$porPobIna)
+#sude_plot2 / renta-sui
+cor(sude$s80s20,sude$porPobSui)
+#suina_plot2 / inacc salud mental - sui
+cor(suina$porPobIna,suina$porPobSui)
+#suina2_plot2  /inacc att med-sui
+cor(suina2$porPobIna,suina2$porPobSui)
+#suina3_plot2 / inaacc receta -sui
+cor(suina3$porPobSui, suina3$porPobIna)
+
