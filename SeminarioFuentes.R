@@ -425,6 +425,7 @@ library(cowplot)
 suina_plot2.1 <-
   ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
+  geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
@@ -434,6 +435,7 @@ suina_plot2.1 <-
 suina2_plot2.1 <-
   ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
+  geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
          Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
@@ -443,9 +445,10 @@ suina2_plot2.1 <-
 suina3_plot2.1 <-
   ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
+  geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
 
 plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
-?plot_grid
+
