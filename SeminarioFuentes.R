@@ -212,6 +212,7 @@ sude_plot1 <-
 sude_plot2 <-
   ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
     geom_point(aes(colour = factor(CA))) +
+    geom_smooth(method = "lm", colour = "blue")+
     labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
     theme_light()
 
@@ -462,6 +463,6 @@ cor(sude$s80s20,sude$porPobSui)
 cor(suina$porPobIna,suina$porPobSui)
 #suina2_plot2  /inacc att med-sui
 cor(suina2$porPobIna,suina2$porPobSui)
-#suina3_plot2 / inaacc receta -sui
+#suina3_plot2 / inacc receta -sui
 cor(suina3$porPobSui, suina3$porPobIna)
 
