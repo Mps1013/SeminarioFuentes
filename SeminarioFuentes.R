@@ -209,7 +209,7 @@ ggplot(sudeG,aes(x = CA, y=value)) +
 #Regresión lineal sude
 ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
   geom_point(aes(colour = factor(CA))) +
-  labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal')
+  labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )
 
 #SUINA
 #Se preparan los datos para graficar
