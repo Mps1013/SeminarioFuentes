@@ -210,7 +210,7 @@ sude_plot1 <-
 
 #Regresión lineal sude
 sude_plot2 <-
-  ggplot(data = sude, aes(x = porPobSui, y = s80s20)) +
+  ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
     geom_point(aes(colour = factor(CA))) +
     geom_smooth(method = "lm", colour = "blue")+
     labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
@@ -454,7 +454,7 @@ suina3_plot2.1 <-
 plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 
 
-#Correlaciones 
+#Correlaciones: Hay una relación pero no se sabe si es causa y efecto. 
 #desina_plot2 / inacc-renta
 cor(desina$s80s20,desina$porPobIna)
 #sude_plot2 / renta-sui
@@ -465,4 +465,26 @@ cor(suina$porPobIna,suina$porPobSui)
 cor(suina2$porPobIna,suina2$porPobSui)
 #suina3_plot2 / inacc receta -sui
 cor(suina3$porPobSui, suina3$porPobIna)
+
+#Modelos basados en regresión linel, causa-efecto.
+
+#Modelo desina. Entre renta e innacesibilidad salud mental.
+Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
+summary(Modelo1)
+
+#Modelo sude. Entre renta y suicidios.
+Modelo2 <- lm(s80s20 ~ porPobSui, data = sude)
+summary(Modelo2)
+
+#Modelo suina. Entre suicidios e innacesibilidad por salud mental.
+Modelo3 <- lm(porPobIna ~ porPobSui, data = suina)
+summary(Modelo3)
+
+#Modelo suina. Entre suicidios e innacesibilidad por atencón médica.
+Modelo4 <- lm(porPobIna ~ porPobSui, data = suina2)
+summary(Modelo4)
+
+#Modelo suina. Entre suicidios e innacesibilidad por medicamento recetado.
+Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
+summary(Modelo5)
 
