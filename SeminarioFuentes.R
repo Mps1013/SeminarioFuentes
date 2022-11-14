@@ -422,3 +422,4 @@ suina3_plot2 <-
 library(cowplot)
 
 plot_grid(suina_plot2, suina2_plot2, suina3_plot2, labels = c('A', 'B', 'C'), label_size = 10)
+?plot_grid
