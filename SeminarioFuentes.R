@@ -488,3 +488,5 @@ summary(Modelo4)
 Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
 summary(Modelo5)
 
+#Guardar en output cada gráfico creado.
+#Gráficos de barras ponerlo bien.
