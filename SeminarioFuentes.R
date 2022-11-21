@@ -263,9 +263,11 @@ desina_plot1 <-
 
 desina_plot2 <-
   ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-    geom_point(aes(colour = factor(CA))) +
-    labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-    theme_light()
+  geom_point(aes(colour = factor(CA))) +
+  labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+  geom_smooth(method = "lm", colour = "blue") +
+  theme_light()
+print(desina_plot2)
 
 desina_plot3 <-
   ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
@@ -463,3 +465,4 @@ Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
 summary(Modelo5)
 
 #Gráficos de barras ponerlo bien.
+
