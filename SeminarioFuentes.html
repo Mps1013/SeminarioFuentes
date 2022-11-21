@@ -2844,6 +2844,8 @@ de Estadística), en el caso de los referentes al índice s80s20 (1)y
 población por CCAAA (4) y de los datos abiertos ofrecidos por el
 gobierno de España para obtener los set de datos de suicidios (2) y
 inaccesibilidad (3).</p>
+<div id="tablas" class="section level2">
+<h2>Tablas</h2>
 <pre class="r"><code>library(readr)
 library(tidyverse)
 
@@ -2899,6 +2901,7 @@ pob &lt;- read_delim(&quot;INPUT/DATA/poblacion.csv&quot;,
 pob&lt;-
   pob %&gt;% 
   mutate(CA = factor(`Comunidades y Ciudades Autónomas`, labels = c(&quot;Andalucía&quot;, &quot;Aragón&quot;, &quot;Asturias&quot;, &quot;Baleares, Islas&quot;, &quot;Canarias&quot;, &quot;Cantabria&quot;, &quot;Castilla y León&quot;, &quot;Castilla-La Mancha&quot;, &quot;Cataluña&quot;, &quot;Comunidad Valenciana&quot;, &quot;Extremadura&quot;, &quot;Galicia&quot;, &quot;Madrid, Comunidad de&quot;, &quot;Murcia, Región de&quot;, &quot;Navarra&quot;, &quot;País Vasco&quot;, &quot;Rioja, La&quot;, &quot;Ceuta&quot;, &quot;Melilla&quot;)))</code></pre>
+</div>
 </div>
 <div id="resultados" class="section level1">
 <h1>Resultados</h1>

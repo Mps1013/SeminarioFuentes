@@ -62,6 +62,8 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 Se han obtenido set de datos de la página del INE (Instituto Nacional de Estadística), en el caso de los referentes al índice s80s20 (1)y población por CCAAA (4) y de los datos abiertos ofrecidos por el gobierno de España para obtener los set de datos de suicidios (2) y inaccesibilidad (3).
 
+
+## Tablas
 ```{r CargaDatos}
 library(readr)
 library(tidyverse)
