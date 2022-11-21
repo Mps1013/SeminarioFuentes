@@ -321,6 +321,7 @@ suina2_plot1 <-
     theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()
 print(suina2_plot1)
+
 #Regresión lineal suina2
 suina2_plot2 <-
   ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
@@ -328,28 +329,29 @@ suina2_plot2 <-
     labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
          Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
+print(suina2_plot2)
 
 #Suina 3
 
 #Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
-suina3 <-
-  suina %/%
-  left_join(x = sui, y = ina, by = c("CA")) %>%
-  left_join(x = suina3, y = pob, by = c("CA")) %>%
-  rename(.data = suina3, c(TotalSuicidios = "Total.x")) %>%
-  rename(.data = suina3, c(TipoAtencionSanitaria = "Tipos atención sanitaria")) %>%
-  rename(.data = suina3, c(AsistenciaSanitaria = "Sí o no"))%>%
-  rename(.data = suina3, c(TotalInaccesibilidad = "Total.y"))%>%
-  rename(.data = suina3, c(TotalPoblacion = "Total"))%>%
-  select(.data = suina3, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
-  relocate(.data = suina3, CA, .before = TotalSuicidios)%>%
+suina3 <- left_join(x = sui, y = ina, by = c("CA")) 
+suina3 <- left_join(x = suina3, y = pob, by = c("CA")) 
+suina3 <- 
+  suina3 %>%
+  rename(c(TotalSuicidios = "Total.x")) %>%
+  rename(c(TipoAtencionSanitaria = "Tipos atención sanitaria")) %>%
+  rename(c(AsistenciaSanitaria = "Sí o no"))%>%
+  rename(c(TotalInaccesibilidad = "Total.y"))%>%
+  rename(c(TotalPoblacion = "Total"))%>%
+  select(TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(CA, .before = TotalSuicidios)%>%
   #Escoge solo "Atención médica"
-  filter(suina3, TipoAtencionSanitaria == "Medicamento recetado")%>%
+  filter(TipoAtencionSanitaria == "Medicamento recetado")%>%
   #Escoge Sí, los que no hay recibido atención médica
-  filter(suina3, AsistenciaSanitaria == "Sí")%>%
+  filter(AsistenciaSanitaria == "Sí")%>%
   #Escoge ambos sexos
-  filter(suina3, Sexo.y == "Ambos sexos")
+  filter(Sexo.y == "Ambos sexos")
 
 #Tabla suina3
 
