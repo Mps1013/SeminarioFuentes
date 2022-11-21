@@ -277,49 +277,29 @@ desina_plot3 <-
 #Suina 2
 
 #Tabla suicidios e innacesibilidad por (Atención médica).
-
-suina2 <- left_join(x = sui, y = ina, by = c("CA"))
-
-suina2 <- left_join(x = suina2, y = pob, by = c("CA"))
-
-#View(suina)
-
-suina2 <- rename(.data = suina2, c(TotalSuicidios = "Total.x"))
-
-suina2 <- rename(.data = suina2, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
-
-suina2 <- rename(.data = suina2, c(AsistenciaSanitaria = "Sí o no"))
-
-suina2 <- rename(.data = suina2, c(TotalInaccesibilidad = "Total.y"))
-
-suina2 <- rename(.data = suina2, c(TotalPoblacion = "Total"))
-
-suina2 <- select(.data = suina2, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)
-
-suina2 <- relocate(.data = suina2, CA, .before = TotalSuicidios)
-
-View(suina2)
+suina2<-
+  suina%>%
+  left_join(x = sui, y = ina, by = c("CA"))%>%
+  left_join(x = suina2, y = pob, by = c("CA"))%>%
+  rename(.data = suina2, c(TotalSuicidios = "Total.x"))%>%
+  rename(.data = suina2, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))%>%
+  rename(.data = suina2, c(AsistenciaSanitaria = "Sí o no"))%>%
+  rename(.data = suina2, c(TotalInaccesibilidad = "Total.y"))%>%
+  rename(.data = suina2, c(TotalPoblacion = "Total"))%>%
+  select(.data = suina2, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(.data = suina2, CA, .before = TotalSuicidios)%>%
 #Escoge solo "Atención médica"
-
-#table(suina2$TipoAtencionSanitaria)
-
-suina2 <- filter(suina2, TipoAtencionSanitaria == "Atención médica")
-
-#Escoge Sí, los que no hay recibido atención médica
-
-#table(suina$AsistenciaSanitaria)
-
-suina2 <- filter(suina2, AsistenciaSanitaria == "Sí")
-
-#Escoge ambos sexos
-
-suina2 <- filter(suina2, Sexo.y == "Ambos sexos")
-
-#Tabla suina2
-
-suina2 <- select(.data = suina2, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)
-
-suina2 <- relocate(.data = suina2, CA, .before = TotalSuicidios)
+  
+suina2 <-
+  suina2 %>%
+  filter(suina2, TipoAtencionSanitaria == "Atención médica")%>%
+  #Escoge Sí, los que no hay recibido atención médica
+  filter(suina2, AsistenciaSanitaria == "Sí")%>%
+  #Escoge ambos sexos
+  filter(suina2, Sexo.y == "Ambos sexos")%>%
+  #Tabla suina2
+  select(.data = suina2, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(.data = suina2, CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
@@ -327,7 +307,7 @@ suina2$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina2$TotalInaccesibilida
 suina2$porPobSui <- (suina2$TotalSuicidios*100) / suina2$TotalPoblacion
 suina2$porPobIna <- (suina2$TotalInaccesibilidad*100) / suina2$TotalPoblacion
 
-suina
+suina2
 
 #SUINA2
 #Se preparan los datos para graficar
