@@ -324,6 +324,8 @@ suina_plot2.1 <-
   theme_light()
 ```
 
+![Gráfica Relación Suicidios e Innacesibilidad por Atención Médica](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_AtencionMedica.jpg "Relación Suicidios e Innacesibilidad por Atencion Medica")
+
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
 suina2_plot2.1 <-
