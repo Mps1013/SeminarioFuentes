@@ -147,6 +147,7 @@ sude
 
 
 ```{r tablasuina}
+
 #Tabla suicidios e innacesibilidad.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
@@ -159,7 +160,7 @@ suina <-
   rename(c(AsistenciaSanitaria = "Sí o no")) %>%
   rename(c(TotalInaccesibilidad = "Total.y")) %>%
   rename(c(TotalPoblacion = "Total")) %>%
-  select(TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, .data = TotalInaccesibilidad, TotalPoblacion) %>%
+  select(TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion) %>%
   relocate(CA, .before = TotalSuicidios)
 #Escoge solo "Atención salud mental (psicólogo, psiquiatra...)"
 suina <-
@@ -182,6 +183,7 @@ suina
 
 ```{r tablasuina2}
 #Tabla suicidios e innacesibilidad por (Atención médica).
+
 suina2 <- left_join(x = sui, y = ina, by = c("CA"))
 suina2 <- left_join(x = suina2, y = pob, by = c("CA"))
 suina2 <-
@@ -216,7 +218,6 @@ suina2
 ```
 
 ```{r tablasuina3}
-#Tabla suicidios e innacesibilidad por (Medicamento recetado).
 #Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
 suina3 <- left_join(x = sui, y = ina, by = c("CA")) 
@@ -264,13 +265,12 @@ desina <-
   select(s80s20, CA, TotalInaccesibilidad, TotalPoblacion) %>%
   relocate(CA, .before = s80s20)
 
-desina 
-
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
 desina$porPobIna <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
-#desina$CA<-sort(desina$CA)
+
+desina 
 
 ```
 
