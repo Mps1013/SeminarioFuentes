@@ -300,6 +300,8 @@ suina_plot2 <-
     theme_light()
 ```
 
+![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental.jpg")
+
 ```{r GraficaDesina}
 #Regresión lineal desina
 desina_plot2 <-
