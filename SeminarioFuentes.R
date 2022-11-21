@@ -277,17 +277,17 @@ desina_plot3 <-
 #Suina 2
 
 #Tabla suicidios e innacesibilidad por (Atención médica).
-suina2<-
-  suina%>%
-  left_join(x = sui, y = ina, by = c("CA"))%>%
-  left_join(x = suina2, y = pob, by = c("CA"))%>%
-  rename(.data = suina2, c(TotalSuicidios = "Total.x"))%>%
-  rename(.data = suina2, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))%>%
-  rename(.data = suina2, c(AsistenciaSanitaria = "Sí o no"))%>%
-  rename(.data = suina2, c(TotalInaccesibilidad = "Total.y"))%>%
-  rename(.data = suina2, c(TotalPoblacion = "Total"))%>%
-  select(.data = suina2, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
-  relocate(.data = suina2, CA, .before = TotalSuicidios)
+suina2 <- left_join(x = sui, y = ina, by = c("CA"))
+suina2 <- left_join(x = suina2, y = pob, by = c("CA"))
+suina2 <-
+  suina2 %>%
+  rename(c(TotalSuicidios = "Total.x"))%>%
+  rename(c(TipoAtencionSanitaria = "Tipos atención sanitaria"))%>%
+  rename(c(AsistenciaSanitaria = "Sí o no"))%>%
+  rename(c(TotalInaccesibilidad = "Total.y"))%>%
+  rename(c(TotalPoblacion = "Total"))%>%
+  select(TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(CA, .before = TotalSuicidios)
 #Escoge solo "Atención médica"
   
 suina2 <-
@@ -320,7 +320,7 @@ suina2_plot1 <-
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
     theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()
-
+print(suina2_plot1)
 #Regresión lineal suina2
 suina2_plot2 <-
   ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
