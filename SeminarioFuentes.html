@@ -3056,6 +3056,16 @@ desina </code></pre>
 {"columns":[{"label":["CA"],"name":[1],"type":["fct"],"align":["left"]},{"label":["s80s20"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["TotalInaccesibilidad"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["TotalPoblacion"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["porPobIna"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"Navarra","2":"39","3":"6.9","4":"654214","5":"1.054701e-03"},{"1":"Castilla-La Mancha","2":"55","3":"7.4","4":"2032863","5":"3.640186e-04"},{"1":"País Vasco","2":"53","3":"12.5","4":"2207776","5":"5.661806e-04"},{"1":"Extremadura","2":"48","3":"1.0","4":"1067710","5":"9.365839e-05"},{"1":"Ceuta","2":"115","3":"0.0","4":"84777","5":"0.000000e+00"},{"1":"Castilla y León","2":"45","3":"20.6","4":"2399548","5":"8.584950e-04"},{"1":"Cantabria","2":"52","3":"0.3","4":"581078","5":"5.162818e-05"},{"1":"Cataluña","2":"56","3":"39.6","4":"7675217","5":"5.159463e-04"},{"1":"Melilla","2":"139","3":"0.0","4":"86487","5":"0.000000e+00"},{"1":"Madrid, Comunidad de","2":"65","3":"13.0","4":"6663394","5":"1.950958e-04"},{"1":"Murcia, Región de","2":"47","3":"36.0","4":"1493898","5":"2.409803e-03"},{"1":"Baleares, Islas","2":"48","3":"11.1","4":"1149460","5":"9.656708e-04"},{"1":"Canarias","2":"53","3":"27.4","4":"2153389","5":"1.272413e-03"},{"1":"Galicia","2":"52","3":"27.8","4":"2699499","5":"1.029821e-03"},{"1":"Comunidad Valenciana","2":"56","3":"38.6","4":"5003769","5":"7.714185e-04"},{"1":"Rioja, La","2":"50","3":"1.6","4":"316798","5":"5.050537e-04"},{"1":"Asturias","2":"78","3":"1.7","4":"1022800","5":"1.662104e-04"},{"1":"Aragón","2":"47","3":"0.0","4":"1319291","5":"0.000000e+00"},{"1":"Andalucía","2":"61","3":"56.0","4":"8414240","5":"6.655384e-04"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<div id="gráficas" class="section level2">
+<h2>Gráficas</h2>
+<pre class="r"><code>#Regresión lineal sude
+sude_plot2 &lt;-
+  ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
+    geom_point(aes(colour = factor(CA))) +
+    geom_smooth(method = &quot;lm&quot;, colour = &quot;blue&quot;)+
+    labs(title = &#39;Relación entre Suicidios y Desigualdad&#39;, subtitle = &#39;Regresión Lineal&#39;, x = &quot;Suicidios/Población&quot;, y = &quot;Renta (s80s20)&quot;, colour = &quot;Comunidades y Ciudades Autónomas&quot; )+
+    theme_light()</code></pre>
+</div>
 </div>
 <div id="conclusiones" class="section level1">
 <h1>Conclusiones</h1>

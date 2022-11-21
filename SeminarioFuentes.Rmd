@@ -123,7 +123,6 @@ pob<-
 
 ```
 
-
 # Resultados
 
 
@@ -275,6 +274,20 @@ desina$porPobIna <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
 desina 
 
 ```
+
+
+## Gráficas
+
+```{r GraficaSude}
+#Regresión lineal sude
+sude_plot2 <-
+  ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
+    geom_point(aes(colour = factor(CA))) +
+    geom_smooth(method = "lm", colour = "blue")+
+    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
+    theme_light()
+```
+
 
 
 # Conclusiones
