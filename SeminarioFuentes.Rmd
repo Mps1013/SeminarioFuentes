@@ -337,6 +337,8 @@ suina2_plot2.1 <-
   theme_light()
 ```
 
+![Gráfica Relación Suicidios e Innacesibilidad por Medicamento Recetado](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_MedicamentoRecetado.jpg "Relación Suicidios e Innacesibilidad por Medicamento Recetado")
+
 ```{r GraficaSuina3}
 #Regresión lineal suina receta médica
 suina3_plot2.1 <-
