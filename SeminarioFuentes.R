@@ -287,7 +287,7 @@ suina2<-
   rename(.data = suina2, c(TotalInaccesibilidad = "Total.y"))%>%
   rename(.data = suina2, c(TotalPoblacion = "Total"))%>%
   select(.data = suina2, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
-  relocate(.data = suina2, CA, .before = TotalSuicidios)%>%
+  relocate(.data = suina2, CA, .before = TotalSuicidios)
 #Escoge solo "Atención médica"
   
 suina2 <-
