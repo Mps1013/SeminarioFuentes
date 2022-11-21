@@ -300,7 +300,7 @@ suina_plot2 <-
     theme_light()
 ```
 
-![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental.jpg")
+![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental")
 
 ```{r GraficaDesina}
 #Regresión lineal desina
@@ -310,6 +310,8 @@ desina_plot2 <-
     labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 ```
+
+![Gráfica Relación Desigualdad Innacesibilidad](OUTPUT/DATA/Relación_Desigualdad_Innacesibilidad.jpg "Relación Desigualdad e Innacesibilidad")
 
 ```{r GraficaSuina1}
 #Regresión lineal suina salud mental
