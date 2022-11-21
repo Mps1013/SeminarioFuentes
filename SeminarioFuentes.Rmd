@@ -350,6 +350,8 @@ suina3_plot2.1 <-
   theme_light()
 ```
 
+![Gráfica Relación Suicidios e Innacesibilidad por Salud Mental RL](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental_RL.jpg "Relación Suicidios e Innacesibilidad por Salud Mental Regrasión Lineal")
+
 ```{r GráficaComparativaConjunto}
 #library(cowplot)
 #conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
