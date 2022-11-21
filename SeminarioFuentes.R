@@ -357,7 +357,7 @@ suina3 <-
 
 suina3 <- 
   suina3 %>%
-  select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  select(TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
   relocate(CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
