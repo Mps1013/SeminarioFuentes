@@ -119,18 +119,21 @@ sui<-
 
 
 ```{r tablasude}
-#Tabla suicidios y desigualdad.
+#Tabla suicidios y desigualdad, población.
 
 sude <- left_join(x = sui, y = desi, by = c("CA"))
+sude <- left_join(x = sude, y = pob, by = c("CA"))
 
-sude <- select(.data = sude, Total, CA, value)
-
-sude <- rename(.data = sude, c(TotalSuicidios = "Total"))
-
-sude <- rename(.data = sude, c(s80s20= "value"))
-
-sude <- relocate(.data = sude, CA, .before = TotalSuicidios)
-
+sude <- 
+  sude %>%
+    select(.data = ., Total.x, CA, value, Total.y) %>%
+    rename(c(TotalSuicidios = "Total.x")) %>%
+    rename(c(TotalPoblacion = "Total.y")) %>%
+    rename(c(s80s20= "value")) %>%
+    relocate(CA, .before = TotalSuicidios)
+#Creo nueva columna
+sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
+sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
 sude
 
 ```
