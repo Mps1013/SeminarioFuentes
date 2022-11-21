@@ -66,7 +66,8 @@ Se han obtenido set de datos de la página del INE (Instituto Nacional de Estad�
 library(readr)
 library(tidyverse)
 
-desi <- read_delim("INPUT/DATA/Desigualdad (S80_S20) (CCAA).csv",
+#Desigualdad
+desi <- read_delim("INPUT/DATA/desigualdad.csv",
                    delim = ";", escape_double = FALSE, trim_ws = TRUE,
                    col_types = cols(
                      `﻿Territorio`= readr::col_factor(levels = NULL)))
@@ -80,13 +81,13 @@ desi<-
   filter(CA != "España") %>% 
   droplevels()
 
-#levels(desi$CA)
-
 desi<-
   desi %>% 
   filter(`Año/curso académico` == 2019)
 
-ina <- read_delim("INPUT/DATA/47444.csv",
+#Inaccesibilidad
+
+ina <- read_delim("INPUT/DATA/inaccesibilidad.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE) 
 col_types = cols(
   `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL))
@@ -95,9 +96,9 @@ ina<-
   ina %>% 
   mutate(CA = factor(`Comunidades y Ciudades Autónomas`,levels = c("Andalucía", "Aragón", "Asturias (Principado de)", "Balears (Illes)", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunitat Valenciana", "Extremadura", "Galicia", "Madrid (Comunidad de)", "Murcia (Región de)", "Navarra (Comunidad Foral de)", "País Vasco", "Rioja (La)", "Ceuta (Ciudad Autónoma de)", "Melilla (Ciudad Autónoma de)"), labels = c( "Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla")))
 
-#levels(ina$CA)
 
-sui <- read_delim("INPUT/DATA/02001bsc.csv",
+#Suicidios
+sui <- read_delim("INPUT/DATA/suicidios.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
 
@@ -111,6 +112,12 @@ sui<-
   filter(CA != "Extranjero") %>% 
   droplevels()
 
+pob <- read_delim("INPUT/DATA/poblacion.csv",
+                  delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
+                    `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
+pob<-
+  pob %>% 
+  mutate(CA = factor(`Comunidades y Ciudades Autónomas`, labels = c("Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla")))
 
 ```
 
@@ -212,7 +219,42 @@ suina2$porPobIna <- (suina2$TotalInaccesibilidad*100) / suina2$TotalPoblacion
 suina2
 ```
 
+```{r tablasuina3}
+#Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
+suina3 <-
+  suina %/%
+  left_join(x = sui, y = ina, by = c("CA")) %>%
+  left_join(x = suina3, y = pob, by = c("CA")) %>%
+  rename(.data = suina3, c(TotalSuicidios = "Total.x")) %>%
+  rename(.data = suina3, c(TipoAtencionSanitaria = "Tipos atención sanitaria")) %>%
+  rename(.data = suina3, c(AsistenciaSanitaria = "Sí o no"))%>%
+  rename(.data = suina3, c(TotalInaccesibilidad = "Total.y"))%>%
+  rename(.data = suina3, c(TotalPoblacion = "Total"))%>%
+  select(.data = suina3, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(.data = suina3, CA, .before = TotalSuicidios)%>%
+  #Escoge solo "Atención médica"
+  filter(suina3, TipoAtencionSanitaria == "Medicamento recetado")%>%
+  #Escoge Sí, los que no hay recibido atención médica
+  filter(suina3, AsistenciaSanitaria == "Sí")%>%
+  #Escoge ambos sexos
+  filter(suina3, Sexo.y == "Ambos sexos")
+
+#Tabla suina3
+
+suina3 <- 
+  suina3 %>%
+  select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
+
+#Se pasan los chr a dbl para poder hacer los gráficos
+#Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
+suina3$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina3$TotalInaccesibilidad))
+suina3$porPobSui <- (suina3$TotalSuicidios*100) / suina3$TotalPoblacion
+suina3$porPobIna <- (suina3$TotalInaccesibilidad*100) / suina3$TotalPoblacion
+
+suina3
+```
 
 
 

@@ -333,46 +333,30 @@ suina2_plot2 <-
 
 #Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
-suina3 <- left_join(x = sui, y = ina, by = c("CA"))
-
-suina3 <- left_join(x = suina3, y = pob, by = c("CA"))
-
-suina3 <- rename(.data = suina3, c(TotalSuicidios = "Total.x"))
-
-suina3 <- rename(.data = suina3, c(TipoAtencionSanitaria = "Tipos atención sanitaria"))
-
-suina3 <- rename(.data = suina3, c(AsistenciaSanitaria = "Sí o no"))
-
-suina3 <- rename(.data = suina3, c(TotalInaccesibilidad = "Total.y"))
-
-suina3 <- rename(.data = suina3, c(TotalPoblacion = "Total"))
-
-suina3 <- select(.data = suina3, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)
-
-suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
-
-View(suina3)
-#Escoge solo "Atención médica"
-
-#table(suina3$TipoAtencionSanitaria)
-
-suina3 <- filter(suina3, TipoAtencionSanitaria == "Medicamento recetado")
-
-#Escoge Sí, los que no hay recibido atención médica
-
-#table(suina$AsistenciaSanitaria)
-
-suina3 <- filter(suina3, AsistenciaSanitaria == "Sí")
-
-#Escoge ambos sexos
-
-suina3 <- filter(suina3, Sexo.y == "Ambos sexos")
+suina3 <-
+  suina %/%
+  left_join(x = sui, y = ina, by = c("CA")) %>%
+  left_join(x = suina3, y = pob, by = c("CA")) %>%
+  rename(.data = suina3, c(TotalSuicidios = "Total.x")) %>%
+  rename(.data = suina3, c(TipoAtencionSanitaria = "Tipos atención sanitaria")) %>%
+  rename(.data = suina3, c(AsistenciaSanitaria = "Sí o no"))%>%
+  rename(.data = suina3, c(TotalInaccesibilidad = "Total.y"))%>%
+  rename(.data = suina3, c(TotalPoblacion = "Total"))%>%
+  select(.data = suina3, TotalSuicidios, CA,Sexo.y, TipoAtencionSanitaria, AsistenciaSanitaria, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(.data = suina3, CA, .before = TotalSuicidios)%>%
+  #Escoge solo "Atención médica"
+  filter(suina3, TipoAtencionSanitaria == "Medicamento recetado")%>%
+  #Escoge Sí, los que no hay recibido atención médica
+  filter(suina3, AsistenciaSanitaria == "Sí")%>%
+  #Escoge ambos sexos
+  filter(suina3, Sexo.y == "Ambos sexos")
 
 #Tabla suina3
 
-suina3 <- select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)
-
-suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
+suina3 <- 
+  suina3 %>%
+  select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
