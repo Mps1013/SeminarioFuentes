@@ -85,3 +85,14 @@ ggsave(
   units = "cm",
   dpi = 320
 )
+
+ggsave(
+  filename = "Relación_Suicidios_Innacesibilidad_Comparacion.jpg",
+  plot = conjunto,
+  path = "OUTPUT/DATA", # ruta relativa
+  scale = 0.5,
+  width = 50,
+  height = 30,
+  units = "cm",
+  dpi = 320
+)

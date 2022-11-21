@@ -379,6 +379,7 @@ suina3_plot1 <-
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
     theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()
+print(suina3_plot1)
 
 #Regresión lineal suina3
 suina3_plot2 <-
@@ -387,6 +388,7 @@ suina3_plot2 <-
     labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
+print(suina3_plot2)
 
 #Juntar las 3 gráficas de suina.
 library(cowplot)
@@ -399,6 +401,7 @@ suina_plot2.1 <-
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
+print(suina_plot2.1)
 
 #Gráfica suina2_plot2 sin leyenda
 
@@ -409,6 +412,7 @@ suina2_plot2.1 <-
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
          Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
+print(suina2_plot2.1)
 
 #Gráfica suina3_2 sin leyenda
 
@@ -419,9 +423,10 @@ suina3_plot2.1 <-
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
+print(suina3_plot2.1)
 
-plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
-
+conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
+print(conjunto)
 
 #Correlaciones: Hay una relación pero no se sabe si es causa y efecto. 
 #desina_plot2 / inacc-renta
@@ -457,5 +462,4 @@ summary(Modelo4)
 Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
 summary(Modelo5)
 
-#Guardar en output cada gráfico creado.
 #Gráficos de barras ponerlo bien.
