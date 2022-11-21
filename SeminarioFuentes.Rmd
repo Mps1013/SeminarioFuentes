@@ -343,6 +343,7 @@ suina3_plot2.1 <-
 ```
 
 ```{r GráficaComparativaConjunto}
+library(cowplot)
 conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 ```
 # Conclusiones
