@@ -288,6 +288,8 @@ sude_plot2 <-
     theme_light()
 ```
 
+![Gráfica Relación Suicidios Desigualdad](OUTPUT/DATA/Relación_Suicidios_Desigualdad.jpg "Gráfica Relación Suicidios Desigualdad")
+
 ```{r GraficaSuina}
 #Regresión lineal suina
 suina_plot2 <-
