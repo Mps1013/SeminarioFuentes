@@ -292,14 +292,14 @@ suina2 <-
   
 suina2 <-
   suina2 %>%
-  filter(suina2, TipoAtencionSanitaria == "Atención médica")%>%
+  filter(TipoAtencionSanitaria == "Atención médica")%>%
   #Escoge Sí, los que no hay recibido atención médica
-  filter(suina2, AsistenciaSanitaria == "Sí")%>%
+  filter(AsistenciaSanitaria == "Sí")%>%
   #Escoge ambos sexos
-  filter(suina2, Sexo.y == "Ambos sexos")%>%
+  filter(Sexo.y == "Ambos sexos")%>%
   #Tabla suina2
-  select(.data = suina2, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
-  relocate(.data = suina2, CA, .before = TotalSuicidios)
+  select(TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
@@ -358,7 +358,7 @@ suina3 <-
 suina3 <- 
   suina3 %>%
   select(.data = suina3, TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
-  suina3 <- relocate(.data = suina3, CA, .before = TotalSuicidios)
+  relocate(CA, .before = TotalSuicidios)
 
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
