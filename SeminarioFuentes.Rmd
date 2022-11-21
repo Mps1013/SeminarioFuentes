@@ -288,6 +288,17 @@ sude_plot2 <-
     theme_light()
 ```
 
+```{r GraficaSuina}
+#Regresión lineal sude
+#Regresión lineal suina
+suina_plot2 <-
+  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA)))+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
+```
+
 
 
 # Conclusiones
