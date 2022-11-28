@@ -67,7 +67,7 @@ Para acomodar los datos y facilitar la literatura a la hora de utilizarlos, en p
 Se ha creado una columna en todos los set de datos que se llame "CA" ya que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets y por tanto en todas las tablas para poder hacer los join pertinentes. 
 En algunos set de datos como "desigualdad.json" o "suicidios.json" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
 
-Además, en el set de datos "suicidios.json" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros.
+Además, en el set de datos "suicidios.json" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
 
 
 
