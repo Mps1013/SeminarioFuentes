@@ -45,17 +45,14 @@ Esto es debido a que los recursos económicos no se distribuyen de manera equita
 
 
 # Objetivos
-* **Objetivo principal:**
-Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el nivel económico, basándonos en el cociente S80/S20, y según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
+* **Objetivos principales:**
+  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el        nivel económico
+  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según en el cociente S80/S20
+  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
 
 
 * **Objetivos secundarios:**
-  *
-  *
-  *
-
-
-
+  * Comparar la relación entre suicidios e inaccesibilidad según el tipo de inaccesibilidad (salud mental, atención médica o medicamento recetado)
 
 
 # Materiales y Métodos
