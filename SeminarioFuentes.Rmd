@@ -62,6 +62,9 @@ Comparar el nivel de suicidios que hay por cada comunidad autónoma en España s
 
 Se han obtenido set de datos de la página del INE (Instituto Nacional de Estadística), en el caso de los referentes al índice s80s20 (1)y población por CCAAA (4) y de los datos abiertos ofrecidos por el gobierno de España para obtener los set de datos de suicidios (2) y inaccesibilidad (3).
 
+Para acomodar los datos y facilitar la literatura a la hora de utilizarlos, en primer lugar, se ha modificado el nombre de los datos importados de forma que sean más representativos y sin espacios ni caracteres especiales.
+En cuanto a la selección de los datos que nos interesan, se han diseñado tablas que permitan graficar. Para comenzar se ha creado una columna en todos los set de datos que se llame "CA" ya que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets y por tanto en todas las tablas para poder hacer los join pertinentes.
+
 
 ## Tablas
 ```{r CargaDatos}
