@@ -1,6 +1,7 @@
 library(readr)
 library(tidyverse)
 library(rjson)
+library(tidyjson)
 
 desi <- read_delim("INPUT/DATA/desigualdad.csv",
                    delim = ";", escape_double = FALSE, trim_ws = TRUE,
