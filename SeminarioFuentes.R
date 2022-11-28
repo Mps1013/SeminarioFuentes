@@ -3,10 +3,28 @@ library(tidyverse)
 library(rjson)
 library(tidyjson)
 
+
+desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
+
+desi
+
+desi %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+desi %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
 desi <- read_delim("INPUT/DATA/desigualdad.csv",
                    delim = ";", escape_double = FALSE, trim_ws = TRUE,
                    col_types = cols(
                      `﻿Territorio`= readr::col_factor(levels = NULL)))
+
+desi
 
 desi<-
   desi %>% 
