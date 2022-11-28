@@ -1,0 +1,381 @@
+[{"Nombre":"Total Nacional", "MetaData":[{"Id":16473, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Total Nacional", "Codigo":"00"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":6.2}
+,{"NombrePeriodo":"2020", "Valor":5.8}
+,{"NombrePeriodo":"2019", "Valor":5.9}
+,{"NombrePeriodo":"2018", "Valor":6.0}
+,{"NombrePeriodo":"2017", "Valor":6.6}
+,{"NombrePeriodo":"2016", "Valor":6.6}
+,{"NombrePeriodo":"2015", "Valor":6.9}
+,{"NombrePeriodo":"2014", "Valor":6.8}
+,{"NombrePeriodo":"2013", "Valor":6.3}
+,{"NombrePeriodo":"2012", "Valor":6.5}
+,{"NombrePeriodo":"2011", "Valor":6.3}
+,{"NombrePeriodo":"2010", "Valor":6.2}
+,{"NombrePeriodo":"2009", "Valor":5.9}
+,{"NombrePeriodo":"2008", "Valor":5.6}
+]
+}
+,{"Nombre":"Andalucía", "MetaData":[{"Id":8997, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Andalucía", "Codigo":"01"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":6.8}
+,{"NombrePeriodo":"2020", "Valor":5.3}
+,{"NombrePeriodo":"2019", "Valor":6.1}
+,{"NombrePeriodo":"2018", "Valor":6.5}
+,{"NombrePeriodo":"2017", "Valor":6.9}
+,{"NombrePeriodo":"2016", "Valor":7.2}
+,{"NombrePeriodo":"2015", "Valor":7.0}
+,{"NombrePeriodo":"2014", "Valor":7.1}
+,{"NombrePeriodo":"2013", "Valor":6.6}
+,{"NombrePeriodo":"2012", "Valor":6.2}
+,{"NombrePeriodo":"2011", "Valor":7.3}
+,{"NombrePeriodo":"2010", "Valor":6.2}
+,{"NombrePeriodo":"2009", "Valor":6.0}
+,{"NombrePeriodo":"2008", "Valor":6.0}
+]
+}
+,{"Nombre":"Aragón", "MetaData":[{"Id":8998, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Aragón", "Codigo":"02"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":4.9}
+,{"NombrePeriodo":"2020", "Valor":4.7}
+,{"NombrePeriodo":"2019", "Valor":4.7}
+,{"NombrePeriodo":"2018", "Valor":4.3}
+,{"NombrePeriodo":"2017", "Valor":4.6}
+,{"NombrePeriodo":"2016", "Valor":5.1}
+,{"NombrePeriodo":"2015", "Valor":5.4}
+,{"NombrePeriodo":"2014", "Valor":6.0}
+,{"NombrePeriodo":"2013", "Valor":5.6}
+,{"NombrePeriodo":"2012", "Valor":5.3}
+,{"NombrePeriodo":"2011", "Valor":5.3}
+,{"NombrePeriodo":"2010", "Valor":4.2}
+,{"NombrePeriodo":"2009", "Valor":4.4}
+,{"NombrePeriodo":"2008", "Valor":4.7}
+]
+}
+,{"Nombre":"Asturias, Principado de", "MetaData":[{"Id":8999, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Asturias, Principado de", "Codigo":"03"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":6.0}
+,{"NombrePeriodo":"2020", "Valor":7.3}
+,{"NombrePeriodo":"2019", "Valor":7.8}
+,{"NombrePeriodo":"2018", "Valor":4.8}
+,{"NombrePeriodo":"2017", "Valor":5.5}
+,{"NombrePeriodo":"2016", "Valor":5.1}
+,{"NombrePeriodo":"2015", "Valor":5.2}
+,{"NombrePeriodo":"2014", "Valor":6.3}
+,{"NombrePeriodo":"2013", "Valor":5.1}
+,{"NombrePeriodo":"2012", "Valor":5.2}
+,{"NombrePeriodo":"2011", "Valor":4.9}
+,{"NombrePeriodo":"2010", "Valor":4.7}
+,{"NombrePeriodo":"2009", "Valor":5.1}
+,{"NombrePeriodo":"2008", "Valor":4.9}
+]
+}
+,{"Nombre":"Balears, Illes", "MetaData":[{"Id":9000, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Balears, Illes", "Codigo":"04"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":4.6}
+,{"NombrePeriodo":"2019", "Valor":4.8}
+,{"NombrePeriodo":"2018", "Valor":5.5}
+,{"NombrePeriodo":"2017", "Valor":8.2}
+,{"NombrePeriodo":"2016", "Valor":6.1}
+,{"NombrePeriodo":"2015", "Valor":9.1}
+,{"NombrePeriodo":"2014", "Valor":8.9}
+,{"NombrePeriodo":"2013", "Valor":7.1}
+,{"NombrePeriodo":"2012", "Valor":6.9}
+,{"NombrePeriodo":"2011", "Valor":9.2}
+,{"NombrePeriodo":"2010", "Valor":6.9}
+,{"NombrePeriodo":"2009", "Valor":6.3}
+,{"NombrePeriodo":"2008", "Valor":5.9}
+]
+}
+,{"Nombre":"Canarias", "MetaData":[{"Id":9001, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Canarias", "Codigo":"05"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":8.2}
+,{"NombrePeriodo":"2020", "Valor":6.9}
+,{"NombrePeriodo":"2019", "Valor":5.3}
+,{"NombrePeriodo":"2018", "Valor":7.0}
+,{"NombrePeriodo":"2017", "Valor":7.0}
+,{"NombrePeriodo":"2016", "Valor":8.8}
+,{"NombrePeriodo":"2015", "Valor":10.1}
+,{"NombrePeriodo":"2014", "Valor":7.7}
+,{"NombrePeriodo":"2013", "Valor":7.0}
+,{"NombrePeriodo":"2012", "Valor":7.1}
+,{"NombrePeriodo":"2011", "Valor":6.8}
+,{"NombrePeriodo":"2010", "Valor":6.7}
+,{"NombrePeriodo":"2009", "Valor":6.3}
+,{"NombrePeriodo":"2008", "Valor":5.6}
+]
+}
+,{"Nombre":"Cantabria", "MetaData":[{"Id":9002, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Cantabria", "Codigo":"06"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":4.8}
+,{"NombrePeriodo":"2020", "Valor":5.3}
+,{"NombrePeriodo":"2019", "Valor":5.2}
+,{"NombrePeriodo":"2018", "Valor":5.3}
+,{"NombrePeriodo":"2017", "Valor":4.9}
+,{"NombrePeriodo":"2016", "Valor":4.8}
+,{"NombrePeriodo":"2015", "Valor":4.3}
+,{"NombrePeriodo":"2014", "Valor":4.8}
+,{"NombrePeriodo":"2013", "Valor":5.2}
+,{"NombrePeriodo":"2012", "Valor":5.3}
+,{"NombrePeriodo":"2011", "Valor":7.2}
+,{"NombrePeriodo":"2010", "Valor":5.3}
+,{"NombrePeriodo":"2009", "Valor":5.7}
+,{"NombrePeriodo":"2008", "Valor":4.8}
+]
+}
+,{"Nombre":"Castilla y León", "MetaData":[{"Id":9003, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Castilla y León", "Codigo":"07"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":4.5}
+,{"NombrePeriodo":"2019", "Valor":4.5}
+,{"NombrePeriodo":"2018", "Valor":4.8}
+,{"NombrePeriodo":"2017", "Valor":4.7}
+,{"NombrePeriodo":"2016", "Valor":5.1}
+,{"NombrePeriodo":"2015", "Valor":5.6}
+,{"NombrePeriodo":"2014", "Valor":6.2}
+,{"NombrePeriodo":"2013", "Valor":5.2}
+,{"NombrePeriodo":"2012", "Valor":5.0}
+,{"NombrePeriodo":"2011", "Valor":4.9}
+,{"NombrePeriodo":"2010", "Valor":5.2}
+,{"NombrePeriodo":"2009", "Valor":5.1}
+,{"NombrePeriodo":"2008", "Valor":4.5}
+]
+}
+,{"Nombre":"Castilla - La Mancha", "MetaData":[{"Id":9004, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Castilla - La Mancha", "Codigo":"08"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.7}
+,{"NombrePeriodo":"2020", "Valor":4.8}
+,{"NombrePeriodo":"2019", "Valor":5.5}
+,{"NombrePeriodo":"2018", "Valor":6.6}
+,{"NombrePeriodo":"2017", "Valor":6.3}
+,{"NombrePeriodo":"2016", "Valor":6.4}
+,{"NombrePeriodo":"2015", "Valor":6.7}
+,{"NombrePeriodo":"2014", "Valor":6.2}
+,{"NombrePeriodo":"2013", "Valor":6.5}
+,{"NombrePeriodo":"2012", "Valor":6.8}
+,{"NombrePeriodo":"2011", "Valor":5.7}
+,{"NombrePeriodo":"2010", "Valor":5.8}
+,{"NombrePeriodo":"2009", "Valor":4.9}
+,{"NombrePeriodo":"2008", "Valor":5.1}
+]
+}
+,{"Nombre":"Cataluña", "MetaData":[{"Id":9005, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Cataluña", "Codigo":"09"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.5}
+,{"NombrePeriodo":"2020", "Valor":6.2}
+,{"NombrePeriodo":"2019", "Valor":5.6}
+,{"NombrePeriodo":"2018", "Valor":5.2}
+,{"NombrePeriodo":"2017", "Valor":5.7}
+,{"NombrePeriodo":"2016", "Valor":5.6}
+,{"NombrePeriodo":"2015", "Valor":6.1}
+,{"NombrePeriodo":"2014", "Valor":6.5}
+,{"NombrePeriodo":"2013", "Valor":5.7}
+,{"NombrePeriodo":"2012", "Valor":6.2}
+,{"NombrePeriodo":"2011", "Valor":5.6}
+,{"NombrePeriodo":"2010", "Valor":6.1}
+,{"NombrePeriodo":"2009", "Valor":5.8}
+,{"NombrePeriodo":"2008", "Valor":5.2}
+]
+}
+,{"Nombre":"Comunitat Valenciana", "MetaData":[{"Id":9006, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Comunitat Valenciana", "Codigo":"10"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":6.2}
+,{"NombrePeriodo":"2020", "Valor":6.6}
+,{"NombrePeriodo":"2019", "Valor":5.6}
+,{"NombrePeriodo":"2018", "Valor":5.6}
+,{"NombrePeriodo":"2017", "Valor":6.6}
+,{"NombrePeriodo":"2016", "Valor":6.0}
+,{"NombrePeriodo":"2015", "Valor":6.4}
+,{"NombrePeriodo":"2014", "Valor":5.8}
+,{"NombrePeriodo":"2013", "Valor":6.5}
+,{"NombrePeriodo":"2012", "Valor":6.7}
+,{"NombrePeriodo":"2011", "Valor":6.0}
+,{"NombrePeriodo":"2010", "Valor":6.2}
+,{"NombrePeriodo":"2009", "Valor":5.3}
+,{"NombrePeriodo":"2008", "Valor":5.7}
+]
+}
+,{"Nombre":"Extremadura", "MetaData":[{"Id":9007, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Extremadura", "Codigo":"11"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":4.5}
+,{"NombrePeriodo":"2019", "Valor":4.8}
+,{"NombrePeriodo":"2018", "Valor":4.8}
+,{"NombrePeriodo":"2017", "Valor":5.9}
+,{"NombrePeriodo":"2016", "Valor":5.4}
+,{"NombrePeriodo":"2015", "Valor":5.8}
+,{"NombrePeriodo":"2014", "Valor":5.7}
+,{"NombrePeriodo":"2013", "Valor":5.7}
+,{"NombrePeriodo":"2012", "Valor":6.3}
+,{"NombrePeriodo":"2011", "Valor":5.5}
+,{"NombrePeriodo":"2010", "Valor":5.6}
+,{"NombrePeriodo":"2009", "Valor":5.6}
+,{"NombrePeriodo":"2008", "Valor":5.0}
+]
+}
+,{"Nombre":"Galicia", "MetaData":[{"Id":9008, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Galicia", "Codigo":"12"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":5.3}
+,{"NombrePeriodo":"2019", "Valor":5.2}
+,{"NombrePeriodo":"2018", "Valor":5.4}
+,{"NombrePeriodo":"2017", "Valor":5.8}
+,{"NombrePeriodo":"2016", "Valor":5.5}
+,{"NombrePeriodo":"2015", "Valor":5.5}
+,{"NombrePeriodo":"2014", "Valor":5.0}
+,{"NombrePeriodo":"2013", "Valor":4.8}
+,{"NombrePeriodo":"2012", "Valor":5.4}
+,{"NombrePeriodo":"2011", "Valor":5.0}
+,{"NombrePeriodo":"2010", "Valor":5.0}
+,{"NombrePeriodo":"2009", "Valor":4.6}
+,{"NombrePeriodo":"2008", "Valor":4.6}
+]
+}
+,{"Nombre":"Madrid, Comunidad de", "MetaData":[{"Id":9009, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Madrid, Comunidad de", "Codigo":"13"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":6.3}
+,{"NombrePeriodo":"2020", "Valor":5.8}
+,{"NombrePeriodo":"2019", "Valor":6.5}
+,{"NombrePeriodo":"2018", "Valor":6.3}
+,{"NombrePeriodo":"2017", "Valor":7.7}
+,{"NombrePeriodo":"2016", "Valor":7.2}
+,{"NombrePeriodo":"2015", "Valor":6.9}
+,{"NombrePeriodo":"2014", "Valor":6.5}
+,{"NombrePeriodo":"2013", "Valor":6.1}
+,{"NombrePeriodo":"2012", "Valor":6.5}
+,{"NombrePeriodo":"2011", "Valor":6.1}
+,{"NombrePeriodo":"2010", "Valor":5.9}
+,{"NombrePeriodo":"2009", "Valor":6.3}
+,{"NombrePeriodo":"2008", "Valor":5.6}
+]
+}
+,{"Nombre":"Murcia, Región de", "MetaData":[{"Id":9010, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Murcia, Región de", "Codigo":"14"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.3}
+,{"NombrePeriodo":"2020", "Valor":4.7}
+,{"NombrePeriodo":"2019", "Valor":4.7}
+,{"NombrePeriodo":"2018", "Valor":5.9}
+,{"NombrePeriodo":"2017", "Valor":5.6}
+,{"NombrePeriodo":"2016", "Valor":5.9}
+,{"NombrePeriodo":"2015", "Valor":6.6}
+,{"NombrePeriodo":"2014", "Valor":6.1}
+,{"NombrePeriodo":"2013", "Valor":6.5}
+,{"NombrePeriodo":"2012", "Valor":5.1}
+,{"NombrePeriodo":"2011", "Valor":4.7}
+,{"NombrePeriodo":"2010", "Valor":5.8}
+,{"NombrePeriodo":"2009", "Valor":5.7}
+,{"NombrePeriodo":"2008", "Valor":5.1}
+]
+}
+,{"Nombre":"Navarra, Comunidad Foral de", "MetaData":[{"Id":9011, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Navarra, Comunidad Foral de", "Codigo":"15"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":4.5}
+,{"NombrePeriodo":"2019", "Valor":3.9}
+,{"NombrePeriodo":"2018", "Valor":4.1}
+,{"NombrePeriodo":"2017", "Valor":4.4}
+,{"NombrePeriodo":"2016", "Valor":4.6}
+,{"NombrePeriodo":"2015", "Valor":4.8}
+,{"NombrePeriodo":"2014", "Valor":4.9}
+,{"NombrePeriodo":"2013", "Valor":4.5}
+,{"NombrePeriodo":"2012", "Valor":4.8}
+,{"NombrePeriodo":"2011", "Valor":4.7}
+,{"NombrePeriodo":"2010", "Valor":5.3}
+,{"NombrePeriodo":"2009", "Valor":4.7}
+,{"NombrePeriodo":"2008", "Valor":4.2}
+]
+}
+,{"Nombre":"País Vasco", "MetaData":[{"Id":9012, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"País Vasco", "Codigo":"16"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.0}
+,{"NombrePeriodo":"2020", "Valor":4.8}
+,{"NombrePeriodo":"2019", "Valor":5.3}
+,{"NombrePeriodo":"2018", "Valor":5.1}
+,{"NombrePeriodo":"2017", "Valor":5.1}
+,{"NombrePeriodo":"2016", "Valor":5.0}
+,{"NombrePeriodo":"2015", "Valor":5.4}
+,{"NombrePeriodo":"2014", "Valor":5.2}
+,{"NombrePeriodo":"2013", "Valor":5.2}
+,{"NombrePeriodo":"2012", "Valor":6.5}
+,{"NombrePeriodo":"2011", "Valor":6.3}
+,{"NombrePeriodo":"2010", "Valor":6.1}
+,{"NombrePeriodo":"2009", "Valor":5.2}
+,{"NombrePeriodo":"2008", "Valor":4.8}
+]
+}
+,{"Nombre":"Rioja, La", "MetaData":[{"Id":9013, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Rioja, La", "Codigo":"17"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":5.1}
+,{"NombrePeriodo":"2020", "Valor":4.7}
+,{"NombrePeriodo":"2019", "Valor":5.0}
+,{"NombrePeriodo":"2018", "Valor":5.7}
+,{"NombrePeriodo":"2017", "Valor":4.5}
+,{"NombrePeriodo":"2016", "Valor":4.6}
+,{"NombrePeriodo":"2015", "Valor":5.5}
+,{"NombrePeriodo":"2014", "Valor":6.4}
+,{"NombrePeriodo":"2013", "Valor":6.8}
+,{"NombrePeriodo":"2012", "Valor":5.9}
+,{"NombrePeriodo":"2011", "Valor":6.2}
+,{"NombrePeriodo":"2010", "Valor":5.5}
+,{"NombrePeriodo":"2009", "Valor":5.1}
+,{"NombrePeriodo":"2008", "Valor":4.3}
+]
+}
+,{"Nombre":"Ceuta", "MetaData":[{"Id":9015, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Ceuta", "Codigo":"18"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":9.5}
+,{"NombrePeriodo":"2020", "Valor":10.7}
+,{"NombrePeriodo":"2019", "Valor":11.5}
+,{"NombrePeriodo":"2018", "Valor":10.3}
+,{"NombrePeriodo":"2017", "Valor":11.5}
+,{"NombrePeriodo":"2016", "Valor":6.3}
+,{"NombrePeriodo":"2015", "Valor":7.1}
+,{"NombrePeriodo":"2014", "Valor":9.2}
+,{"NombrePeriodo":"2013", "Valor":10.9}
+,{"NombrePeriodo":"2012", "Valor":10.8}
+,{"NombrePeriodo":"2011", "Valor":8.1}
+,{"NombrePeriodo":"2010", "Valor":8.3}
+,{"NombrePeriodo":"2009", "Valor":15.0}
+,{"NombrePeriodo":"2008", "Valor":10.9}
+]
+}
+,{"Nombre":"Melilla", "MetaData":[{"Id":8995, "Variable":{"Id":70, "Nombre":"Comunidades y Ciudades Autónomas", "Codigo":"CCAA"}
+, "Nombre":"Melilla", "Codigo":"19"}
+]
+, "Data":[{"NombrePeriodo":"2021", "Valor":14.1}
+,{"NombrePeriodo":"2020", "Valor":15.0}
+,{"NombrePeriodo":"2019", "Valor":13.9}
+,{"NombrePeriodo":"2018", "Valor":9.1}
+,{"NombrePeriodo":"2017", "Valor":7.1}
+,{"NombrePeriodo":"2016", "Valor":8.2}
+,{"NombrePeriodo":"2015", "Valor":7.4}
+,{"NombrePeriodo":"2014", "Valor":10.1}
+,{"NombrePeriodo":"2013", "Valor":10.1}
+,{"NombrePeriodo":"2012", "Valor":5.4}
+,{"NombrePeriodo":"2011", "Valor":10.7}
+,{"NombrePeriodo":"2010", "Valor":7.6}
+,{"NombrePeriodo":"2009", "Valor":9.9}
+,{"NombrePeriodo":"2008", "Valor":6.4}
+]
+}
+]
