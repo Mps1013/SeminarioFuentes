@@ -3,10 +3,28 @@ library(tidyverse)
 library(rjson)
 library(tidyjson)
 
+
+desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
+
+desi
+
+desi %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+desi %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
 desi <- read_delim("INPUT/DATA/desigualdad.csv",
                    delim = ";", escape_double = FALSE, trim_ws = TRUE,
                    col_types = cols(
                      `﻿Territorio`= readr::col_factor(levels = NULL)))
+
+desi
 
 desi<-
   desi %>% 
@@ -23,6 +41,23 @@ desi<-
   desi %>% 
   filter(`Año/curso académico` == 2019)
 
+
+ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
+
+ina
+
+ina %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+ina %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
+
 ina <- read_delim("INPUT/DATA/inaccesibilidad.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE) 
 col_types = cols(
@@ -38,6 +73,22 @@ sui <- read_delim("INPUT/DATA/suicidios.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
 
+
+sui <- fromJSON(file = "INPUT/DATA/suicidios.json")
+
+sui
+
+sui %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+sui %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
 sui<-
   sui %>% 
   mutate(CA = factor(`Comunidad y ciudad autónoma de residencia`, labels = c( "Total", "Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla", "Extranjero")))
@@ -49,6 +100,23 @@ sui<-
   droplevels()
 
 #levels(sui$CA)
+
+
+pob <- fromJSON(file = "INPUT/DATA/poblacion.json")
+
+pob
+
+pob %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+pob %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
 
 pob <- read_delim("INPUT/DATA/poblacion.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
