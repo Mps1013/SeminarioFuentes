@@ -71,7 +71,7 @@ Además, en el set de datos "suicidios.json" se ha tenido que adaptar a un encod
 
 
 
-## Tablas
+## Carga de los datos
 ```{r CargaDatos}
 library(readr)
 library(tidyverse)
