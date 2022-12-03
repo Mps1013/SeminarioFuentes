@@ -68,10 +68,12 @@ Además, en el set de datos "suicidios.csv" se ha tenido que adaptar a un encodi
 
 El set de datos poblacion.csv se ha utilizado para poder hacer una proporción entre los datos de cada comunidad y su población. Una comunidad con mucha población tendrá más datos con los que trabajar por lo que podría desviar el estudio.
 
-
+Además se ha intentado trabajar con json pero debido a la complejidad del manejo de datos se ha decido continuar el estudio con csv.
 
 ## Carga de los datos
-```{r CargaDatos}
+```{r CargaDatosCSV}
+# VERSIÓN CSV (Versión utlizada)
+
 library(readr)
 library(tidyverse)
 
@@ -132,6 +134,28 @@ pob<-
 
 ```
 
+```{r CargaDatosJSON}
+# VERSIÓN JSON (Versión descartada)
+library(readr)
+library(tidyverse)
+library(rjson)
+library(tidyjson)
+
+
+#Desigualdad
+desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
+
+desi %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+desi %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+```
 # Resultados
 
 ## Tablas
