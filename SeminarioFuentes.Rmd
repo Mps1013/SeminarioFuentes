@@ -81,7 +81,6 @@ library(tidyjson)
 #Desigualdad
 desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
 
-desi 
 desi %>% 
   gather_object %>% 
   json_types %>% 
@@ -97,7 +96,6 @@ desi %>%
 #Inaccesibilidad
 ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
 
-ina
 ina %>% 
   gather_object %>% 
   json_types %>% 
@@ -111,8 +109,6 @@ ina %>%
 
 #Suicidios
 sui <- fromJSON(file = "INPUT/DATA/suicidios.json")
-
-sui
 
 sui %>% 
   gather_object %>% 
@@ -345,7 +341,7 @@ desina
 
 ## Gráficas
 
-En la siguiente gráfica se muestra
+En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
 ```{r GraficaSude}
 #Regresión lineal sude
 sude_plot2 <-
@@ -357,6 +353,17 @@ sude_plot2 <-
 ```
 
 ![Gráfica Relación Suicidios Desigualdad](OUTPUT/DATA/Relación_Suicidios_Desigualdad.jpg "Gráfica Relación Suicidios Desigualdad")
+
+Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
+
+```{r CorrelacionSude}
+#Correlación sude
+cor(sude$s80s20,sude$porPobSui)
+
+#Regresión lineal
+Modelo2 <- lm(s80s20 ~ porPobSui, data = sude)
+summary(Modelo2)
+```
 
 ```{r GraficaSuina}
 #Regresión lineal suina
