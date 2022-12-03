@@ -71,6 +71,61 @@ El set de datos poblacion.csv se ha utilizado para poder hacer una proporción e
 Además se ha intentado trabajar con json pero debido a la complejidad del manejo de datos se ha decido continuar el estudio con csv.
 
 ## Carga de los datos
+```{r CargaDatosJSON}
+# VERSIÓN JSON (Versión descartada)
+library(readr)
+library(tidyverse)
+library(rjson)
+library(tidyjson)
+
+
+#Desigualdad
+desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
+
+desi %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+desi %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
+
+#Inaccesibilidad
+ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
+
+ina %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+ina %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+
+#Suicidios
+sui <- fromJSON(file = "INPUT/DATA/suicidios.json")
+
+sui
+
+sui %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+sui %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
+```
+
+
 ```{r CargaDatosCSV}
 # VERSIÓN CSV (Versión utlizada)
 
@@ -134,42 +189,7 @@ pob<-
 
 ```
 
-```{r CargaDatosJSON}
-# VERSIÓN JSON (Versión descartada)
-library(readr)
-library(tidyverse)
-library(rjson)
-library(tidyjson)
 
-
-#Desigualdad
-desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
-
-desi %>% 
-  gather_object %>% 
-  json_types %>% 
-  count(name, type)
-
-desi %>%
-  enter_object(Data) %>%
-  gather_array %>%
-  spread_all %>%
-  select(-document.id, -array.index)
-
-#Inaccesibilidad
-ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
-
-ina %>% 
-  gather_object %>% 
-  json_types %>% 
-  count(name, type)
-
-ina %>%
-  enter_object(Data) %>%
-  gather_array %>%
-  spread_all %>%
-  select(-document.id, -array.index)
-```
 # Resultados
 
 ## Tablas
