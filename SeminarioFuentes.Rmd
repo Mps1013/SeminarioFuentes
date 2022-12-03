@@ -62,9 +62,11 @@ Se han obtenido set de datos de la página del INE (Instituto Nacional de Estad�
 Para acomodar los datos y facilitar la literatura a la hora de utilizarlos, en primer lugar, se ha modificado el nombre de los set de datos importados de forma que sean más representativos y sin espacios ni caracteres especiales.
 
 Se ha creado una columna en todos los set de datos que se llame "CA" ya que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets y por tanto en todas las tablas para poder hacer los join pertinentes. 
-En algunos set de datos como "desigualdad.json" o "suicidios.json" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
+En algunos set de datos como "desigualdad.csv" o "suicidios.csv" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
 
-Además, en el set de datos "suicidios.json" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
+Además, en el set de datos "suicidios.csv" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
+
+El set de datos poblacion.csv se ha utilizado para poder hacer una proporción entre los datos de cada comunidad y su población. Una comunidad con mucha población tendrá más datos con los que trabajar por lo que podría desviar el estudio.
 
 
 
@@ -119,6 +121,8 @@ sui<-
   filter(CA != "Extranjero") %>% 
   droplevels()
 
+
+#Población
 pob <- read_delim("INPUT/DATA/poblacion.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
@@ -131,6 +135,7 @@ pob<-
 # Resultados
 
 ## Tablas
+Para construir las tablas se ha hecho un join utilizando el atributo "CA". Se han cambiado algunos nombres de los atributos y se han filtrado solo aquellos necesarios.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma.
 ```{r tablasude}
 #Tabla suicidios y desigualdad, población.
 
