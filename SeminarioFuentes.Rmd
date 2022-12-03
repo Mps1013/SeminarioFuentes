@@ -155,6 +155,20 @@ desi %>%
   gather_array %>%
   spread_all %>%
   select(-document.id, -array.index)
+
+#Inaccesibilidad
+ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
+
+ina %>% 
+  gather_object %>% 
+  json_types %>% 
+  count(name, type)
+
+ina %>%
+  enter_object(Data) %>%
+  gather_array %>%
+  spread_all %>%
+  select(-document.id, -array.index)
 ```
 # Resultados
 
