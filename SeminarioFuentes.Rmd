@@ -81,6 +81,7 @@ library(tidyjson)
 #Desigualdad
 desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
 
+desi 
 desi %>% 
   gather_object %>% 
   json_types %>% 
@@ -96,6 +97,7 @@ desi %>%
 #Inaccesibilidad
 ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
 
+ina
 ina %>% 
   gather_object %>% 
   json_types %>% 
