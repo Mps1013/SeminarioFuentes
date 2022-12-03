@@ -75,8 +75,9 @@ Además se ha intentado trabajar con json pero debido a la complejidad del manej
 # VERSIÓN JSON (Versión descartada)
 library(readr)
 library(tidyverse)
-library(rjson)
 library(tidyjson)
+library(rjson)
+
 
 
 #Desigualdad
@@ -190,7 +191,7 @@ pob<-
 ```
 
 
-# Resultados
+# Resultados y discusión
 
 ## Tablas
 Para construir las tablas se ha hecho un join utilizando el atributo "CA". Se han cambiado algunos nombres de los atributos y se han filtrado solo aquellos necesarios.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma.
@@ -310,8 +311,6 @@ suina3 <-
 suina3
 ```
 
-
-
 ```{r tabladesina}
 
 #Tabla desigualdad e inaccesibilidad
@@ -346,6 +345,7 @@ desina
 
 ## Gráficas
 
+En la siguiente gráfica se muestra
 ```{r GraficaSude}
 #Regresión lineal sude
 sude_plot2 <-
@@ -413,6 +413,8 @@ suina3_plot2.1 <-
 ```
 
 ![Gráfica Comparativa Relación Suicidios e Innacesibilidad Regresión Lineal](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_Comparacion.jpg "Relación Suicidios e Innacesibilidad Comparativa")
+## Análisis
+A simple vista resulta difícil poder analizar los datos por eso y para ser más objetivos durante el estudio se ha hecho un análisis de correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
 
 # Conclusiones
 
