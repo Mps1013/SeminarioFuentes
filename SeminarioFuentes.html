@@ -2776,7 +2776,7 @@ div.tocify {
 dependientes de salud mental frente a desigualdades económicas</p></h1>
 <h4 class="author"><p><strong>Malena Pérez Sevilla, Fátima Ezzahra
 Makroudi Ouennas</strong></p></h4>
-<h4 class="date">28 noviembre, 2022</h4>
+<h4 class="date">03 diciembre, 2022</h4>
 
 </div>
 
@@ -2825,15 +2825,21 @@ recursos económicos no se distribuyen de manera equitativa.</p></li>
 <div id="objetivos" class="section level1">
 <h1>Objetivos</h1>
 <ul>
-<li><p><strong>Objetivo principal:</strong> Comparar el nivel de
-suicidios que hay por cada comunidad autónoma en España según el nivel
-económico, basándonos en el cociente S80/S20, y según la inaccesibilidad
-a la atención sanitaria en el ámbito de salud mental.</p></li>
-<li><p><strong>Objetivos secundarios:</strong></p>
+<li><strong>Objetivos principales:</strong>
 <ul>
-<li></li>
-<li></li>
-<li></li>
+<li>Comparar el nivel de suicidios que hay por cada comunidad autónoma
+en España según el nivel económico</li>
+<li>Comparar el nivel de suicidios que hay por cada comunidad autónoma
+en España según en el cociente S80/S20</li>
+<li>Comparar el nivel de suicidios que hay por cada comunidad autónoma
+en España según la inaccesibilidad a la atención sanitaria en el ámbito
+de salud mental.</li>
+</ul></li>
+<li><strong>Objetivos secundarios:</strong>
+<ul>
+<li>Comparar la relación entre suicidios e inaccesibilidad según el tipo
+de inaccesibilidad (salud mental, atención médica o medicamento
+recetado)</li>
 </ul></li>
 </ul>
 </div>
@@ -2858,9 +2864,15 @@ comunidades autónomas por lo que se han eliminado filtrando todos los
 niveles menos esos valores no deaseados y eliminando los niveles que han
 quedado sin filtrar.</p>
 <p>Además, en el set de datos “suicidios.csv” se ha tenido que adaptar a
-un encoding en latín ya que tenía carateres raros.</p>
-<div id="tablas" class="section level2">
-<h2>Tablas</h2>
+un encoding en latín ya que tenía carateres raros y en
+“desigualdad.json” se han escogido sólo los datos referentes al año
+2019, el año en el que se basa este estudio.</p>
+<p>El set de datos poblacion.csv se ha utilizado para poder hacer una
+proporción entre los datos de cada comunidad y su población. Una
+comunidad con mucha población tendrá más datos con los que trabajar por
+lo que podría desviar el estudio.</p>
+<div id="carga-de-los-datos" class="section level2">
+<h2>Carga de los datos</h2>
 <pre class="r"><code>library(readr)
 library(tidyverse)
 
@@ -2910,6 +2922,8 @@ sui&lt;-
   filter(CA != &quot;Extranjero&quot;) %&gt;% 
   droplevels()
 
+
+#Población
 pob &lt;- read_delim(&quot;INPUT/DATA/poblacion.csv&quot;,
                   delim = &quot;;&quot;, escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding=&quot;latin1&quot;), col_types = cols(
                     `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
@@ -2920,8 +2934,14 @@ pob&lt;-
 </div>
 <div id="resultados" class="section level1">
 <h1>Resultados</h1>
-<div id="tablas-1" class="section level2">
+<div id="tablas" class="section level2">
 <h2>Tablas</h2>
+<p>Para construir las tablas se ha hecho un join utilizando el atributo
+“CA”. Se han cambiado algunos nombres de los atributos y se han filtrado
+solo aquellos necesarios.Además en todos los datos que queremos estudiar
+y representar, excluyendo la cociente s80s20 (en este caso los datos ya
+están calculados en función de la población ), se han dividido por el la
+población de su respectiva comunidad autónoma.</p>
 <pre class="r"><code>#Tabla suicidios y desigualdad, población.
 
 sude &lt;- left_join(x = sui, y = desi, by = c(&quot;CA&quot;))
@@ -3154,7 +3174,7 @@ Innacesibilidad Regresión Lineal</p>
 , Recuperado el 07/11/22.</p></li>
 <li><p>Inaccesibilidad Gov/ <a href="https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px" class="uri">https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px</a>
 , Recuperado el 07/11/22.</p></li>
-<li><p>Suicidios Gov /<a href="https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px" class="uri">https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px</a>
+<li><p>Suicidios Gov/ <a href="https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px" class="uri">https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-autonomas-de-defuncion-sexo-y-medio-empleado-ecm-identificador-api-t15-p417-a2020-l0-06005-px</a>
 , Recuperado el 07/11/22.</p></li>
 <li><p>Población INE/ <a href="https://www.ine.es/jaxiT3/Tabla.htm?t=2853&amp;L=0" class="uri">https://www.ine.es/jaxiT3/Tabla.htm?t=2853&amp;L=0</a> ,
 Recuperado el 07/11/22</p></li>
