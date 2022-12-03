@@ -75,10 +75,8 @@ Además se ha intentado trabajar con json pero debido a la complejidad del manej
 # VERSIÓN JSON (Versión descartada)
 library(readr)
 library(tidyverse)
-library(tidyjson)
 library(rjson)
-
-
+library(tidyjson)
 
 #Desigualdad
 desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
