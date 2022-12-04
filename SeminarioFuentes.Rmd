@@ -355,6 +355,8 @@ sude_plot2 <-
 ![Gráfica Relación Suicidios Desigualdad](OUTPUT/DATA/Relación_Suicidios_Desigualdad.jpg "Gráfica Relación Suicidios Desigualdad")
 
 Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
+En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación en negativa, sin embargo, es un valor muy bajo.
+
 
 ```{r CorrelacionSude}
 #Correlación sude
@@ -377,6 +379,16 @@ suina_plot2 <-
 
 ![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental")
 
+```{r CorrelacionSuina}
+#Correlación Suina
+cor(suina$porPobIna,suina$porPobSui)
+
+#Regresión lineal
+Modelo3 <- lm(porPobIna ~ porPobSui, data = suina)
+summary(Modelo3)
+```
+
+
 ```{r GraficaDesina}
 #Regresión lineal desina
 desina_plot2 <-
@@ -387,6 +399,16 @@ desina_plot2 <-
 ```
 
 ![Gráfica Relación Desigualdad Innacesibilidad](OUTPUT/DATA/Relación_Desigualdad_Innacesibilidad.jpg "Relación Desigualdad e Innacesibilidad")
+
+```{r CorrelacionDesina}
+#Correlación Suina
+cor(desina$s80s20,desina$porPobIna)
+
+#Regresión lineal
+Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
+summary(Modelo1)
+```
+
 
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
