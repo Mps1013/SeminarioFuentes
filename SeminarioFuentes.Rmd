@@ -304,6 +304,17 @@ suina3 <-
   #Escoge ambos sexos
   filter(Sexo.y == "Ambos sexos")
 
+suina3 <- 
+  suina3 %>%
+  select(TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
+  relocate(CA, .before = TotalSuicidios)
+
+#Se pasan los chr a dbl para poder hacer los gráficos
+#Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
+suina3$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina3$TotalInaccesibilidad))
+suina3$porPobSui <- (suina3$TotalSuicidios*100) / suina3$TotalPoblacion
+suina3$porPobIna <- (suina3$TotalInaccesibilidad*100) / suina3$TotalPoblacion
+
 suina3
 ```
 
@@ -422,6 +433,14 @@ suina2_plot2.1 <-
 ```
 
 ![Gráfica Relación Suicidios e Innacesibilidad por Atención Médica](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_AtencionMedica.jpg "Relación Suicidios e Innacesibilidad por Atencion Medica")
+```{r CorrelacionSuina2.1}
+#Correlación Suina
+cor(suina2$porPobIna,suina2$porPobSui)
+
+#Regresión lineal
+Modelo4 <- lm(porPobIna ~ porPobSui, data = suina2)
+summary(Modelo4)
+```
 
 ```{r GraficaSuina3}
 #Regresión lineal suina receta médica
@@ -435,6 +454,15 @@ suina3_plot2.1 <-
 ```
 
 ![Gráfica Relación Suicidios e Innacesibilidad por Medicamento Recetado](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_MedicamentoRecetado.jpg "Relación Suicidios e Innacesibilidad por Medicamento Recetado")
+
+```{r CorrelacionSuina3}
+#Correlación Suina
+cor(suina3$porPobSui, suina3$porPobIna)
+
+#Regresión lineal
+Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
+summary(Modelo5)
+```
 
 ```{r GráficaComparativaConjunto}
 #library(cowplot)
