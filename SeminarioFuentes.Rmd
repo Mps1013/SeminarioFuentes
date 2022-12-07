@@ -400,9 +400,9 @@ suina_plot2 <-
     labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
+suina_plot2
 ```
 
-![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental")
 
 ```{r CorrelacionSuina}
 #Correlación Suina
@@ -421,9 +421,9 @@ desina_plot2 <-
     geom_point(aes(colour = factor(CA))) +
     labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
+desina_plot2
 ```
 
-![Gráfica Relación Desigualdad Innacesibilidad](OUTPUT/DATA/Relación_Desigualdad_Innacesibilidad.jpg "Relación Desigualdad e Innacesibilidad")
 
 ```{r CorrelacionDesina}
 #Correlación Suina
@@ -433,7 +433,16 @@ cor(desina$s80s20,desina$porPobIna)
 Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
 summary(Modelo1)
 ```
-
+```{r GraficaSuina1.2}
+suina_plot2.1 <-
+  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+  geom_point()+
+  geom_smooth(method = "lm", colour = "blue")+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
+  theme_light()
+suina_plot2.1
+```
 
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
@@ -444,9 +453,9 @@ suina2_plot2.1 <-
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
          Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
+suina2_plot2.1
 ```
 
-![Gráfica Relación Suicidios e Innacesibilidad por Atención Médica](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_AtencionMedica.jpg "Relación Suicidios e Innacesibilidad por Atencion Medica")
 ```{r CorrelacionSuina2.1}
 #Correlación Suina
 cor(suina2$porPobIna,suina2$porPobSui)
@@ -465,9 +474,8 @@ suina3_plot2.1 <-
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
          Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
+suina3_plot2.1
 ```
-
-![Gráfica Relación Suicidios e Innacesibilidad por Medicamento Recetado](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_MedicamentoRecetado.jpg "Relación Suicidios e Innacesibilidad por Medicamento Recetado")
 
 ```{r CorrelacionSuina3}
 #Correlación Suina
@@ -479,11 +487,11 @@ summary(Modelo5)
 ```
 
 ```{r GráficaComparativaConjunto}
-#library(cowplot)
-#conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
+library(cowplot)
+conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
+conjunto
 ```
 
-![Gráfica Comparativa Relación Suicidios e Innacesibilidad Regresión Lineal](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_Comparacion.jpg "Relación Suicidios e Innacesibilidad Comparativa")
 ## Análisis
 A simple vista resulta difícil poder analizar los datos por eso y para ser más objetivos durante el estudio se ha hecho un análisis de correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
 
