@@ -398,7 +398,7 @@ suina_plot2 <-
   ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
     geom_point(aes(colour = factor(CA)))+
     labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
-         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+         ', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 suina_plot2
 ```
@@ -419,7 +419,7 @@ summary(Modelo3)
 desina_plot2 <-
   ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
     geom_point(aes(colour = factor(CA))) +
-    labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 desina_plot2
 ```
@@ -450,8 +450,7 @@ suina2_plot2.1 <-
   ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
-         Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
 suina2_plot2.1
 ```
@@ -491,9 +490,6 @@ library(cowplot)
 conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 conjunto
 ```
-
-## Análisis
-A simple vista resulta difícil poder analizar los datos por eso y para ser más objetivos durante el estudio se ha hecho un análisis de correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
 
 # Conclusiones
 
