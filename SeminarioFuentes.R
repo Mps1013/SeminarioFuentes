@@ -536,3 +536,7 @@ summary(Modelo5)
 
 #Gráficos de barras ponerlo bien.
 
+sude_plot1
+suina_plot1
+desina_plot
+desina_plot3
