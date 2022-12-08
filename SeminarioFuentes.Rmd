@@ -365,10 +365,10 @@ desina
 
 ## Gráficas
 
-### Gráfica suicidios-cocientes80s20
+### Gráfica suicidios-desigualdad
 En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
 ```{r GraficaSude, message=FALSE, warning=FALSE, fig.align='center', fig.width=8}
-#Regresión lineal sude
+
 sude_plot2 <-
   ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
     geom_point(aes(colour = factor(CA))) +
@@ -380,18 +380,23 @@ sude_plot2
 
 
 Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
-En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación en negativa, sin embargo, es un valor muy bajo.
+En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación es negativa, sin embargo, es un valor muy bajo.
 
 
 ```{r CorrelacionSude}
 #Correlación sude
 cor(sude$s80s20,sude$porPobSui)
+```
 
+Si analizamos el 
+```{r RL1}
 #Regresión lineal
 Modelo2 <- lm(s80s20 ~ porPobSui, data = sude)
 summary(Modelo2)
 ```
 
+### Gráfica suicidios-inaccesibilidad
+#### Por salud mental
 ```{r GraficaSuina}
 #Regresión lineal suina
 suina_plot2 <-
@@ -401,37 +406,6 @@ suina_plot2 <-
          ', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 suina_plot2
-```
-
-
-```{r CorrelacionSuina}
-#Correlación Suina
-cor(suina$porPobIna,suina$porPobSui)
-
-#Regresión lineal
-Modelo3 <- lm(porPobIna ~ porPobSui, data = suina)
-summary(Modelo3)
-```
-
-
-```{r GraficaDesina}
-#Regresión lineal desina
-desina_plot2 <-
-  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-    geom_point(aes(colour = factor(CA))) +
-    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-    theme_light()
-desina_plot2
-```
-
-
-```{r CorrelacionDesina}
-#Correlación Suina
-cor(desina$s80s20,desina$porPobIna)
-
-#Regresión lineal
-Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
-summary(Modelo1)
 ```
 ```{r GraficaSuina1.2}
 suina_plot2.1 <-
@@ -444,6 +418,16 @@ suina_plot2.1 <-
 suina_plot2.1
 ```
 
+```{r CorrelacionSuina}
+#Correlación Suina
+cor(suina$porPobIna,suina$porPobSui)
+
+#Regresión lineal
+Modelo3 <- lm(porPobIna ~ porPobSui, data = suina)
+summary(Modelo3)
+```
+
+#### Por asistencia médica
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
 suina2_plot2.1 <-
@@ -464,6 +448,7 @@ Modelo4 <- lm(porPobIna ~ porPobSui, data = suina2)
 summary(Modelo4)
 ```
 
+#### Por medicamento recetado
 ```{r GraficaSuina3}
 #Regresión lineal suina receta médica
 suina3_plot2.1 <-
@@ -485,10 +470,32 @@ Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
 summary(Modelo5)
 ```
 
+#### Comparativa
 ```{r GráficaComparativaConjunto}
 library(cowplot)
 conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 conjunto
+```
+
+### Desigualdad-inaccesibilidad
+```{r GraficaDesina}
+#Regresión lineal desina
+desina_plot2 <-
+  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA))) +
+    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
+desina_plot2
+```
+
+
+```{r CorrelacionDesina}
+#Correlación Suina
+cor(desina$s80s20,desina$porPobIna)
+
+#Regresión lineal
+Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
+summary(Modelo1)
 ```
 
 # Conclusiones
