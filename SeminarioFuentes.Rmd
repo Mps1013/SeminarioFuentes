@@ -367,7 +367,10 @@ desina
 ## Gráficas
 A partir de los datos anteriores se han diseñado gráficos de dispersión con regresiones lineales para poder estudiar las variables.
 
-Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales)
+Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales).
+
+!["Análisis de correlaciones"](OUTPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
+En la imagen anterior vemos la fuerza de las correlaciones en las que nos basaremos para hacer el estudio.
 
 ### Gráfica suicidios-desigualdad
 En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
@@ -401,7 +404,6 @@ summary(Modelo2)
 
 ### Gráfica suicidios-inaccesibilidad
 #### Por salud mental
-En el siguiente gráfico de dispersión podemos observar que 
 ```{r GraficaSuina}
 suina_plot2 <-
   ggplot(data = suina, aes(x = porPobIna, y =porPobSui)) +
