@@ -145,7 +145,7 @@ sude <-
 
 sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
 
-sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
+sude$porPobSui <- (sude$TotalSuicidios*100000)/ sude$TotalPoblacion    
 sude
 
 #Tabla suicidios e innacesibilidad.
@@ -255,7 +255,7 @@ desina
 #Se pasan los chr a dbl para poder hacer los gráficos
 #Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
 desina$TotalInaccesibilidad<-as.numeric(gsub(',', '.',desina$TotalInaccesibilidad))
-desina$porPobIna <- (desina$TotalInaccesibilidad*100) / desina$TotalPoblacion
+desina$porPobIna <- (desina$TotalInaccesibilidad*1000000) / desina$TotalPoblacion
 #desina$CA<-sort(desina$CA)
 
 
@@ -277,9 +277,9 @@ sude
 sude_plot1 <-
   ggplot(sudeG,aes(x = CA, y=value)) + 
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-    theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()+
-    theme_light()
+    theme_light()+
+    coord_flip()
 
 #Regresión lineal sude
 sude_plot2 <-
@@ -298,9 +298,9 @@ suinaG <- pivot_longer(suinaG,-CA , names_to="variable", values_to="value")
 suina_plot1 <-
   ggplot(suinaG,aes(x = CA, y=value)) + 
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-    theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()+
-    theme_light()
+    theme_light() +
+    coord_flip()
 
 #Regresión lineal suina
 suina_plot2 <-
@@ -321,9 +321,9 @@ desinaG <- pivot_longer(desinaG,-CA , names_to="variable", values_to="value")
 desina_plot <-
   ggplot(desinaG,aes(x = CA, y=value)) + 
     geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
-    theme(axis.text = element_text(angle = 90))+
     scale_y_continuous()+
-    theme_light()
+    theme_light()+
+    coord_flip()
 
 
 desina_plot1 <-
@@ -539,4 +539,4 @@ summary(Modelo5)
 sude_plot1
 suina_plot1
 desina_plot
-desina_plot3
+
