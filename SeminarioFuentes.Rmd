@@ -26,7 +26,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 # Introducción
 
 El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
-Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
+Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo) (1).
 
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
@@ -61,12 +61,14 @@ Se han obtenido set de datos de la página del INE (Instituto Nacional de Estad�
 
 
 ## Carga de los datos
-Se han utilizado las librerías de "readr" y "tidyverse" para poder alterar los set de datos tanto en csv como en json, las librerías "rjson" y "tidyjson" para poder manejar las de json únicamente.
+### Carga de librerías
+Se han utilizado las librerías de "readr" y "tidyverse" para poder alterar los set de datos tanto en csv como en json, las librerías "rjson" y "tidyjson" para poder manejar las de json únicamente. Además se ha añadido la librería cowplot para poder mostrar gráficas agrupadas.
 ```{r CargaLibrerías}
 library(readr)
 library(tidyverse)
 library(rjson)
 library(tidyjson)
+library(cowplot)
 ```
 
 ### Carga de datos JSON
@@ -134,9 +136,6 @@ El set de datos poblacion.csv se ha utilizado para poder hacer una proporción e
 
 ```{r CargaDatosCSV}
 # VERSIÓN CSV (Versión utlizada)
-
-library(readr)
-library(tidyverse)
 
 #Desigualdad
 desi <- read_delim("INPUT/DATA/desigualdad.csv",
@@ -483,15 +482,15 @@ Modelo5 <- lm(porPobSui ~ porPobIna , data = suina3) #(y,x)
 summary(Modelo5)
 ```
 
-Aquí podemos observar los 3 casos en conjunto, de los 3 tipos de inaccesibilidad parece que el de salud mental es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
+Aquí podemos observar los 3 casos en conjunto, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
+
 #### Comparativa
 ```{r GráficaComparativaConjunto}
-library(cowplot)
 conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 conjunto
 ```
 
-### Desigualdad-inaccesibilidad
+### Gráfica desigualdad-inaccesibilidad
 A simple vista en el gráfico de dispersión, podemos observar como los valores referentes a los suicidios se concentran en torno a los valores más bajos del cociente s80s20.
 ```{r GraficaDesina}
 desina_plot2 <-
@@ -527,6 +526,6 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 
 (4) Población INE/ https://www.ine.es/jaxiT3/Tabla.htm?t=2853&L=0 , Recuperado el 07/11/22
 
-* https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
+(5) https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 , Rrecuperado el 09/12/22
 
 https://cran.r-project.org/doc/contrib/grafi3.pdf
