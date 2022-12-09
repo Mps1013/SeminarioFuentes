@@ -373,7 +373,8 @@ sude_plot2 <-
   ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
     geom_point(aes(colour = factor(CA))) +
     geom_smooth(method = "lm", colour = "blue")+
-    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
+    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)" 
+    , y =   "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas" )+
     theme_light()
 sude_plot2
 ```
@@ -391,7 +392,7 @@ cor(sude$s80s20,sude$porPobSui)
 Si analizamos el 
 ```{r RL1}
 #Regresión lineal
-Modelo2 <- lm(s80s20 ~ porPobSui, data = sude)
+Modelo2 <- lm(porPobSui ~s80s20 , data = sude) #(y,x)
 summary(Modelo2)
 ```
 
