@@ -3040,6 +3040,16 @@ población de su respectiva comunidad autónoma y multiplicado por
 100.</p>
 <div id="suicidios-y-desigualdad" class="section level3">
 <h3>Suicidios y desigualdad</h3>
+<p>En este caso se ha hecho un join con el atributo “CA” entre suicidios
+y desigualdad con la tabla “sude” como resultado. Como se necesitan los
+datos de la población, se ha hecho join con este set de datos y con sude
+con el mismo atributo “CA”. Mediante pipes se ha alterado la tabla
+“sude” seleccionando las columnas de interes y atribuyendo nuevos
+nombres a las columnas que por defecto tomaron nombres de Total.x y
+Total.y. También se ha alterado el nombre de s20s80 y se ha cambiado el
+orden de los atributos para que se vean primero las CCAA. Se han
+convertido los datos de interés a numérico y se ha hecho la proporción
+entre suicidios y el total de población para cada comunidad.</p>
 <pre class="r"><code>#Tabla suicidios y desigualdad, población.
 
 sude &lt;- left_join(x = sui, y = desi, by = c(&quot;CA&quot;))
@@ -3052,7 +3062,6 @@ sude &lt;-
     rename(c(TotalPoblacion = &quot;Total.y&quot;)) %&gt;%
     rename(c(s80s20= &quot;value&quot;)) %&gt;%
     relocate(CA, .before = TotalSuicidios)
-#Creo nueva columna
 sude$TotalPoblacion &lt;- as.numeric(sude$TotalPoblacion)
 sude$porPobSui &lt;- (sude$TotalSuicidios*100) / sude$TotalPoblacion
 sude</code></pre>
@@ -3064,6 +3073,17 @@ sude</code></pre>
 </div>
 <div id="suicidios-e-inaccesibilidad-a-servicios-de-salud-mental" class="section level3">
 <h3>Suicidios e inaccesibilidad a servicios de salud mental</h3>
+<p>Como en el caso anterior se ha hecho dos join entre los datos de
+suicidios, inaccesibilidad y población mediante el atributo “CA”.
+Mediante pipes se ha alterado la tabla “suina” seleccionando las
+columnas de interes y atribuyendo nuevos nombres a las columnas y
+poniendo , como en el caso anterior la columna “CA” al principio. En
+este caso se ha filtrado solo aquellos datos en los que sí ha habido
+inaccesibilidad, del tipo de salud mental y para ambos sexos. El
+atributo TotalInaccesibilidad se ha convertido a numérico, como habñia
+números decimales, se ha cambiado el separador “,” por “.”. Por último
+se ha hecho la proporción de suicidios e inaccesibilidad dividiendo cada
+dato por la población de su “CA” y multiplicando por 100.</p>
 <pre class="r"><code>#Tabla suicidios e innacesibilidad.
 
 suina &lt;- left_join(x = sui, y = ina, by = c(&quot;CA&quot;))
@@ -3102,6 +3122,9 @@ suina</code></pre>
 </div>
 <div id="suicidios-e-inaccesibilidad-por-atención-médica" class="section level3">
 <h3>Suicidios e inaccesibilidad por atención médica</h3>
+<p>En este caso se han seguido todo slos pasos de la tabla anterior, sin
+embargo, se ha filtrado por la inaccesibilidad a la atención médica en
+vez de mental.</p>
 <pre class="r"><code>#Tabla suicidios e innacesibilidad por (Atención médica).
 
 suina2 &lt;- left_join(x = sui, y = ina, by = c(&quot;CA&quot;))
@@ -3143,6 +3166,9 @@ suina2</code></pre>
 </div>
 <div id="suicidios-e-inaccesibilidad-por-medicamento-recetado" class="section level3">
 <h3>Suicidios e inaccesibilidad por medicamento recetado</h3>
+<p>Como en el caso anterior se ha filtrado por otro tipo de
+inaccesibilidad (medicamento recetado) siguiendo los pasos de las tablas
+anteriores.</p>
 <pre class="r"><code>#Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
 suina3 &lt;- left_join(x = sui, y = ina, by = c(&quot;CA&quot;)) 
@@ -3183,6 +3209,14 @@ suina3</code></pre>
 </div>
 <div id="desigualdad-e-inaccesibilidad" class="section level3">
 <h3>Desigualdad e inaccesibilidad</h3>
+<p>Para este caso, se ha hecho un join entre el set de datos de
+desigualdad, inaccesibilidad y población mediante el atributo “CA”. Se
+han renombrado algunos atributos, filtrado por la inaccesibilidad a
+sectores de salud mental en ambos sexos y se ha colocado la columna “CA”
+al principio. Además se ha pasado a numérico la columna de los valores
+que no lo estaban y como son decimales se ha sustituído el separador “,”
+por “.”. Como en casos anteriores se ha hecho la proporción entre los
+datos y la población de cada comunidad.</p>
 <pre class="r"><code>#Tabla desigualdad e inaccesibilidad
 desina &lt;- left_join(x = desi, y = ina, by = c(&quot;CA&quot;))
 desina &lt;- left_join(x = desina, y = pob, by = c(&quot;CA&quot;))
@@ -3514,8 +3548,8 @@ mental.</p>
 Recuperado el 07/11/22</p></li>
 <li><p><a href="https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084" class="uri">https://www.ine.es/ss/Satellite?L=es_ES&amp;c=INESeccion_C&amp;cid=1259944509412&amp;p=1254735110672&amp;pagename=ProductosYServicios%2FPYSLayout&amp;param1=PYSDetalleFichaIndicador&amp;param3=1259937499084</a>
 , Rrecuperado el 09/12/22</p></li>
+<li><p><a href="https://cran.r-project.org/doc/contrib/grafi3.pdf" class="uri">https://cran.r-project.org/doc/contrib/grafi3.pdf</a></p></li>
 </ol>
-<p><a href="https://cran.r-project.org/doc/contrib/grafi3.pdf" class="uri">https://cran.r-project.org/doc/contrib/grafi3.pdf</a></p>
 </div>
 
 
