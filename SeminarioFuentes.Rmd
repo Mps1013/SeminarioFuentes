@@ -203,6 +203,7 @@ pob<-
 Para construir las tablas se ha hecho un join utilizando el atributo "CA". Se han cambiado algunos nombres de los atributos y se han filtrado solo aquellos necesarios.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma y multiplicado por 100.
 
 ### Suicidios y desigualdad
+En este caso se ha hecho un join con el atributo "CA" entre suicidios y desigualdad con la tabla "sude" como resultado. Como se necesitan los datos de la población, se ha hecho join con este set de datos y con sude con el mismo atributo "CA". Mediante pipes se ha alterado la tabla "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total.y. También se ha alterado el nombre de s20s80 y se ha cambiado el orden de los atributos para que se vean primero las CCAA. Se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
 ```{r tablasude}
 #Tabla suicidios y desigualdad, población.
 
@@ -216,7 +217,6 @@ sude <-
     rename(c(TotalPoblacion = "Total.y")) %>%
     rename(c(s80s20= "value")) %>%
     relocate(CA, .before = TotalSuicidios)
-#Creo nueva columna
 sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
 sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
 sude
@@ -224,6 +224,8 @@ sude
 ```
 
 ### Suicidios e inaccesibilidad a servicios de salud mental
+Como en el caso anterior se ha hecho dos join entre los datos de suicidios, inaccesibilidad y población mediante el atributo "CA". Mediante pipes se ha alterado la tabla "suina" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas y poniendo , como en el caso anterior la columna "CA" al principio. En este caso se ha filtrado solo aquellos datos en los que sí ha habido inaccesibilidad, del tipo de salud mental y para ambos sexos.
+El atributo TotalInaccesibilidad se ha convertido a numérico, como habñia números decimales, se ha cambiado el separador "," por ".". Por último se ha hecho la proporción de suicidios e inaccesibilidad dividiendo cada dato por la población de su "CA" y multiplicando por 100.
 ```{r tablasuina}
 
 #Tabla suicidios e innacesibilidad.
@@ -259,6 +261,7 @@ suina
 
 ```
 ### Suicidios e inaccesibilidad por atención médica
+En este caso se han seguido todo slos pasos de la tabla anterior, sin embargo, se ha filtrado por la inaccesibilidad a la atención médica en vez de mental.
 ```{r tablasuina2}
 #Tabla suicidios e innacesibilidad por (Atención médica).
 
@@ -296,6 +299,7 @@ suina2
 ```
 
 ### Suicidios e inaccesibilidad por medicamento recetado
+Como en el caso anterior se ha filtrado por otro tipo de inaccesibilidad (medicamento recetado) siguiendo los pasos de las tablas anteriores.
 ```{r tablasuina3}
 #Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
@@ -332,6 +336,7 @@ suina3
 ```
 
 ### Desigualdad e inaccesibilidad
+Para este caso, se ha hecho un join entre el set de datos de desigualdad, inaccesibilidad y población mediante el atributo "CA". Se han renombrado algunos atributos, filtrado por la inaccesibilidad a sectores de salud mental en ambos sexos y se ha colocado la columna "CA" al principio. Además se ha pasado a numérico la columna de los valores que no lo estaban y como son decimales se ha sustituído el separador "," por ".". Como en casos anteriores se ha hecho la proporción entre los datos y  la población de cada comunidad.
 ```{r tabladesina}
 
 #Tabla desigualdad e inaccesibilidad
