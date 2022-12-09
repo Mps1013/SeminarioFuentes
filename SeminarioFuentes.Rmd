@@ -386,7 +386,7 @@ En este caso el valor de la correlación ha sido de -0.34, no es un valor muy re
 
 ```{r CorrelacionSude}
 #Correlación sude
-cor(sude$s80s20,sude$porPobSui)
+cor(sude$s80s20,sude$porPobSui) #(x,y)
 ```
 
 Si analizamos el 
@@ -401,30 +401,31 @@ summary(Modelo2)
 ```{r GraficaSuina}
 #Regresión lineal suina
 suina_plot2 <-
-  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+  ggplot(data = suina, aes(x = porPobIna, y =porPobSui)) +
     geom_point(aes(colour = factor(CA)))+
-    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
-         ', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental', x = "Inaccesibilidad/Población"
+    , y = "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 suina_plot2
 ```
+
 ```{r GraficaSuina1.2}
 suina_plot2.1 <-
-  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
+  ggplot(data = suina, aes(x = porPobIna, y = porPobSui)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
-         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
+         Regresión Lineal', x = "Inaccesibilidad/Población", y =  "Suicidios/Población")+
   theme_light()
 suina_plot2.1
 ```
 
 ```{r CorrelacionSuina}
 #Correlación Suina
-cor(suina$porPobIna,suina$porPobSui)
+cor(suina$porPobIna,suina$porPobSui) #(x,y)
 
 #Regresión lineal
-Modelo3 <- lm(porPobIna ~ porPobSui, data = suina)
+Modelo3 <- lm(porPobSui ~ porPobIna, data = suina) #(y,x)
 summary(Modelo3)
 ```
 
@@ -432,20 +433,21 @@ summary(Modelo3)
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
 suina2_plot2.1 <-
-  ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
+  ggplot(data = suina2, aes(x = porPobIna, y = porPobSui)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Innacesibilidad/Población"
+  , y =    "Suicidios/Poblacion")+
   theme_light()
 suina2_plot2.1
 ```
 
 ```{r CorrelacionSuina2.1}
 #Correlación Suina
-cor(suina2$porPobIna,suina2$porPobSui)
+cor(suina2$porPobIna,suina2$porPobSui) #(x,y)
 
 #Regresión lineal
-Modelo4 <- lm(porPobIna ~ porPobSui, data = suina2)
+Modelo4 <- lm(porPobSui ~ porPobIna, data = suina2) #(y,x)
 summary(Modelo4)
 ```
 
@@ -453,21 +455,21 @@ summary(Modelo4)
 ```{r GraficaSuina3}
 #Regresión lineal suina receta médica
 suina3_plot2.1 <-
-  ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
+  ggplot(data = suina3, aes(x =porPobIna, y = porPobSui)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
-         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
+         Regresión Lineal', x = "Inaccesibilidad/Población", y = "Suicidios/Población")+
   theme_light()
 suina3_plot2.1
 ```
 
 ```{r CorrelacionSuina3}
 #Correlación Suina
-cor(suina3$porPobSui, suina3$porPobIna)
+cor(suina3$porPobIna, suina3$porPobSui) #(x,y)
 
 #Regresión lineal
-Modelo5 <- lm(porPobIna ~ porPobSui, data = suina3)
+Modelo5 <- lm(porPobSui ~ porPobIna , data = suina3) #(y,x)
 summary(Modelo5)
 ```
 
@@ -492,10 +494,10 @@ desina_plot2
 
 ```{r CorrelacionDesina}
 #Correlación Suina
-cor(desina$s80s20,desina$porPobIna)
+cor(desina$s80s20,desina$porPobIna) #(x,y)
 
 #Regresión lineal
-Modelo1 <- lm(porPobIna ~ s80s20, data = desina)
+Modelo1 <- lm(porPobIna ~ s80s20, data = desina) #(y,x)
 summary(Modelo1)
 ```
 
