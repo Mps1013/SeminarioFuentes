@@ -23,6 +23,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 # Resumen
 
+En este estudio se analiza la correlación y causalidad de los suicidios, la situación económica y la inaccesibilidad a sectores de salud mental. En estos casos ninguna de esas variables explica la cantidad de suicidios que se dan en cada comunidad autónoma, sin embargo, la inaccesibilidad a servicios de salud mental sí está relacionada con la desigualdad económica de cada CCAA.
+
 # Introducción
 
 El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
@@ -363,6 +365,9 @@ desina
 
 
 ## Gráficas
+A partir de los datos anteriores se han diseñado gráficos de dispersión con regresiones lineales para poder estudiar las variables.
+
+Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales)
 
 ### Gráfica suicidios-desigualdad
 En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
@@ -379,7 +384,6 @@ sude_plot2
 ```
 
 
-Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores.
 En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación es negativa, sin embargo, es un valor muy bajo.
 
 
@@ -514,6 +518,15 @@ summary(Modelo1)
 ```
 
 # Conclusiones
+* Hay cierta relación negativa entre la rentas80s20 y los suicidios en españa, de forma que cuanto mayor es la renta menor suicidios hay. Sin embargo, la cantidad de renta por CCAA no determina la cantidad de suicios que habrá.
+
+* Hay una ligera correlación entre la cantidad de suicidios en las CCAA y la inaccesibilidad de cada una a servicios de salud mental de forma que cuanto mayor es la inaccesibilidad mayor cantidad de suicidios, sin embargo una no es la causa de la otra.
+
+* Existe una correlación negativa entre la desigualdad y la inaccesibilidad a servicios de salud mental, de forma que cuanto mayor es cociente s80s20, menos inaccesibilidad presentan las CCAA en estos servicios. En definitiva cuanto mejor es situación ecónomica de los españoles mayor es el  acceso a determinados servicios de salud mental, sin embargo, no se ha demostrado causalidad entre ambos.
+
+*De los tres tipos de inaccesibilidad (mental, por atención médica y medicamento recetado) tan sólo existe relación con los suicidios en el caso de la salud mental.
+
+De esta forma conluimos que los suicidios son actos muy difíciles de estudiar ya que el motor que lleva a  cometer un suicidio puede ser cualquier motivo personal que se escapa a cualquier análisis, es por eso que no se han encontrado relaciones muy fuertes entre este fenómeno, la situación económica y la inaccesibilidad a servicios de salud mental. 
 
 
 # Referencias
