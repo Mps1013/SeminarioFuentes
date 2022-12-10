@@ -203,10 +203,12 @@ pob<-
 # Resultados y discusión
 
 ## Tablas
-Para construir las tablas se ha hecho un join utilizando el atributo "CA". Se han cambiado algunos nombres de los atributos y se han filtrado solo aquellos necesarios.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma y multiplicado por 100.
+Para conseguir las tablas se ha realizado un join utilizando el atributo "CA" como pivote para los dos sets de datos. Se han modificado ciertos nombres de los atributos y se han filtrado las columnas que nos interesan para nuestro estudio.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma y multiplicado por 100, para poder comparar los resultados.
 
 ### Suicidios y desigualdad
-En este caso se ha hecho un join con el atributo "CA" entre suicidios y desigualdad con la tabla "sude" como resultado. Como se necesitan los datos de la población, se ha hecho join con este set de datos y con sude con el mismo atributo "CA". Mediante pipes se ha alterado la tabla "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total.y. También se ha alterado el nombre de s20s80 y se ha cambiado el orden de los atributos para que se vean primero las CCAA. Se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
+En este caso se ha realizado primero un join con el atributo "CA" entre suicidios y desigualdad, obtenemos la tabla "sude" como resultado. Para poder realizar la combinación de esta tabla obtenida con los datos de la población, se ha hecho un join con el mismo atributo "CA" como pivote. Mediante pipes se ha alterado la tabla final "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total., también se ha alterado el nombre de s20s80.
+Se ha cambiado el orden de los atributos para que se vean primero las CCAA, además estas están en orden alfabético. Más tarde se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
+Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tablasude}
 #Tabla suicidios y desigualdad, población.
 
