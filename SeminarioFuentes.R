@@ -67,13 +67,6 @@ ina<-
   ina %>% 
   mutate(CA = factor(`Comunidades y Ciudades Autónomas`,levels = c("Andalucía", "Aragón", "Asturias (Principado de)", "Balears (Illes)", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunitat Valenciana", "Extremadura", "Galicia", "Madrid (Comunidad de)", "Murcia (Región de)", "Navarra (Comunidad Foral de)", "País Vasco", "Rioja (La)", "Ceuta (Ciudad Autónoma de)", "Melilla (Ciudad Autónoma de)"), labels = c( "Andalucía", "Aragón", "Asturias", "Baleares, Islas", "Canarias", "Cantabria", "Castilla y León", "Castilla-La Mancha", "Cataluña", "Comunidad Valenciana", "Extremadura", "Galicia", "Madrid, Comunidad de", "Murcia, Región de", "Navarra", "País Vasco", "Rioja, La", "Ceuta", "Melilla")))
 
-#levels(ina$CA)
-
-sui <- read_delim("INPUT/DATA/suicidios.csv",
-                  delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
-                    `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
-
-
 sui <- fromJSON(file = "INPUT/DATA/suicidios.json")
 
 sui
@@ -88,6 +81,13 @@ sui %>%
   gather_array %>%
   spread_all %>%
   select(-document.id, -array.index)
+#levels(ina$CA)
+
+sui <- read_delim("INPUT/DATA/suicidios.csv",
+                  delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
+                    `Comunidad y ciudad autónoma de residencia` = readr::col_factor(levels = NULL)))
+
+
 
 sui<-
   sui %>% 
@@ -540,3 +540,17 @@ sude_plot1
 suina_plot1
 desina_plot
 
+
+plotconjunto <- join(x = desina, y = suina, by = c("CA","porPobIna")) 
+
+plotconjunto<-
+  select(.data=plotconjunto,"CA","porPobIna","porPobSui", "s80s20")%>%
+  pivot_longer(plotconjunto,-CA , names_to="variable", values_to="value")
+plotconjunto
+#Gráfica suina2
+plot_conjunto <-
+  ggplot(plotconjunto,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  theme(axis.text = element_text(angle = 90))+
+  scale_y_continuous()
+plot_conjunto
