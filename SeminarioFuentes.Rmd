@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 # Resumen
 
-En este estudio se analiza la correlación y causalidad de los suicidios, la situación económica y la inaccesibilidad a sectores de salud mental. En estos casos ninguna de esas variables explica la cantidad de suicidios que se dan en cada comunidad autónoma, sin embargo, la inaccesibilidad a servicios de salud mental sí está relacionada con la desigualdad económica de cada CCAA.
+En este estudio se analiza la correlación y causalidad de los suicidios, la situación económica y la inaccesibilidad a sectores de salud mental principalemente. En estos casos ninguna de esas variables explica la cantidad de suicidios que se dan en cada comunidad autónoma, sin embargo, hay relación entre la inaccesibilidad a servicios de salud mental con la desigualdad económica de cada CCAA.
 
 # Introducción
 
