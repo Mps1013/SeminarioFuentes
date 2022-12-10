@@ -1,6 +1,6 @@
 ---
 title:    |
-  |Seminario Fuentes: 
+  |Seminario Fuentes de Datos Biomédicas y Web Semántica: 
   Suicidios dependientes de salud mental frente a desigualdades económicas
   
 author:   |
@@ -23,12 +23,10 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 # Resumen
 
-En este estudio se analiza la correlación y causalidad de los suicidios, la situación económica y la inaccesibilidad a sectores de salud mental. En estos casos ninguna de esas variables explica la cantidad de suicidios que se dan en cada comunidad autónoma, sin embargo, la inaccesibilidad a servicios de salud mental sí está relacionada con la desigualdad económica de cada CCAA.
-
 # Introducción
 
 El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
-Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo) (1).
+Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
 
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
@@ -47,97 +45,36 @@ Esto es debido a que los recursos económicos no se distribuyen de manera equita
 
 
 # Objetivos
-* **Objetivos principales:**
-  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el        nivel económico
-  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según en el cociente S80/S20
-  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
+* **Objetivo principal:**
+Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según el nivel económico, basándonos en el cociente S80/S20, y según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
 
 
 * **Objetivos secundarios:**
-  * Comparar la relación entre suicidios e inaccesibilidad según el tipo de inaccesibilidad (salud mental, atención médica o medicamento recetado)
+  *
+  *
+  *
+
+
+
 
 
 # Materiales y Métodos
 
 Se han obtenido set de datos de la página del INE (Instituto Nacional de Estadística), en el caso de los referentes al índice s80s20 (1)y población por CCAAA (4) y de los datos abiertos ofrecidos por el gobierno de España para obtener los set de datos de suicidios (2) y inaccesibilidad (3).
 
-
-## Carga de los datos
-### Carga de librerías
-Se han utilizado las librerías de "readr" y "tidyverse" para poder alterar los set de datos tanto en csv como en json, las librerías "rjson" y "tidyjson" para poder manejar las de json únicamente. Además se ha añadido la librería cowplot para poder mostrar gráficas agrupadas.
-```{r CargaLibrerías}
-library(readr)
-library(tidyverse)
-library(rjson)
-library(tidyjson)
-library(cowplot)
-```
-
-### Carga de datos JSON
-Además se ha intentado trabajar con json pero debido a la complejidad del manejo de datos se ha decido continuar el estudio con csv.
-
-```{r CargaDatosJSON}
-# VERSIÓN JSON (Versión descartada)
-
-#Desigualdad
-desi <- fromJSON(file = "INPUT/DATA/desigualdad.json")
-
-desi %>% 
-  gather_object %>% 
-  json_types %>% 
-  count(name, type)
-
-desi %>%
-  enter_object(Data) %>%
-  gather_array %>%
-  spread_all %>%
-  select(-document.id, -array.index)
-
-
-#Inaccesibilidad
-ina <- fromJSON(file = "INPUT/DATA/inaccesibilidad.json")
-
-ina %>% 
-  gather_object %>% 
-  json_types %>% 
-  count(name, type)
-
-ina %>%
-  enter_object(Data) %>%
-  gather_array %>%
-  spread_all %>%
-  select(-document.id, -array.index)
-
-#Suicidios
-sui <- fromJSON(file = "INPUT/DATA/suicidios.json")
-
-sui %>% 
-  gather_object %>% 
-  json_types %>% 
-  count(name, type)
-
-sui %>%
-  enter_object(Data) %>%
-  gather_array %>%
-  spread_all %>%
-  select(-document.id, -array.index)
-```
-
-
-### Carga de datos CSV
-Estos serán los datos utilizados finalmente.
-
 Para acomodar los datos y facilitar la literatura a la hora de utilizarlos, en primer lugar, se ha modificado el nombre de los set de datos importados de forma que sean más representativos y sin espacios ni caracteres especiales.
 
 Se ha creado una columna en todos los set de datos que se llame "CA" ya que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets y por tanto en todas las tablas para poder hacer los join pertinentes. 
-En algunos set de datos como "desigualdad.csv" o "suicidios.csv" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
+En algunos set de datos como "desigualdad.json" o "suicidios.json" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
 
-Además, en el set de datos "suicidios.csv" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
+Además, en el set de datos "suicidios.json" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
 
-El set de datos poblacion.csv se ha utilizado para poder hacer una proporción entre los datos de cada comunidad y su población. Una comunidad con mucha población tendrá más datos con los que trabajar por lo que podría desviar el estudio.
 
-```{r CargaDatosCSV}
-# VERSIÓN CSV (Versión utlizada)
+
+## Carga de los datos
+```{r CargaDatos}
+library(readr)
+library(tidyverse)
 
 #Desigualdad
 desi <- read_delim("INPUT/DATA/desigualdad.csv",
@@ -185,8 +122,6 @@ sui<-
   filter(CA != "Extranjero") %>% 
   droplevels()
 
-
-#Población
 pob <- read_delim("INPUT/DATA/poblacion.csv",
                   delim = ";", escape_double = FALSE, trim_ws = TRUE,locale=locale(encoding="latin1"), col_types = cols(
                     `Comunidades y Ciudades Autónomas` = readr::col_factor(levels = NULL)))
@@ -196,14 +131,9 @@ pob<-
 
 ```
 
-
-# Resultados y discusión
+# Resultados
 
 ## Tablas
-Para construir las tablas se ha hecho un join utilizando el atributo "CA". Se han cambiado algunos nombres de los atributos y se han filtrado solo aquellos necesarios.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma y multiplicado por 100.
-
-### Suicidios y desigualdad
-En este caso se ha hecho un join con el atributo "CA" entre suicidios y desigualdad con la tabla "sude" como resultado. Como se necesitan los datos de la población, se ha hecho join con este set de datos y con sude con el mismo atributo "CA". Mediante pipes se ha alterado la tabla "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total.y. También se ha alterado el nombre de s20s80 y se ha cambiado el orden de los atributos para que se vean primero las CCAA. Se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
 ```{r tablasude}
 #Tabla suicidios y desigualdad, población.
 
@@ -217,15 +147,14 @@ sude <-
     rename(c(TotalPoblacion = "Total.y")) %>%
     rename(c(s80s20= "value")) %>%
     relocate(CA, .before = TotalSuicidios)
+#Creo nueva columna
 sude$TotalPoblacion <- as.numeric(sude$TotalPoblacion)
 sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
 sude
 
 ```
 
-### Suicidios e inaccesibilidad a servicios de salud mental
-Como en el caso anterior se ha hecho dos join entre los datos de suicidios, inaccesibilidad y población mediante el atributo "CA". Mediante pipes se ha alterado la tabla "suina" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas y poniendo , como en el caso anterior la columna "CA" al principio. En este caso se ha filtrado solo aquellos datos en los que sí ha habido inaccesibilidad, del tipo de salud mental y para ambos sexos.
-El atributo TotalInaccesibilidad se ha convertido a numérico, como habñia números decimales, se ha cambiado el separador "," por ".". Por último se ha hecho la proporción de suicidios e inaccesibilidad dividiendo cada dato por la población de su "CA" y multiplicando por 100.
+
 ```{r tablasuina}
 
 #Tabla suicidios e innacesibilidad.
@@ -260,8 +189,7 @@ suina$porPobIna <- (suina$TotalInaccesibilidad*100) / suina$TotalPoblacion
 suina
 
 ```
-### Suicidios e inaccesibilidad por atención médica
-En este caso se han seguido todo slos pasos de la tabla anterior, sin embargo, se ha filtrado por la inaccesibilidad a la atención médica en vez de mental.
+
 ```{r tablasuina2}
 #Tabla suicidios e innacesibilidad por (Atención médica).
 
@@ -298,8 +226,6 @@ suina2$porPobIna <- (suina2$TotalInaccesibilidad*100) / suina2$TotalPoblacion
 suina2
 ```
 
-### Suicidios e inaccesibilidad por medicamento recetado
-Como en el caso anterior se ha filtrado por otro tipo de inaccesibilidad (medicamento recetado) siguiendo los pasos de las tablas anteriores.
 ```{r tablasuina3}
 #Tabla suicidios e innacesibilidad por (Medicamento recetado).
 
@@ -321,22 +247,11 @@ suina3 <-
   #Escoge ambos sexos
   filter(Sexo.y == "Ambos sexos")
 
-suina3 <- 
-  suina3 %>%
-  select(TotalSuicidios, CA, TotalInaccesibilidad, TotalPoblacion)%>%
-  relocate(CA, .before = TotalSuicidios)
-
-#Se pasan los chr a dbl para poder hacer los gráficos
-#Se cambia el separador decimal "," por "." para poder hacer el cambio de tipo
-suina3$TotalInaccesibilidad<-as.numeric(gsub(',', '.',suina3$TotalInaccesibilidad))
-suina3$porPobSui <- (suina3$TotalSuicidios*100) / suina3$TotalPoblacion
-suina3$porPobIna <- (suina3$TotalInaccesibilidad*100) / suina3$TotalPoblacion
-
 suina3
 ```
 
-### Desigualdad e inaccesibilidad
-Para este caso, se ha hecho un join entre el set de datos de desigualdad, inaccesibilidad y población mediante el atributo "CA". Se han renombrado algunos atributos, filtrado por la inaccesibilidad a sectores de salud mental en ambos sexos y se ha colocado la columna "CA" al principio. Además se ha pasado a numérico la columna de los valores que no lo estaban y como son decimales se ha sustituído el separador "," por ".". Como en casos anteriores se ha hecho la proporción entre los datos y  la población de cada comunidad.
+
+
 ```{r tabladesina}
 
 #Tabla desigualdad e inaccesibilidad
@@ -370,170 +285,76 @@ desina
 
 
 ## Gráficas
-A partir de los datos anteriores se han diseñado gráficos de dispersión con regresiones lineales para poder estudiar las variables.
 
-Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales).
-
-!["Análisis de correlaciones"](OUTPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
-En la imagen anterior vemos la fuerza de las correlaciones en las que nos basaremos para hacer el estudio.
-
-### Gráfica suicidios-desigualdad
-En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
-```{r GraficaSude, message=FALSE, warning=FALSE, fig.align='center', fig.width=8}
-
+```{r GraficaSude}
+#Regresión lineal sude
 sude_plot2 <-
   ggplot(data = sude, aes(x = s80s20, y = porPobSui)) +
     geom_point(aes(colour = factor(CA))) +
     geom_smooth(method = "lm", colour = "blue")+
-    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)" 
-    , y =   "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas" )+
+    labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Suicidios/Población", y = "Renta (s80s20)", colour = "Comunidades y Ciudades Autónomas" )+
     theme_light()
-sude_plot2
 ```
 
+![Gráfica Relación Suicidios Desigualdad](OUTPUT/DATA/Relación_Suicidios_Desigualdad.jpg "Gráfica Relación Suicidios Desigualdad")
 
-En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación es negativa, sin embargo, es un valor muy bajo.
-
-
-```{r CorrelacionSude}
-#Correlación sude
-cor(sude$s80s20,sude$porPobSui) #(x,y)
-```
-
-Si analizamos la regresión lineal vemos que el modelo ajustado no es significativo pues el p-valor (0.155) es mayor que 0.05 y la R al cuadrado ajustada es 0.06 un valor muy distante de 1. Por lo tanto,no existe una relación causal entre las variables.
-```{r RL1}
-#Regresión lineal
-Modelo2 <- lm(porPobSui ~s80s20 , data = sude) #(y,x)
-summary(Modelo2)
-```
-
-### Gráfica suicidios-inaccesibilidad
-#### Por salud mental
 ```{r GraficaSuina}
+#Regresión lineal suina
 suina_plot2 <-
-  ggplot(data = suina, aes(x = porPobIna, y =porPobSui)) +
+  ggplot(data = suina, aes(x = porPobSui, y = porPobIna)) +
     geom_point(aes(colour = factor(CA)))+
-    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental', x = "Inaccesibilidad/Población"
-    , y = "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas")+
+    labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
-suina_plot2
 ```
 
-Haciendo una regresión lineal observamos que a simple vista hay un ligero aumento de suicidios a medida que 
-```{r GraficaSuina1.2}
-suina_plot2.1 <-
-  ggplot(data = suina, aes(x = porPobIna, y = porPobSui)) +
-  geom_point()+
-  geom_smooth(method = "lm", colour = "blue")+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Salud Mental
-         Regresión Lineal', x = "Inaccesibilidad/Población", y =  "Suicidios/Población")+
-  theme_light()
-suina_plot2.1
-```
-Haciendo una correlación obtenemos un valor positivo de 0.19, sin embargo, este valor no es muy significativo ya que es bajo.
-```{r CorrelacionSuina}
-#Correlación Suina
-cor(suina$porPobIna,suina$porPobSui) #(x,y)
-```
-Analizando la regresión lineal observamos que el ajuste no es significativo ya que el p-valor es mayor que 0.05 y la R muy alejada de 1. No hay causalidad entre las variables.
-``` {r RL2}
-#Regresión lineal
-Modelo3 <- lm(porPobSui ~ porPobIna, data = suina) #(y,x)
-summary(Modelo3)
+![Gráfica Relación Suicidios Innacesibilidad (Salud Mental)](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_SaludMental.jpg "Relación_Suicidios e Innacesibilidad por Salud Mental")
+
+```{r GraficaDesina}
+#Regresión lineal desina
+desina_plot2 <-
+  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
+    geom_point(aes(colour = factor(CA))) +
+    labs(title = 'Relación entre Desigualdad e Inaccesibilidad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    theme_light()
 ```
 
-#### Por asistencia médica
-En este caso vemos que haciendo el ajuste no hay mucha variabilidad entre comunidades, aunque haya algunos puntos que estén alejados del ajuste lineal.
+![Gráfica Relación Desigualdad Innacesibilidad](OUTPUT/DATA/Relación_Desigualdad_Innacesibilidad.jpg "Relación Desigualdad e Innacesibilidad")
+
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
 suina2_plot2.1 <-
-  ggplot(data = suina2, aes(x = porPobIna, y = porPobSui)) +
+  ggplot(data = suina2, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Innacesibilidad/Población"
-  , y =    "Suicidios/Poblacion")+
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica
+         Regresión Lineal', x = "Suicidios/Poblacion", y = "Innacesibilidad/Población")+
   theme_light()
-suina2_plot2.1
-```
-Obtenemos una correlación negativa muy pequeña, por lo que no es significativo en nuestro estudio. No se puede asumir relación entre variables.
-```{r CorrelacionSuina2.1}
-#Correlación Suina
-cor(suina2$porPobIna,suina2$porPobSui) #(x,y)
 ```
 
-Como se puede observar en el resumen de la regresión lineal, el p-valor es muy alto (>0.05) y la R cuadrada ajustada muy alejada de 1, por lo tanto no hay causalidad entre variables.
-``` {r RL3}
-#Regresión lineal
-Modelo4 <- lm(porPobSui ~ porPobIna, data = suina2) #(y,x)
-summary(Modelo4)
-```
-
-#### Por medicamento recetado
+![Gráfica Relación Suicidios e Innacesibilidad por Atención Médica](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_AtencionMedica.jpg "Relación Suicidios e Innacesibilidad por Atencion Medica")
 
 ```{r GraficaSuina3}
 #Regresión lineal suina receta médica
 suina3_plot2.1 <-
-  ggplot(data = suina3, aes(x =porPobIna, y = porPobSui)) +
+  ggplot(data = suina3, aes(x = porPobSui, y = porPobIna)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
   labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Medicamento Recetado
-         Regresión Lineal', x = "Inaccesibilidad/Población", y = "Suicidios/Población")+
+         Regresión Lineal', x = "Suicidios/Población", y = "Inaccesibilidad/Población")+
   theme_light()
-suina3_plot2.1
-```
-En este caso la correlación es positiva pero muy baja, por lo que no se puede afirmar relación entre las variables.
-```{r CorrelacionSuina3}
-#Correlación Suina
-cor(suina3$porPobIna, suina3$porPobSui) #(x,y)
-```
-En el caso de la regresión lineal vemos que el p-valor es muy elevado y la R cuadrada no es apta para un modelo bien ajustado, por lo que no existe causalidad entre variables.
-```{r RL4}
-#Regresión lineal
-Modelo5 <- lm(porPobSui ~ porPobIna , data = suina3) #(y,x)
-summary(Modelo5)
 ```
 
-Aquí podemos observar los 3 casos en conjunto, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
+![Gráfica Relación Suicidios e Innacesibilidad por Medicamento Recetado](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_MedicamentoRecetado.jpg "Relación Suicidios e Innacesibilidad por Medicamento Recetado")
 
-#### Comparativa
 ```{r GráficaComparativaConjunto}
-conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
-conjunto
+#library(cowplot)
+#conjunto <- plot_grid(suina_plot2.1, suina2_plot2.1, suina3_plot2.1, labels = c('A', 'B', 'C'), label_size = 10)
 ```
 
-### Gráfica desigualdad-inaccesibilidad
-A simple vista en el gráfico de dispersión, podemos observar como los valores referentes a los suicidios se concentran en torno a los valores más bajos del cociente s80s20.
-```{r GraficaDesina}
-desina_plot2 <-
-  ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
-    geom_point(aes(colour = factor(CA))) +
-    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
-    theme_light()
-desina_plot2
-```
-
-Haciendo una correlación podemos observar que es un valor negativo (-0.44) y cercano a -0.5 por lo que sí hay relación entre variables, existe una correlación negativa y débil entre ambas.
-```{r CorrelacionDesina}
-#Correlación Suina
-cor(desina$s80s20,desina$porPobIna) #(x,y)
-```
-Analizando la regresión lineal vemos que el modelo no es significativo ya que la R cuadrado ajustada tiene un valor muy alejadod e 1 y el p-valor es ligeramente mayor que 0.05 (0.05671). No se puede deducir causalidad entre variables.
-```{r RL5}
-#Regresión lineal
-Modelo1 <- lm(porPobIna ~ s80s20, data = desina) #(y,x)
-summary(Modelo1)
-```
+![Gráfica Comparativa Relación Suicidios e Innacesibilidad Regresión Lineal](OUTPUT/DATA/Relación_Suicidios_Innacesibilidad_Comparacion.jpg "Relación Suicidios e Innacesibilidad Comparativa")
 
 # Conclusiones
-* Hay cierta relación negativa entre la rentas80s20 y los suicidios en españa, de forma que cuanto mayor es la renta menor suicidios hay. Sin embargo, la cantidad de renta por CCAA no determina la cantidad de suicios que habrá.
-
-* Hay una ligera correlación entre la cantidad de suicidios en las CCAA y la inaccesibilidad de cada una a servicios de salud mental de forma que cuanto mayor es la inaccesibilidad mayor cantidad de suicidios, sin embargo una no es la causa de la otra.
-
-* Existe una correlación negativa entre la desigualdad y la inaccesibilidad a servicios de salud mental, de forma que cuanto mayor es cociente s80s20, menos inaccesibilidad presentan las CCAA en estos servicios. En definitiva cuanto mejor es situación ecónomica de los españoles mayor es el  acceso a determinados servicios de salud mental, sin embargo, no se ha demostrado causalidad entre ambos.
-
-*De los tres tipos de inaccesibilidad (mental, por atención médica y medicamento recetado) tan sólo existe relación con los suicidios en el caso de la salud mental.
-
-De esta forma conluimos que los suicidios son actos muy difíciles de estudiar ya que el motor que lleva a  cometer un suicidio puede ser cualquier motivo personal que se escapa a cualquier análisis, es por eso que no se han encontrado relaciones muy fuertes entre este fenómeno, la situación económica y la inaccesibilidad a servicios de salud mental. 
 
 
 # Referencias
@@ -546,6 +367,6 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 
 (4) Población INE/ https://www.ine.es/jaxiT3/Tabla.htm?t=2853&L=0 , Recuperado el 07/11/22
 
-(5) https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 , Rrecuperado el 09/12/22
+* https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
 
-(6) https://cran.r-project.org/doc/contrib/grafi3.pdf
+https://cran.r-project.org/doc/contrib/grafi3.pdf
