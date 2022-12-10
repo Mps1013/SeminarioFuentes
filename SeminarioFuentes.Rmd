@@ -206,8 +206,10 @@ pob<-
 Para conseguir las tablas se ha realizado un join utilizando el atributo "CA" como pivote para los dos sets de datos. Se han modificado ciertos nombres de los atributos y se han filtrado las columnas que nos interesan para nuestro estudio.Además en todos los datos que queremos estudiar y representar, excluyendo la cociente s80s20 (en este caso los datos ya están calculados en función de la población ), se han dividido por el la población de su respectiva comunidad autónoma y multiplicado por 100, para poder comparar los resultados.
 
 ### Suicidios y desigualdad
-En este caso se ha realizado primero un join con el atributo "CA" entre suicidios y desigualdad, obtenemos la tabla "sude" como resultado. Para poder realizar la combinación de esta tabla obtenida con los datos de la población, se ha hecho un join con el mismo atributo "CA" como pivote. Mediante pipes se ha alterado la tabla final "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total., también se ha alterado el nombre de s20s80.
-Se ha cambiado el orden de los atributos para que se vean primero las CCAA, además estas están en orden alfabético. Más tarde se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
+En este caso se ha realizado primero un join con el atributo "CA" entre los set de datos suicidios y desigualdad, obtenemos la tabla "sude" como resultado. Para poder realizar la combinación de esta tabla obtenida con los datos de la población, se ha hecho un join con el mismo atributo "CA" como pivote. 
+Mediante pipes se ha alterado la tabla final "sude" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas que por defecto tomaron nombres de Total.x y Total., también se ha alterado el nombre de s20s80.
+Se ha cambiado el orden de los atributos para que se vean primero las CCAA, además estas están en orden alfabético. 
+Más tarde se han convertido los datos de interés a numérico y se ha hecho la proporción entre suicidios y el total de población para cada comunidad.
 Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tablasude}
 #Tabla suicidios y desigualdad, población.
@@ -229,11 +231,13 @@ sude
 ```
 
 ### Suicidios e inaccesibilidad a servicios de salud mental
-Como en el caso anterior se ha hecho dos join entre los datos de suicidios, inaccesibilidad y población mediante el atributo "CA". Mediante pipes se ha alterado la tabla "suina" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas y poniendo , como en el caso anterior la columna "CA" al principio. En este caso se ha filtrado solo aquellos datos en los que sí ha habido inaccesibilidad, del tipo de salud mental y para ambos sexos.
-El atributo TotalInaccesibilidad se ha convertido a numérico, como habñia números decimales, se ha cambiado el separador "," por ".". Por último se ha hecho la proporción de suicidios e inaccesibilidad dividiendo cada dato por la población de su "CA" y multiplicando por 100.
+Como en el caso anterior se han realizado dos joins entre los sets datos de suicidios, inaccesibilidad y población mediante el atributo "CA", como resultado hemos obtenido la tabla "suina". 
+Mediante pipes se ha alterado la tabla "suina" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas y poniendo, como en el caso anterior la columna "CA" al principio. En este caso se ha filtrado solo aquellos datos en los que sí ha habido inaccesibilidad, del tipo de salud mental y para ambos sexos, ya que no hacemos distincción de sexo.
+El atributo TotalInaccesibilidad se ha convertido a numérico, como había números decimales, se ha cambiado el separador "," por ".". Por último se ha hecho la proporción de suicidios e inaccesibilidad dividiendo cada dato por la población de su "CA" y multiplicando por 100.
+Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tablasuina}
 
-#Tabla suicidios e innacesibilidad.
+#Tabla suicidios, innacesibilidad y población.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
 suina <- left_join(x = suina, y = pob, by = c("CA"))
