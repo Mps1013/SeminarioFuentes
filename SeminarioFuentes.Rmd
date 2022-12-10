@@ -3,7 +3,10 @@ title:    |
   ![](INPUT/DATA/universidad-burgos.jpg){width=2in}
   
   Suicidios, desigualdad económica e inaccesibilidad a servicios sanitarios
-  
+
+subtitle: |
+  Fuentes de datos biomédicas y web semántica
+
 author:   |
   **Malena Pérez Sevilla, Fátima Ezzahra Makroudi Ouennas**
   
