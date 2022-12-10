@@ -56,12 +56,12 @@ Esto es debido a que los recursos económicos no se distribuyen de manera equita
 
 # Objetivos
 * **Objetivos principales:**
-  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según en el cociente S80/S20.
-  * Comparar el nivel de suicidios que hay por cada comunidad autónoma en España según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
-  * Comparar la inaccesibilidad a la atención sanitaria en el ámbito de salud mental según en el cociente S80/S20.  
+  * Estudiar el nivel de suicidios que hay por cada comunidad autónoma en España según en el cociente S80/S20.
+  * Estudiar el nivel de suicidios que hay por cada comunidad autónoma en España según la inaccesibilidad a la atención sanitaria en el ámbito de salud mental.
+  * Estudiar la inaccesibilidad a la atención sanitaria en el ámbito de salud mental según en el cociente S80/S20.  
 
 * **Objetivos secundarios:**
-  * Comparar la relación entre suicidios e inaccesibilidad según los distintos tipos de inaccesibilidad (salud mental, atención médica o medicamento recetado)
+  * Estudiar la relación entre suicidios e inaccesibilidad según los distintos tipos de inaccesibilidad (salud mental, atención médica o medicamento recetado)
 
 
 # Materiales y Métodos
@@ -243,7 +243,7 @@ El atributo TotalInaccesibilidad se ha convertido a numérico, como había núme
 Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tablasuina}
 
-#Tabla suicidios, innacesibilidad por salud mental y población.
+#Tabla suicidios, inacesibilidad por salud mental y población.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
 suina <- left_join(x = suina, y = pob, by = c("CA"))
@@ -279,7 +279,7 @@ suina
 En este caso se han seguido todos los pasos para obtener la tabla anterior "suina", sin embargo, se ha filtrado por la inaccesibilidad a la atención médica en vez de la atención de salud mental.
 Como resultado obtenemos la siguiente tabla:
 ```{r tablasuina2}
-#Tabla suicidios e innacesibilidad por atención médica y población.
+#Tabla suicidios e inacesibilidad por atención médica y población.
 
 suina2 <- left_join(x = sui, y = ina, by = c("CA"))
 suina2 <- left_join(x = suina2, y = pob, by = c("CA"))
@@ -317,7 +317,7 @@ suina2
 Como en el caso anterior se ha filtrado por otro tipo de inaccesibilidad, en este caso por medicamento recetado, siguiendo los pasos de obtención de las dos tablas anteriores.
 Como resultado obtenemos la siguiente tabla:
 ```{r tablasuina3}
-#Tabla suicidios e innacesibilidad por medicamento recetado y población.
+#Tabla suicidios e inacesibilidad por medicamento recetado y población.
 
 suina3 <- left_join(x = sui, y = ina, by = c("CA")) 
 suina3 <- left_join(x = suina3, y = pob, by = c("CA")) 
@@ -392,8 +392,36 @@ A partir de las tablas anteriores se han diseñado gráficos de dispersión con 
 
 Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales).
 
-!["Análisis de correlaciones"](OUTPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
-En la imagen anterior vemos la fuerza de las correlaciones en las que nos basaremos para hacer el estudio.
+En la siguiente imagen vemos la fuerza de las correlaciones en las que nos basaremos para hacer el estudio.
+
+![](OUTPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
+
+También se ha realizado un gráfico de barras en el que se muestra la inaccesibilidad a servicios de salud mental, suicidios y cociente s80s20 por cada CCAA.Para ello se ha creado una tabla en la que se han unido todos los atributos de suina y desina con CA como pivote y se han seleccionado las columnas de interés. Además, se ha multiplicado los valores de porPobIna y porPobSui para poder verlos en la gráfica ya que comparados con s80s20, eran muy bajos. Por último, con pivot_longer, se ha cambiado el formato de la tabla, de forma que todos los atributos (sin incluir CA) estén en una columna, y sus respectivos valores en otra.
+```{r TablaCCAA}
+plotconjunto <- merge(x=suina,y=desina, by="CA")
+plotconjunto<- 
+  plotconjunto %>%
+  rename(.data=.,c(porPobIna = "porPobIna.x"))%>%
+  select(CA,porPobIna,porPobSui, s80s20)
+
+plotconjunto$porPobSui<-plotconjunto$porPobSui*1000
+plotconjunto$porPobIna<-plotconjunto$porPobIna*10000
+
+plotconjunto <-pivot_longer(plotconjunto,-CA , names_to="variable", values_to="value")
+```
+
+Como se puede observar la CCAA con mayor tasa de suicidio ha sido Asturias, con mayor nivel de inaccesibilidad la Región de Murcia y por último la CCAA con el cociente s8020 más alto ha sido Melilla.
+```{r GraficaCCAA}
+plot_conjunto <-
+  ggplot(plotconjunto,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  scale_y_continuous()+
+  theme_light()+
+  coord_flip()
+plot_conjunto
+
+```
+
 
 ### Gráfica suicidios-desigualdad
 En la siguiente gráfica se muestra una regresión lineal entre los suicidios y el cociente s80s20.
@@ -406,17 +434,6 @@ sude_plot2 <-
     labs(title = 'Relación entre Suicidios y Desigualdad', subtitle = 'Regresión Lineal', x = "Renta (s80s20)" 
     , y =   "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas" )+
     theme_light()
-
-ggsave(
-  filename = "Relación_Suicidios_Desigualdad.jpg",
-  plot = sude_plot2,
-  path = "OUTPUT/DATA", # ruta relativa
-  scale = 0.5,
-  width = 40,
-  height = 30,
-  units = "cm",
-  dpi = 320
-)
 
 sude_plot2
 ```
@@ -447,21 +464,10 @@ suina_plot2 <-
     , y = "Suicidios/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
 
-ggsave(
-  filename = "Relación_Suicidios_Innacesibilidad_SaludMental.jpg",
-  plot = suina_plot2,
-  path = "OUTPUT/DATA", # ruta relativa
-  scale = 0.5,
-  width = 40,
-  height = 30,
-  units = "cm",
-  dpi = 320
-)
-
 suina_plot2
 ```
 
-Haciendo una regresión lineal observamos que a simple vista hay un ligero aumento de suicidios a medida que hay mayor innacesibilidad a la atención médica de salud mental.
+Haciendo una regresión lineal observamos que a simple vista hay un ligero aumento de suicidios a medida que hay mayor inacesibilidad a la atención médica de salud mental.
 
 ```{r GraficaSuina1.2}
 suina_plot2.1 <-
@@ -497,20 +503,10 @@ suina2_plot2.1 <-
   ggplot(data = suina2, aes(x = porPobIna, y = porPobSui)) +
   geom_point()+
   geom_smooth(method = "lm", colour = "blue")+
-  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Innacesibilidad/Población"
+  labs(title = 'Relación entre Suicidios e Inaccesibilidad', subtitle = 'Por Atención Médica', x = "Inacesibilidad/Población"
   , y =    "Suicidios/Poblacion")+
   theme_light()
 
-ggsave(
-  filename = "Relación_Suicidios_Innacesibilidad_AtencionMedica_RL.jpg",
-  plot = suina2_plot2.1,
-  path = "OUTPUT/DATA", # ruta relativa
-  scale = 0.5,
-  width = 40,
-  height = 30,
-  units = "cm",
-  dpi = 320
-)
 
 suina2_plot2.1
 ```
@@ -542,17 +538,6 @@ suina3_plot2.1 <-
          Regresión Lineal', x = "Inaccesibilidad/Población", y = "Suicidios/Población")+
   theme_light()
 
-ggsave(
-  filename = "Relación_Suicidios_Innacesibilidad_MedicamentoRecetado_RL.jpg",
-  plot = suina3_plot2.1,
-  path = "OUTPUT/DATA", # ruta relativa
-  scale = 0.5,
-  width = 40,
-  height = 30,
-  units = "cm",
-  dpi = 320
-)
-
 suina3_plot2.1
 ```
 
@@ -571,7 +556,7 @@ Modelo5 <- lm(porPobSui ~ porPobIna , data = suina3) #(y,x)
 summary(Modelo5)
 ```
 
-Aquí podemos observar los 3 casos en conjunto, por innacesibilidad de Salud Mental, por Asistencia Médica y por Medicamento Recetado, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
+Aquí podemos observar los 3 casos en conjunto, por inacesibilidad de Salud Mental, por Asistencia Médica y por Medicamento Recetado, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
 
 #### Comparativa
 ```{r GráficaComparativaConjunto}
@@ -585,19 +570,8 @@ A simple vista en el gráfico de dispersión, podemos observar como los valores 
 desina_plot2 <-
   ggplot(data = desina, aes(x = s80s20, y = porPobIna)) +
     geom_point(aes(colour = factor(CA))) +
-    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Innacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
+    labs(title = 'Relación entre Desigualdad e Inaccesibilidad',x = "Renta (s80s20)", y = "Inacesibilidad/Población", colour = "Comunidades y Ciudades Autónomas")+
     theme_light()
-
-ggsave(
-  filename = "Relación_Desigualdad_Innacesibilidad.jpg",
-  plot = desina_plot2,
-  path = "OUTPUT/DATA", # ruta relativa
-  scale = 0.5,
-  width = 40,
-  height = 30,
-  units = "cm",
-  dpi = 320
-)
 
 desina_plot2
 ```

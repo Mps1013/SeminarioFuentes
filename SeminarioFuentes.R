@@ -540,12 +540,28 @@ sude_plot1
 suina_plot1
 desina_plot
 
+#Gráfica de barras en conjunto
+plotconjunto <- merge(x=suina,y=desina, by="CA")
+plotconjunto<- 
+  plotconjunto %>%
+  rename(.data=.,c(porPobIna = "porPobIna.x"))%>%
+  select(CA,porPobIna,porPobSui, s80s20)
 
-plotconjunto <- join(x = desina, y = suina, by = c("CA","porPobIna")) 
+plotconjunto$porPobSui<-plotconjunto$porPobSui*1000
+plotconjunto$porPobIna<-plotconjunto$porPobIna*10000
 
-plotconjunto<-
-  select(.data=plotconjunto,"CA","porPobIna","porPobSui", "s80s20")%>%
-  pivot_longer(plotconjunto,-CA , names_to="variable", values_to="value")
+
+plot_conjunto <-
+  ggplot(plotconjunto,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  scale_y_continuous()+
+  theme_light()+
+  coord_flip()
+plot_conjunto
+#plotconjunto$s80s20<-plotconjunto$s80s20/1000
+
+plotconjunto <-pivot_longer(plotconjunto,-CA , names_to="variable", values_to="value")
+
 plotconjunto
 #Gráfica suina2
 plot_conjunto <-
@@ -553,4 +569,12 @@ plot_conjunto <-
   geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
   theme(axis.text = element_text(angle = 90))+
   scale_y_continuous()
+plot_conjunto
+
+plot_conjunto <-
+  ggplot(plotconjunto,aes(x = CA, y=value)) + 
+  geom_bar(aes(fill = variable),stat = "identity",position = "dodge" ) + 
+  scale_y_continuous()+
+  theme_light()+
+  coord_flip()
 plot_conjunto
