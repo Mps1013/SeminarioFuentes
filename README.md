@@ -1,5 +1,6 @@
 # SeminarioFuentes
-
+ ![](https://blogs.iadb.org/trabajo/wp-content/uploads/sites/25/2020/06/datos-coronavirus.jpg)
+ 
 En este proyecto se estudia la correlación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito (psicología, psiquiatría...) junto con la desigualdad económica entre la población española (basado en la relación s80s20) por comunidades autónomas. 
 
 Bases de datos consultadas:
@@ -7,3 +8,5 @@ Bases de datos consultadas:
 * Desigualdad (S80/S20) (CCAA) (https://www.observatoriofp.com/datos-interactivos/datasets/desigualdad-s80s20-ccaa)
 * Inaccesibilidad a distintos tipos de atención sanitaria por motivos económicos en los últimos 12 meses según sexo y comunidad autónoma. Población de 15 y más años. (Identificador API: /t15/p420/a2019/p02/l0/05016.px) (https://datos.gob.es/es/catalogo/ea0010587-inaccesibilidad-a-distintos-tipos-de-atencion-sanitaria-por-motivos-economicos-en-los-ultimos-12-meses-segun-sexo-y-comunidad-autonoma-poblacion-de-15-y-mas-anos-identificador-api-t15-p420-a2019-p02-l0-05016-px)
 * Población INE (https://www.ine.es/jaxiT3/Tabla.htm?t=2853&L=0)
+
+
