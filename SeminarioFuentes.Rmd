@@ -31,7 +31,7 @@ La medida de la desigualdad es un parámetro subjetivo, para medir la desigualda
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
 * **Salud mental:**
-*«Estado de bienestar en el cual cada individuo desarrolla su potencial, puede afrontar las tensiones de la vida, puede trabajar de forma productiva y fructífera, y puede aportar algo a su comunidad».[@OMS]*
+*«La salud mental es un estado de bienestar mental que permite a las personas hacer frente a los momentos de estrés de la vida, desarrollar todas sus habilidades, poder aprender y trabajar adecuadamente y contribuir a la mejora de su comunidad».[@OMS]*
 Este estado de bienestar mental muchas veces es alterado por perturvaciones, por lo que puede derivar a trastornos mentales, esto causa angustia y/o altera las capacidades funcionales de la persona.
 
 * **Suicidio:**
@@ -370,3 +370,7 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 * https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
 
 https://cran.r-project.org/doc/contrib/grafi3.pdf
+
+https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response
+
+
