@@ -381,7 +381,7 @@ desina
 
 
 ## Gráficas
-A partir de los datos anteriores se han diseñado gráficos de dispersión con regresiones lineales para poder estudiar las variables.
+A partir de las tablas anteriores se han diseñado gráficos de dispersión con regresiones lineales para poder estudiar cada una de las variables a observar.
 
 Además, para poder analizar los resultados se ha realizado una correlación (muestra si hay relación entre los datos pero no especifica si hay causalidad) y una revisión de los parámetros obtenidos en las regresiones anteriores (determinará si las variables son o no causales).
 
@@ -403,7 +403,7 @@ sude_plot2
 ```
 
 
-En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación es negativa, sin embargo, es un valor muy bajo.
+En este caso el valor de la correlación ha sido de -0.34, no es un valor muy representativo pero nos indica que la correlación es negativa, a mayor renta menos suicidios, sin embargo, es un valor muy bajo, por lo que no se puede afirmar con certeza.
 
 
 ```{r CorrelacionSude}
@@ -411,7 +411,7 @@ En este caso el valor de la correlación ha sido de -0.34, no es un valor muy re
 cor(sude$s80s20,sude$porPobSui) #(x,y)
 ```
 
-Si analizamos la regresión lineal vemos que el modelo ajustado no es significativo pues el p-valor (0.155) es mayor que 0.05 y la R al cuadrado ajustada es 0.06 un valor muy distante de 1. Por lo tanto,no existe una relación causal entre las variables.
+Si analizamos la regresión lineal vemos que el modelo ajustado no es significativo pues el p-valor (0.155) es mayor que 0.05 y la R al cuadrado ajustada es 0.06 un valor muy distante de 1. Por lo tanto, no existe una relación causal entre las variables.
 ```{r RL1}
 #Regresión lineal
 Modelo2 <- lm(porPobSui ~s80s20 , data = sude) #(y,x)
@@ -430,7 +430,8 @@ suina_plot2 <-
 suina_plot2
 ```
 
-Haciendo una regresión lineal observamos que a simple vista hay un ligero aumento de suicidios a medida que 
+Haciendo una regresión lineal observamos que a simple vista hay un ligero aumento de suicidios a medida que hay mayor innacesibilidad a la atención médica de salud mental.
+
 ```{r GraficaSuina1.2}
 suina_plot2.1 <-
   ggplot(data = suina, aes(x = porPobIna, y = porPobSui)) +
@@ -441,12 +442,16 @@ suina_plot2.1 <-
   theme_light()
 suina_plot2.1
 ```
+
 Haciendo una correlación obtenemos un valor positivo de 0.19, sin embargo, este valor no es muy significativo ya que es bajo.
+
 ```{r CorrelacionSuina}
 #Correlación Suina
 cor(suina$porPobIna,suina$porPobSui) #(x,y)
 ```
-Analizando la regresión lineal observamos que el ajuste no es significativo ya que el p-valor es mayor que 0.05 y la R muy alejada de 1. No hay causalidad entre las variables.
+
+Analizando la regresión lineal observamos que el ajuste no es significativo ya que el p-valor es mayor que 0.05 y la R está muy alejada de 1. Por lo que no hay causalidad entre las variables.
+
 ``` {r RL2}
 #Regresión lineal
 Modelo3 <- lm(porPobSui ~ porPobIna, data = suina) #(y,x)
@@ -454,7 +459,7 @@ summary(Modelo3)
 ```
 
 #### Por asistencia médica
-En este caso vemos que haciendo el ajuste no hay mucha variabilidad entre comunidades, aunque haya algunos puntos que estén alejados del ajuste lineal.
+En este caso vemos que haciendo el ajuste no hay mucha variabilidad entre comunidades, aunque haya algunos puntos que estén más alejados del ajuste lineal.
 ```{r GraficaSuina2.1}
 #Regresión lineal suina atención sanitaria
 suina2_plot2.1 <-
@@ -466,13 +471,16 @@ suina2_plot2.1 <-
   theme_light()
 suina2_plot2.1
 ```
-Obtenemos una correlación negativa muy pequeña, por lo que no es significativo en nuestro estudio. No se puede asumir relación entre variables.
+
+Obtenemos una correlación negativa muy pequeña, por lo que no es significativo en nuestro estudio. No se puede asumir relación entre las variables.
+
 ```{r CorrelacionSuina2.1}
 #Correlación Suina
 cor(suina2$porPobIna,suina2$porPobSui) #(x,y)
 ```
 
-Como se puede observar en el resumen de la regresión lineal, el p-valor es muy alto (>0.05) y la R cuadrada ajustada muy alejada de 1, por lo tanto no hay causalidad entre variables.
+Como se puede observar en el resumen de la regresión lineal, el p-valor es muy alto (>0.05) y la R cuadrada ajustada está muy alejada de 1, por lo tanto no hay causalidad entre las variables.
+
 ``` {r RL3}
 #Regresión lineal
 Modelo4 <- lm(porPobSui ~ porPobIna, data = suina2) #(y,x)
@@ -492,19 +500,23 @@ suina3_plot2.1 <-
   theme_light()
 suina3_plot2.1
 ```
+
 En este caso la correlación es positiva pero muy baja, por lo que no se puede afirmar relación entre las variables.
+
 ```{r CorrelacionSuina3}
 #Correlación Suina
 cor(suina3$porPobIna, suina3$porPobSui) #(x,y)
 ```
-En el caso de la regresión lineal vemos que el p-valor es muy elevado y la R cuadrada no es apta para un modelo bien ajustado, por lo que no existe causalidad entre variables.
+
+En el caso de la regresión lineal vemos que el p-valor es muy elevado y la R cuadrada no es apta para un modelo bien ajustado, por lo que no existe causalidad entre las variables.
+
 ```{r RL4}
 #Regresión lineal
 Modelo5 <- lm(porPobSui ~ porPobIna , data = suina3) #(y,x)
 summary(Modelo5)
 ```
 
-Aquí podemos observar los 3 casos en conjunto, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
+Aquí podemos observar los 3 casos en conjunto, por innacesibilidad de Salud Mental, por Asistencia Médica y por Medicamento Recetado, de los 3 tipos de inaccesibilidad parece que el de salud mental (A) es el que más relacionado puede estar con los suicidios de todos los casos analizados. Como hemos visto anteriormente la correlación de este caso ha sido la mayor de todas con un valor de 0.2.
 
 #### Comparativa
 ```{r GráficaComparativaConjunto}
@@ -523,12 +535,15 @@ desina_plot2 <-
 desina_plot2
 ```
 
-Haciendo una correlación podemos observar que es un valor negativo (-0.44) y cercano a -0.5 por lo que sí hay relación entre variables, existe una correlación negativa y débil entre ambas.
+Haciendo una correlación podemos observar que es un valor negativo (-0.44) y cercano a -0.5 por lo que sí hay relación entre variables, existe una correlación negativa y débil entre ambas, a mayor renta, s80s20, menor inaccesibilidad.
+
 ```{r CorrelacionDesina}
 #Correlación Suina
 cor(desina$s80s20,desina$porPobIna) #(x,y)
 ```
-Analizando la regresión lineal vemos que el modelo no es significativo ya que la R cuadrado ajustada tiene un valor muy alejadod e 1 y el p-valor es ligeramente mayor que 0.05 (0.05671). No se puede deducir causalidad entre variables.
+
+Analizando la regresión lineal vemos que el modelo no es significativo ya que la R cuadrado ajustada tiene un valor muy alejado de 1 y el p-valor es ligeramente mayor que 0.05 (0.05671). No se puede deducir causalidad entre variables.
+
 ```{r RL5}
 #Regresión lineal
 Modelo1 <- lm(porPobIna ~ s80s20, data = desina) #(y,x)
