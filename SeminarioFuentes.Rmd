@@ -39,7 +39,7 @@ Este estado de bienestar mental muchas veces es alterado por perturvaciones, por
 Este acto es previamente meditado y realizado por una persona, que es totalemnte consciente de lo que realiza y el objetivo final de sus actos.
 
 * **Desigualdad económica:**
-*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@NacionesUnidas]*
+*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@ACNURComitéEspañol]*
 Es la circustancia en la que hay presente una diferencia, ya sea vinculada con la renta, el capital o bienestar económico entre los diferentes individuos de población en una concreta zona geográfica.
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
@@ -373,4 +373,6 @@ https://cran.r-project.org/doc/contrib/grafi3.pdf
 
 https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response
 
+https://www.mendoza.gov.ar/salud/temas-de-salud/suicidio-2/#:~:text=%C2%BFQu%C3%A9%20es%3F,de%20conocimiento%20del%20verdadero%20m%C3%B3vil%E2%80%9C.
 
+https://eacnur.org/blog/desigualdad-economica-que-es-tc_alt45664n_o_pstn_o_pst/#:~:text=La%20desigualdad%20econ%C3%B3mica%20es%20la,un%20pa%C3%ADs%20o%20entre%20pa%C3%ADses.
