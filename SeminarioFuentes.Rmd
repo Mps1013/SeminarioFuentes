@@ -229,7 +229,6 @@ sude$porPobSui <- (sude$TotalSuicidios*100) / sude$TotalPoblacion
 sude
 
 ```
-
 ### Suicidios e inaccesibilidad a servicios de salud mental
 Como en el caso anterior se han realizado dos joins entre los sets datos de suicidios, inaccesibilidad y población mediante el atributo "CA", como resultado hemos obtenido la tabla "suina". 
 Mediante pipes se ha alterado la tabla "suina" seleccionando las columnas de interes y atribuyendo nuevos nombres a las columnas y poniendo, como en el caso anterior la columna "CA" al principio. En este caso se ha filtrado solo aquellos datos en los que sí ha habido inaccesibilidad, del tipo de salud mental y para ambos sexos, ya que no hacemos distincción de sexo.
@@ -237,7 +236,7 @@ El atributo TotalInaccesibilidad se ha convertido a numérico, como había núme
 Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tablasuina}
 
-#Tabla suicidios, innacesibilidad y población.
+#Tabla suicidios, innacesibilidad por salud mental y población.
 
 suina <- left_join(x = sui, y = ina, by = c("CA"))
 suina <- left_join(x = suina, y = pob, by = c("CA"))
@@ -270,9 +269,10 @@ suina
 
 ```
 ### Suicidios e inaccesibilidad por atención médica
-En este caso se han seguido todo slos pasos de la tabla anterior, sin embargo, se ha filtrado por la inaccesibilidad a la atención médica en vez de mental.
+En este caso se han seguido todos los pasos para obtener la tabla anterior "suina", sin embargo, se ha filtrado por la inaccesibilidad a la atención médica en vez de la atención de salud mental.
+Como resultado obtenemos la siguiente tabla:
 ```{r tablasuina2}
-#Tabla suicidios e innacesibilidad por (Atención médica).
+#Tabla suicidios e innacesibilidad por atención médica y población.
 
 suina2 <- left_join(x = sui, y = ina, by = c("CA"))
 suina2 <- left_join(x = suina2, y = pob, by = c("CA"))
@@ -306,11 +306,11 @@ suina2$porPobIna <- (suina2$TotalInaccesibilidad*100) / suina2$TotalPoblacion
 
 suina2
 ```
-
 ### Suicidios e inaccesibilidad por medicamento recetado
-Como en el caso anterior se ha filtrado por otro tipo de inaccesibilidad (medicamento recetado) siguiendo los pasos de las tablas anteriores.
+Como en el caso anterior se ha filtrado por otro tipo de inaccesibilidad, en este caso por medicamento recetado, siguiendo los pasos de obtención de las dos tablas anteriores.
+Como resultado obtenemos la siguiente tabla:
 ```{r tablasuina3}
-#Tabla suicidios e innacesibilidad por (Medicamento recetado).
+#Tabla suicidios e innacesibilidad por medicamento recetado y población.
 
 suina3 <- left_join(x = sui, y = ina, by = c("CA")) 
 suina3 <- left_join(x = suina3, y = pob, by = c("CA")) 
@@ -343,9 +343,11 @@ suina3$porPobIna <- (suina3$TotalInaccesibilidad*100) / suina3$TotalPoblacion
 
 suina3
 ```
-
 ### Desigualdad e inaccesibilidad
-Para este caso, se ha hecho un join entre el set de datos de desigualdad, inaccesibilidad y población mediante el atributo "CA". Se han renombrado algunos atributos, filtrado por la inaccesibilidad a sectores de salud mental en ambos sexos y se ha colocado la columna "CA" al principio. Además se ha pasado a numérico la columna de los valores que no lo estaban y como son decimales se ha sustituído el separador "," por ".". Como en casos anteriores se ha hecho la proporción entre los datos y  la población de cada comunidad.
+En último lugar, para obtener la tabla se han realizado dos joins entre el set de datos de desigualdad, inaccesibilidad y población mediante el atributo "CA", en consecuencia obtenemos la tabla llamada "desina". 
+Se han renombrado algunos atributos, filtrado por la inaccesibilidad a atención de salud mental, escogido para ambos sexos, y se ha colocado la columna "CA" al principio.
+Además se ha pasado a numérico la columna de los valores que no lo estaban y como son decimales se ha sustituído el separador "," por ".". Como en casos anteriores se ha hecho la proporción entre los datos y  la población por cada comunidad.
+Como resultado de todas las modificaciones anteriores obtenemos la siguiente tabla:
 ```{r tabladesina}
 
 #Tabla desigualdad e inaccesibilidad
