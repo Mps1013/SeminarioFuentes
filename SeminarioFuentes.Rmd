@@ -25,8 +25,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Introducción
 
-El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
-Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
+El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar si hay una posible relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito, junto con la desigualdad económica entre la población española por comunidades. 
+La medida de la desigualdad es un parámetro subjetivo, para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20, vamos a utilizar este indicador como base de la desigualdad económica. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
 
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
