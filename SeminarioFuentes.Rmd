@@ -34,15 +34,15 @@ La medida de la desigualdad es un parámetro subjetivo, para medir la desigualda
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
 * **Salud mental:**
-*«La salud mental es un estado de bienestar mental que permite a las personas hacer frente a los momentos de estrés de la vida, desarrollar todas sus habilidades, poder aprender y trabajar adecuadamente y contribuir a la mejora de su comunidad».[@OMS]*
+*«La salud mental es un estado de bienestar mental que permite a las personas hacer frente a los momentos de estrés de la vida, desarrollar todas sus habilidades, poder aprender y trabajar adecuadamente y contribuir a la mejora de su comunidad».[@OMS](7)*
 Este estado de bienestar mental muchas veces es alterado por perturvaciones, por lo que puede derivar a trastornos mentales, esto causa angustia y/o altera las capacidades funcionales de la persona.
 
 * **Suicidio:**
-*«Todo acto por el que un individuo se causa a sí mismo una lesión, o un daño, con un grado variable en la intención de morir, cualquiera sea el grado de intención letal o de conocimiento del verdadero móvil».[@OMS]*
+*«Todo acto por el que un individuo se causa a sí mismo una lesión, o un daño, con un grado variable en la intención de morir, cualquiera sea el grado de intención letal o de conocimiento del verdadero móvil».[@OMS](8)*
 Este acto es previamente meditado y realizado por una persona, que es totalemnte consciente de lo que realiza y el objetivo final de sus actos.
 
 * **Desigualdad económica:**
-*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@ACNURComitéEspañol]*
+*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@ACNURComitéEspañol](9)*
 Es la circunstancia en la que hay presente una diferencia, ya sea vinculada con la renta, el capital o bienestar económico entre los diferentes individuos de población en una concreta zona geográfica.
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
@@ -619,7 +619,7 @@ summary(Modelo1)
 
 *De los tres tipos de inaccesibilidad (mental, por atención médica y medicamento recetado), tan sólo existe relación con los suicidios en el caso particular de la salud mental.
 
-De esta forma concluimos que los suicidios son actos muy difíciles de estudiar y analizar, ya que el motor que lleva a  cometer un suicidio puede ser cualquier motivo personal que se escapa a cualquier ámbito concreto, debido a que puede deberse a diversos factores, no se han encontrado relaciones muy fuertes entre este fenómeno, la situación económica y la inaccesibilidad a servicios de salud mental. 
+De esta forma concluimos que los suicidios son actos muy difíciles de estudiar y analizar, ya que el motor que lleva a  cometer un suicidio puede ser cualquier motivo personal que se escapa a cualquier ámbito concreto, debido a que puede deberse a diversos factores, no se han encontrado relaciones muy fuertes entre este fenómeno, la situación económica y la inaccesibilidad a servicios de salud mental.
 
 
 # Referencias
@@ -635,3 +635,9 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 (5) https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 , Rrecuperado el 09/12/22
 
 (6) https://cran.r-project.org/doc/contrib/grafi3.pdf
+
+(7) https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response
+
+(8) https://www.mendoza.gov.ar/salud/temas-de-salud/suicidio-2/#:~:text=%C2%BFQu%C3%A9%20es%3F,de%20conocimiento%20del%20verdadero%20m%C3%B3vil%E2%80%9C.
+
+(9) https://eacnur.org/blog/desigualdad-economica-que-es-tc_alt45664n_o_pstn_o_pst/#:~:text=La%20desigualdad%20econ%C3%B3mica%20es%20la,un%20pa%C3%ADs%20o%20entre%20pa%C3%ADses.
