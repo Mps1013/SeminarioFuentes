@@ -59,12 +59,13 @@ Esto es debido a que los recursos económicos no se distribuyen de manera equita
 
 # Materiales y Métodos
 
-Se han obtenido set de datos de la página del INE (Instituto Nacional de Estadística), en el caso de los referentes al índice s80s20 (1)y población por CCAAA (4) y de los datos abiertos ofrecidos por el gobierno de España para obtener los set de datos de suicidios (2) y inaccesibilidad (3).
+Los cuatro sets de datos que han sido utilizados durante todo el estudio han sido obtenidos de dos páginas principalmente.
+Los sets de datos de los referentes al índice s80s20 (1) y población por CCAA (4) se han obtenido de la página del INE (Instituto Nacional de Estadística), en el caso de los sets de datos de suicidios (2) e inaccesibilidad (3) han sido obtenidos por la página de datos abiertos del Gobierno de España.
 
 
 ## Carga de los datos
 ### Carga de librerías
-Se han utilizado las librerías de "readr" y "tidyverse" para poder alterar los set de datos tanto en csv como en json, las librerías "rjson" y "tidyjson" para poder manejar las de json únicamente. Además se ha añadido la librería cowplot para poder mostrar gráficas agrupadas.
+Se han utilizado las librerías de "readr" y "tidyverse" para poder modificar los set de datos tanto en csv como en json, por otro lado las librerías "rjson" y "tidyjson" han sido útiles poder manejar los datos de json. Además se ha añadido la librería cowplot para poder mostrar gráficas agrupadas.
 ```{r CargaLibrerías}
 library(readr)
 library(tidyverse)
@@ -74,7 +75,7 @@ library(cowplot)
 ```
 
 ### Carga de datos JSON
-Además se ha intentado trabajar con json pero debido a la complejidad del manejo de datos se ha decido continuar el estudio con csv.
+Se ha intentado trabajar con json pero debido a la complejidad del manejo de datos se ha decido continuar el estudio con los datos en csv.
 
 ```{r CargaDatosJSON}
 # VERSIÓN JSON (Versión descartada)
@@ -129,12 +130,14 @@ Estos serán los datos utilizados finalmente.
 
 Para acomodar los datos y facilitar la literatura a la hora de utilizarlos, en primer lugar, se ha modificado el nombre de los set de datos importados de forma que sean más representativos y sin espacios ni caracteres especiales.
 
-Se ha creado una columna en todos los set de datos que se llame "CA" ya que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets y por tanto en todas las tablas para poder hacer los join pertinentes. 
-En algunos set de datos como "desigualdad.csv" o "suicidios.csv" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
+Se ha creado una columna en todos los set de datos que se llama "CA", esta columna va a tener los valores de todas las Comunidades Autónomas de España, se ha creado debido a que este atributo será utilizado con frecuencia, además se ha establezido como factor de forma que todos los valores de esta columna sean igual en todos los sets, y por tanto en todas las tablas para poder hacer los join pertinentes. 
+En algunos sets de datos como "desigualdad.csv" o "suicidios.csv" había más valores aparte de las comunidades autónomas por lo que se han eliminado filtrando todos los niveles menos esos valores no deaseados y eliminando los niveles que han quedado sin filtrar.
 
-Además, en el set de datos "suicidios.csv" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros y en "desigualdad.json" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
+Además, en el set de datos "suicidios.csv" se ha tenido que adaptar a un encoding en latín ya que tenía carateres raros.
 
-El set de datos poblacion.csv se ha utilizado para poder hacer una proporción entre los datos de cada comunidad y su población. Una comunidad con mucha población tendrá más datos con los que trabajar por lo que podría desviar el estudio.
+En "desigualdad.csv" se han escogido sólo los datos referentes al año 2019, el año en el que se basa este estudio.
+
+El set de datos "poblacion.csv" se ha utilizado para poder hacer una proporción entre los datos de cada comunidad y su población. Una comunidad con mucha población tendrá más datos con los que trabajar por lo que podría desviar el estudio, por lo que hay que estandarizar los datos.
 
 ```{r CargaDatosCSV}
 # VERSIÓN CSV (Versión utlizada)
