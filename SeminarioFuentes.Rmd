@@ -1,5 +1,6 @@
 ---
 title:    |
+  ![](INPUT/DATA/universidad-burgos.jpg){width=50%, align=right} 
   |Seminario Fuentes de Datos Biomédicas y Web Semántica: 
   Suicidios dependientes de salud mental frente a desigualdades económicas
   
