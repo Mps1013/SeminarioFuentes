@@ -21,6 +21,8 @@ always_allow_html: true
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE) 
 ```
+<div style="text-align: justify">
+
 # Resumen
 
 En este estudio se analiza la correlación y causalidad de los suicidios, la situación económica y la inaccesibilidad a sectores de salud mental principalemente. En estos casos ninguna de esas variables explica la cantidad de suicidios que se dan en cada comunidad autónoma, sin embargo, hay relación entre la inaccesibilidad a servicios de salud mental con la desigualdad económica de cada CCAA.
@@ -641,3 +643,5 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 (8) https://www.mendoza.gov.ar/salud/temas-de-salud/suicidio-2/#:~:text=%C2%BFQu%C3%A9%20es%3F,de%20conocimiento%20del%20verdadero%20m%C3%B3vil%E2%80%9C.
 
 (9) https://eacnur.org/blog/desigualdad-economica-que-es-tc_alt45664n_o_pstn_o_pst/#:~:text=La%20desigualdad%20econ%C3%B3mica%20es%20la,un%20pa%C3%ADs%20o%20entre%20pa%C3%ADses.
+
+<div/>
