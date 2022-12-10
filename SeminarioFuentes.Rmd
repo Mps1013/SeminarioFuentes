@@ -1,6 +1,6 @@
 ---
 title:    |
-  |Seminario Fuentes: 
+  |Seminario Fuentes de Datos Biomédicas y Web Semántica: 
   Suicidios dependientes de salud mental frente a desigualdades económicas
   
 author:   |
