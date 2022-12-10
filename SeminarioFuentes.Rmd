@@ -1,8 +1,7 @@
 ---
 title:    |
-  ![](INPUT/DATA/universidad-burgos.jpg){width=50%, align=right} 
-  |Seminario Fuentes de Datos Biomédicas y Web Semántica: 
-  Suicidios dependientes de salud mental frente a desigualdades económicas
+  ![](INPUT/DATA/universidad-burgos.jpg){width=50%, align=right, fig.align='center', fig.width=8} 
+  |Suicidios, desigualdad económica e inaccesibilidad a servicios sanitarios
   
 author:   |
   **Malena Pérez Sevilla, Fátima Ezzahra Makroudi Ouennas**
