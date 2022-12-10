@@ -621,7 +621,7 @@ summary(Modelo1)
 
 * Existe una correlación negativa entre la desigualdad y la inaccesibilidad a servicios de salud mental, de forma que cuanto mayor es el cociente s80s20, menor inaccesibilidad presentan las CCAA. En definitiva si hay una mejor situación ecónomica, mayor renta, habrá mayor acceso a determinados servicios de salud mental, sin embargo, no se ha demostrado causalidad entre ambos sucesos.
 
-*De los tres tipos de inaccesibilidad (mental, por atención médica y medicamento recetado), tan sólo existe relación con los suicidios en el caso particular de la salud mental.
+* De los tres tipos de inaccesibilidad (mental, por atención médica y medicamento recetado), tan sólo existe relación con los suicidios en el caso particular de la salud mental.
 
 De esta forma concluimos que los suicidios son actos muy difíciles de estudiar y analizar, ya que el motor que lleva a  cometer un suicidio puede ser cualquier motivo personal que se escapa a cualquier ámbito concreto, debido a que puede deberse a diversos factores, no se han encontrado relaciones muy fuertes entre este fenómeno, la situación económica y la inaccesibilidad a servicios de salud mental.
 
