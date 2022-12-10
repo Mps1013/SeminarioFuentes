@@ -1,6 +1,6 @@
 ---
 title:    |
-  |Seminario Fuentes de Datos Biomédicas y Web Semántica: 
+  |Seminario Fuentes: 
   Suicidios dependientes de salud mental frente a desigualdades económicas
   
 author:   |
@@ -25,13 +25,13 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 # Introducción
 
-El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar si hay una posible relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito, junto con la desigualdad económica entre la población española por comunidades. 
-La medida de la desigualdad es un parámetro subjetivo, para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20, vamos a utilizar este indicador como base de la desigualdad económica. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
+El suicidio es un problema de salud pública muy complejo en el que pueden intervenir diversos factores, en este caso nos centraremos en estudiar la relación entre la salud mental y la posibilidad de acceso a los servicios sanitarios de ese ámbito junto con la desigualdad económica entre la población española por comunidades. 
+Para medir la desigualdad se pueden utilizar distintos indicadores, entre ellos encontramos el cociente S80/S20. Éste mide, según la INE (Instituto Nacional de Estadística),la desigualdad a través de ratios entre percentiles. Se interpreta como la relación entre la renta media obtenida por el 20% de la población con la renta más alta (quintil más alto), en relación a la renta media obtenida por el 20% de la población con la renta más baja (quintil más bajo).
 
 En primer lugar, vamos a definir los siguientes conceptos claves:
 
 * **Salud mental:**
-*«La salud mental es un estado de bienestar mental que permite a las personas hacer frente a los momentos de estrés de la vida, desarrollar todas sus habilidades, poder aprender y trabajar adecuadamente y contribuir a la mejora de su comunidad».[@OMS]*
+*«Estado de bienestar en el cual cada individuo desarrolla su potencial, puede afrontar las tensiones de la vida, puede trabajar de forma productiva y fructífera, y puede aportar algo a su comunidad».[@OMS]*
 Este estado de bienestar mental muchas veces es alterado por perturvaciones, por lo que puede derivar a trastornos mentales, esto causa angustia y/o altera las capacidades funcionales de la persona.
 
 * **Suicidio:**
@@ -39,7 +39,7 @@ Este estado de bienestar mental muchas veces es alterado por perturvaciones, por
 Este acto es previamente meditado y realizado por una persona, que es totalemnte consciente de lo que realiza y el objetivo final de sus actos.
 
 * **Desigualdad económica:**
-*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@ACNURComitéEspañol]*
+*«Es la diferencia que existe en la distribución de bienes, ingresos y rentas dentro de un grupo, sociedad, país o entre países».[@NacionesUnidas]*
 Es la circustancia en la que hay presente una diferencia, ya sea vinculada con la renta, el capital o bienestar económico entre los diferentes individuos de población en una concreta zona geográfica.
 Esto es debido a que los recursos económicos no se distribuyen de manera equitativa.
 
@@ -370,9 +370,3 @@ https://datos.gob.es/es/catalogo/ea0010587-suicidios-por-comunidades-y-ciudades-
 * https://www.ine.es/ss/Satellite?L=es_ES&c=INESeccion_C&cid=1259944509412&p=1254735110672&pagename=ProductosYServicios%2FPYSLayout&param1=PYSDetalleFichaIndicador&param3=1259937499084 (introducc segun INe ..)
 
 https://cran.r-project.org/doc/contrib/grafi3.pdf
-
-https://www.who.int/es/news-room/fact-sheets/detail/mental-health-strengthening-our-response
-
-https://www.mendoza.gov.ar/salud/temas-de-salud/suicidio-2/#:~:text=%C2%BFQu%C3%A9%20es%3F,de%20conocimiento%20del%20verdadero%20m%C3%B3vil%E2%80%9C.
-
-https://eacnur.org/blog/desigualdad-economica-que-es-tc_alt45664n_o_pstn_o_pst/#:~:text=La%20desigualdad%20econ%C3%B3mica%20es%20la,un%20pa%C3%ADs%20o%20entre%20pa%C3%ADses.
