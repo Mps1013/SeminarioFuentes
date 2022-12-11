@@ -394,7 +394,7 @@ Además, para poder analizar los resultados se ha realizado una correlación (mu
 
 En la siguiente imagen vemos la fuerza de las correlaciones en las que nos basaremos para hacer el estudio.
 
-![](OUTPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
+![](INPUT/DATA/Correlaciones.png "Correlaciones"){width=width height=height}
 
 También se ha realizado un gráfico de barras en el que se muestra la inaccesibilidad a servicios de salud mental, suicidios y cociente s80s20 por cada CCAA.Para ello se ha creado una tabla en la que se han unido todos los atributos de suina y desina con CA como pivote y se han seleccionado las columnas de interés. Además, se ha multiplicado los valores de porPobIna y porPobSui para poder verlos en la gráfica ya que comparados con s80s20, eran muy bajos. Por último, con pivot_longer, se ha cambiado el formato de la tabla, de forma que todos los atributos (sin incluir CA) estén en una columna, y sus respectivos valores en otra.
 ```{r TablaCCAA}
